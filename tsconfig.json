@@ -10,7 +10,7 @@
       "strict": true,
       "typeRoots": ["src/typings", "node_modules/@types"],
       "experimentalDecorators": true,
-      "lib": ["es5", "es6", "dom"]
+      "lib": ["es5", "dom"]
     },
     "exclude": ["node_modules"]
   }
