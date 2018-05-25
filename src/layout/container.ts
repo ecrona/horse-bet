@@ -3,12 +3,9 @@ import { State } from 'store'
 import { View } from 'models/view'
 import Component from './component'
 
-export interface StoreProps {
-  view: View
-}
-
-const mapStateToProps = (state: State): StoreProps => ({
+const mapStateToProps = (state: State) => ({
   view: state.view
 })
 
+export type StoreProps = ReturnType<typeof mapStateToProps>
 export default connect(mapStateToProps)(Component)
