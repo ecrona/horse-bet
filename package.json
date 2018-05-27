@@ -1,0 +1,52 @@
+{
+  "name": "horse-bet",
+  "version": "0.0.1",
+  "description": "A small betting game specified for soccer tournaments",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecrona/horse-bet.git"
+  },
+  "author": "Eddie Crona & Viktor Carlén",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecrona/horse-bet/issues"
+  },
+  "homepage": "https://github.com/ecrona/horse-bet#readme",
+  "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "@types/es6-collections": "^0.5.31",
+    "@types/html-webpack-plugin": "^2.30.3",
+    "@types/node": "^8.10.17",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-redux": "^6.0.0",
+    "@types/webpack": "^4.4.0",
+    "@types/webpack-merge": "^4.1.3",
+    "awesome-typescript-loader": "^5.0.0",
+    "bind-decorator": "^1.0.11",
+    "es6-promise": "^4.2.4",
+    "html-webpack-plugin": "^3.2.0",
+    "object-assign": "^4.1.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-plainify": "^0.3.1",
+    "redux-thunk": "2.1.0",
+    "reselect": "^3.0.1",
+    "source-map-loader": "^0.2.3",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
+  },
+  "devDependencies": {
+    "react-hot-loader": "^4.2.0",
+    "webpack-hot-middleware": "^2.22.2"
+  }
+}
