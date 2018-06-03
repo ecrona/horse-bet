@@ -1,4 +1,5 @@
 import * as React from 'react'
+import bind from 'bind-decorator'
 import { StoreProps } from './container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -9,15 +10,16 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { Done, Clear } from '@material-ui/icons'
+import { Edit, Done, Clear } from '@material-ui/icons'
 import green from '@material-ui/core/colors/green'
 import { Placement } from 'models/placement'
+import { Winner } from 'models/winner'
+import { BetModal } from './components/bet-modal'
 
 interface Props extends StoreProps {}
 
 export default class Component extends React.PureComponent<Props> {
   render() {
-    console.log(this.props)
     return (
       <div
         style={{
@@ -50,7 +52,8 @@ export default class Component extends React.PureComponent<Props> {
                         <TableCell
                           component="th"
                           scope="row"
-                          style={{ width: '250px' }}
+                          style={{ width: '250px', cursor: 'pointer' }}
+                          onClick={() => this.props.openBetModal(fixture)}
                         >
                           {fixture.home} - {fixture.away}
                         </TableCell>
@@ -74,6 +77,16 @@ export default class Component extends React.PureComponent<Props> {
             </Grid>
           ))}
         </Grid>
+        <BetModal
+          state={this.props.betModalState}
+          homeTeam={this.props.selectedFixture.home}
+          awayTeam={this.props.selectedFixture.away}
+          selectedBet={this.props.selectedBet}
+          placeBet={(winner: Winner) =>
+            this.props.placeBet(this.props.selectedFixture, winner)
+          }
+          onClose={this.props.closeBetModal}
+        />
       </div>
     )
   }

@@ -1,12 +1,7 @@
 import { createSelector } from 'reselect'
 import { State } from 'store'
-import { Bet } from 'models/bet'
-import { Fixture } from 'models/fixture'
 import { Placement } from 'models/placement'
-
-interface FixtureWithPlacements extends Fixture {
-  placements: Array<Placement | undefined>
-}
+import { FixtureWithPlacements } from '../models/fixture-with-placements'
 
 interface StageTable {
   name: string
@@ -28,16 +23,22 @@ export const getStageTables = createSelector(
           .map(fixture => ({
             ...fixture,
             placements: users
-              .map(user =>
-                bets.find(
-                  bet =>
-                    bet.user === user.name &&
-                    bet.home === fixture.home &&
-                    bet.away === fixture.away &&
-                    bet.date === fixture.date
-                )
+              .map(
+                user =>
+                  bets.find(
+                    bet =>
+                      bet.user === user.name &&
+                      bet.home === fixture.home &&
+                      bet.away === fixture.away &&
+                      bet.date === fixture.date
+                  ) || { placement: Placement.NotPlaced }
               )
               .map(bet => bet && bet.placement)
           }))
       }))
+)
+
+export const getSelectedBet = createSelector(
+  (state: State) => state.dashboard.selectedFixture,
+  selectedFixture => selectedFixture.placements[0] || Placement.NotPlaced
 )
