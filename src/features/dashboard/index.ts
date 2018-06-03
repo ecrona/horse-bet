@@ -1,1 +1,1 @@
-export default 'dashboard'
+export { default as Dashboard } from './container'

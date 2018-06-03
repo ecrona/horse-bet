@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import green from '@material-ui/core/colors/green'
 import { View } from 'models/view'
 import { StoreProps } from './container'
-import dashboard from 'features/dashboard'
+import { Dashboard } from 'features/dashboard'
 import login from 'features/login'
 
 interface Props extends StoreProps {}
@@ -47,7 +47,7 @@ export default class Component extends React.PureComponent<Props> {
           <span>Hästbett</span>
         </div>
 
-        {this.props.view === View.Dashboard ? dashboard : login}
+        {this.props.view === View.Dashboard ? <Dashboard /> : login}
       </MuiThemeProvider>
     )
   }
