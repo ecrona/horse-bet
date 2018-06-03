@@ -4,6 +4,13 @@ export type State = Array<User>
 
 type Action = any
 
-export default function reducer(state = [{ name: '' }], action: Action): State {
+const initialState = [
+  { name: 'Eddie' },
+  { name: 'Tommy' },
+  { name: 'Kevin' },
+  { name: 'Viktor' }
+]
+
+export default function reducer(state = initialState, action: Action): State {
   return state
 }

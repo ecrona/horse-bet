@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import { State } from 'store'
-import { getFixtureTables } from './selectors'
+import { getStageTables } from './selectors'
 import Component from './component'
 
 const mapStateToProps = (state: State) => ({
-  fixtures: getFixtureTables(state)
+  stages: getStageTables(state),
+  users: state.users
 })
 
 export type StoreProps = ReturnType<typeof mapStateToProps>

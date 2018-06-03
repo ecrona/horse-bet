@@ -28,20 +28,18 @@ export default class Component extends React.PureComponent<Props> {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'absolute',
-            top: '10px',
-            left: '10px',
-            height: '100px',
+            height: '180px',
+            width: '180px',
+            margin: '20px auto',
             background: '#fff',
             boxShadow: '0px 2px 10px 4px #fdfdfd',
-            padding: '90px 40px',
             borderRadius: '100%',
             fontFamily: 'Segoe Print',
             fontSize: '24px'
           }}
         >
           <img
-            style={{ height: 'inherit' }}
+            style={{ height: '100px' }}
             src="https://cdn.onlinewebfonts.com/svg/img_73645.png"
           />
           <span>Hästbett</span>
