@@ -1,8 +1,14 @@
 import { Bet } from 'models/bet'
+import {
+  ActionTypes as DashboardActionTypes,
+  ReceivePlaceBet
+} from 'features/dashboard/store/actions'
+import { Placement } from 'models/placement'
+import { Winner } from 'models/winner'
 
 export type State = Array<Bet>
 
-type Action = any
+type Action = ReceivePlaceBet
 
 const initialState: State = [
   {
@@ -92,5 +98,17 @@ const initialState: State = [
 ]
 
 export default function reducer(state = initialState, action: Action): State {
-  return state
+  switch (action.type) {
+    case DashboardActionTypes.receivePlaceBet:
+      return state.map(
+        bet =>
+          bet.home === action.fixture.home &&
+          bet.away === action.fixture.away &&
+          bet.date === action.fixture.date
+            ? { ...bet, placement: +action.winner }
+            : bet
+      )
+    default:
+      return state
+  }
 }
