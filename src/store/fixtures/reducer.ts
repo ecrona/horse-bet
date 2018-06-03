@@ -4,9 +4,30 @@ export type State = Array<Fixture>
 
 type Action = any
 
-export default function reducer(
-  state = [{ home: '', away: '', date: '', winner: 0 }],
-  action: Action
-): State {
+const initialState = [
+  {
+    home: 'Liverpool',
+    away: 'Real Madrid',
+    date: '20180608',
+    stage: 'Final',
+    winner: 0
+  },
+  {
+    home: 'Roma',
+    away: 'Liverpool',
+    date: '20180603',
+    stage: 'Semi finals',
+    winner: 0
+  },
+  {
+    home: 'Real Madrid',
+    away: 'Bayern Münich',
+    date: '20180603',
+    stage: 'Semi finals',
+    winner: 0
+  }
+]
+
+export default function reducer(state = initialState, action: Action): State {
   return state
 }

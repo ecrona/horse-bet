@@ -1,9 +1,9 @@
-import { Winner } from './winner'
+import { Placement } from './placement'
 
 export interface Bet {
   user: string
   home: string
   away: string
   date: string
-  winner: Winner.Home | Winner.Away
+  placement: Placement
 }
