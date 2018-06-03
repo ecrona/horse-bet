@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "sourceMap": true,
+    "outDir": "build",
+    "jsx": "react",
+    "strict": true,
+    "typeRoots": ["src/typings", "node_modules/@types"],
+    "experimentalDecorators": true,
+    "lib": ["es5", "dom", "es2015.promise"]
+  },
+  "exclude": ["node_modules"]
+}
