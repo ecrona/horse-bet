@@ -6,6 +6,7 @@ import { View } from 'models/view'
 import { StoreProps } from './container'
 import { Dashboard } from 'features/dashboard'
 import login from 'features/login'
+import { Splash } from 'features/splash'
 
 interface Props extends StoreProps {}
 
@@ -49,7 +50,9 @@ export default class Component extends React.PureComponent<Props> {
           <span>Hästbett</span>
         </div>
 
-        {this.props.view === View.Dashboard ? <Dashboard /> : login}
+        {this.props.view === View.Dashboard && <Dashboard />}
+        {this.props.view === View.Login && login}
+        {this.props.view === View.Splash && <Splash />}
       </MuiThemeProvider>
     )
   }
