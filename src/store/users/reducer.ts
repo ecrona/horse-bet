@@ -1,8 +1,12 @@
 import { User } from 'models/user'
+import {
+  ActionTypes as ViewActionTypes,
+  ReceiveBaseData
+} from '../view/actions'
 
 export type State = Array<User>
 
-type Action = any
+type Action = ReceiveBaseData
 
 const initialState = [
   { name: 'Eddie' },
@@ -12,5 +16,10 @@ const initialState = [
 ]
 
 export default function reducer(state = initialState, action: Action): State {
-  return state
+  switch (action.type) {
+    case ViewActionTypes.receiveBaseData:
+      return action.users.slice()
+    default:
+      return state
+  }
 }

@@ -3,36 +3,35 @@ import * as path from 'path'
 import * as webpack from 'webpack'
 
 export const config: webpack.Configuration = {
-    output: {
-        path: path.resolve(__dirname, '../dist'),
-        filename: 'bundle.js'
-    },
+  output: {
+    path: path.resolve(__dirname, '../public'),
+    filename: 'bundle.js'
+  },
 
-    resolve: {
-        modules: [
-            path.resolve('./src'),
-            'node_modules'
-        ],
-        extensions: ['.ts', '.tsx', '.js']
-    },
-    
-    module: {
-        rules: [{
-            enforce: 'pre',
-            test: /\.js$/, 
-            use: 'source-map-loader'
-        }]
-    },
+  resolve: {
+    modules: [path.resolve('./src'), 'node_modules'],
+    extensions: ['.ts', '.tsx', '.js']
+  },
 
-    plugins: [
-        new HtmlWebpackPlugin({
-            chunksSortMode: 'dependency',
-            inject: true,
-            template: './public/index.html'
-        }),
-    ],
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        use: 'source-map-loader'
+      }
+    ]
+  },
 
-    devtool: 'source-map',
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      chunksSortMode: 'dependency',
+      inject: true,
+      template: './public/index.html'
+    })
+  ],
 
-export default config;
+  devtool: 'source-map'
+}
+
+export default config
