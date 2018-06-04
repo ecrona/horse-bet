@@ -4,7 +4,9 @@
   "description": "A small betting game specified for soccer tournaments",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "build": "webpack --env.production",
+    "firebase": "firebase"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "awesome-typescript-loader": "^5.0.0",
     "bind-decorator": "^1.0.11",
     "es6-promise": "^4.2.4",
+    "firebase": "^5.0.4",
     "html-webpack-plugin": "^3.2.0",
     "object-assign": "^4.1.1",
     "react": "^16.3.2",
@@ -49,6 +52,7 @@
     "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
+    "firebase-tools": "^3.18.5",
     "react-hot-loader": "^4.2.0",
     "webpack-dev-server": "^3.1.4",
     "webpack-hot-middleware": "^2.22.2"

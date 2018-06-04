@@ -18,6 +18,10 @@ const theme = createMuiTheme({
 })
 
 export default class Component extends React.PureComponent<Props> {
+  componentDidMount() {
+    this.props.load()
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
