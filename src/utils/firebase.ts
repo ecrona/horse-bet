@@ -20,7 +20,7 @@ class Firebase {
     this.db = firebase.firestore()
   }
 
-  private getDb() {
+  private getDb(): firebase.firestore.Firestore {
     if (!this.db) {
       this.initDb()
     }
@@ -35,11 +35,20 @@ class Firebase {
     }
   }
 
-  public async get(endpoint: string) {
+  public async get(endpoint: string, from: string, to: string) {
     const response = await this.getDb()
       .collection(endpoint)
+      .where('date', '>=', from)
+      .where('date', '<=', to)
       .get()
-    return response.docs.map((doc: any) => doc.data())
+    return response.docs.map(doc => doc.data())
+  }
+
+  public async add(endpoint: string, data: any) {
+    const response = await this.getDb()
+      .collection(endpoint)
+      .add(data)
+    return true
   }
 }
 
