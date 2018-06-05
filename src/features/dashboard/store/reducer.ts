@@ -25,6 +25,7 @@ type Action =
 const initialState = {
   betModalState: BetModalState.Closed,
   selectedFixture: {
+    id: '',
     home: '',
     away: '',
     date: '',

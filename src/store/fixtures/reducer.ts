@@ -1,11 +1,16 @@
+import {
+  ActionTypes as ViewActionTypes,
+  ReceiveApplicationData
+} from '../view/actions'
 import { Fixture } from 'models/fixture'
 
 export type State = Array<Fixture>
 
-type Action = any
+type Action = ReceiveApplicationData
 
 const initialState = [
   {
+    id: '1',
     home: 'Liverpool',
     away: 'Real Madrid',
     date: '20180608',
@@ -13,6 +18,7 @@ const initialState = [
     winner: 0
   },
   {
+    id: '2',
     home: 'Roma',
     away: 'Liverpool',
     date: '20180603',
@@ -20,6 +26,7 @@ const initialState = [
     winner: 0
   },
   {
+    id: '3',
     home: 'Real Madrid',
     away: 'Bayern Münich',
     date: '20180603',
@@ -29,5 +36,10 @@ const initialState = [
 ]
 
 export default function reducer(state = initialState, action: Action): State {
-  return state
+  switch (action.type) {
+    case ViewActionTypes.receiveApplicationData:
+      return action.fixtures.slice()
+    default:
+      return state
+  }
 }

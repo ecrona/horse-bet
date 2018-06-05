@@ -27,10 +27,7 @@ export const getStageTables = createSelector(
                 user =>
                   bets.find(
                     bet =>
-                      bet.user === user.name &&
-                      bet.home === fixture.home &&
-                      bet.away === fixture.away &&
-                      bet.date === fixture.date
+                      bet.userId === user.id && bet.fixtureId === fixture.id
                   ) || { placement: Placement.NotPlaced }
               )
               .map(bet => bet && bet.placement)

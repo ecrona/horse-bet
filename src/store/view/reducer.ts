@@ -1,13 +1,13 @@
 import { View } from 'models/view'
-import { ActionTypes, ReceiveBaseData } from './actions'
+import { ActionTypes, ReceiveApplicationData } from './actions'
 
 export type State = View
 
-type Action = ReceiveBaseData
+type Action = ReceiveApplicationData
 
 export default function reducer(state = View.Splash, action: Action): State {
   switch (action.type) {
-    case ActionTypes.receiveBaseData:
+    case ActionTypes.receiveApplicationData:
       return View.Dashboard
     default:
       return state

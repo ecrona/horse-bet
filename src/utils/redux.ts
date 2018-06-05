@@ -1,5 +1,5 @@
 import { State } from 'store'
-import { Endpoints } from './endpoints'
+import { Firebase } from './firebase'
 
 interface Dispatch {
   (action: Dispatchable): void
@@ -14,5 +14,5 @@ export interface Action {
 export type ThunkAction = (
   dispatch: Dispatch,
   getState: () => State,
-  endpoints: Endpoints
+  endpoints: Firebase
 ) => void
