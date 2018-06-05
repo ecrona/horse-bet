@@ -1,23 +1,23 @@
-import { User } from 'models/user'
 import {
   ActionTypes as ViewActionTypes,
-  ReceiveBaseData
+  ReceiveApplicationData
 } from '../view/actions'
+import { User } from 'models/user'
 
 export type State = Array<User>
 
-type Action = ReceiveBaseData
+type Action = ReceiveApplicationData
 
 const initialState = [
-  { name: 'Eddie' },
-  { name: 'Tommy' },
-  { name: 'Kevin' },
-  { name: 'Viktor' }
+  { id: '1', email: '', name: 'Eddie' },
+  { id: '2', email: '', name: 'Tommy' },
+  { id: '3', email: '', name: 'Kevin' },
+  { id: '4', email: '', name: 'Viktor' }
 ]
 
 export default function reducer(state = initialState, action: Action): State {
   switch (action.type) {
-    case ViewActionTypes.receiveBaseData:
+    case ViewActionTypes.receiveApplicationData:
       return action.users.slice()
     default:
       return state

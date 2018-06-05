@@ -2,8 +2,8 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { User } from 'models/user'
 
-class Firebase {
-  public db: any
+export class Firebase {
+  private dbInstance: any
 
   private initApp() {
     firebase.initializeApp({
@@ -17,15 +17,15 @@ class Firebase {
   }
 
   private initDb() {
-    this.db = firebase.firestore()
+    this.dbInstance = firebase.firestore()
   }
 
-  private getDb(): firebase.firestore.Firestore {
-    if (!this.db) {
+  public get db(): firebase.firestore.Firestore {
+    if (!this.dbInstance) {
       this.initDb()
     }
 
-    return this.db
+    return this.dbInstance
   }
 
   public init() {
@@ -33,22 +33,6 @@ class Firebase {
       this.initApp()
       this.initDb()
     }
-  }
-
-  public async get(endpoint: string, from: string, to: string) {
-    const response = await this.getDb()
-      .collection(endpoint)
-      .where('date', '>=', from)
-      .where('date', '<=', to)
-      .get()
-    return response.docs.map(doc => doc.data())
-  }
-
-  public async add(endpoint: string, data: any) {
-    const response = await this.getDb()
-      .collection(endpoint)
-      .add(data)
-    return true
   }
 }
 

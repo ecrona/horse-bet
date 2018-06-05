@@ -1,111 +1,97 @@
-import { Bet } from 'models/bet'
 import {
   ActionTypes as DashboardActionTypes,
   ReceivePlaceBet
 } from 'features/dashboard/store/actions'
+import {
+  ActionTypes as ViewActionTypes,
+  ReceiveApplicationData
+} from '../view/actions'
+import { Bet } from 'models/bet'
 import { Placement } from 'models/placement'
 import { Winner } from 'models/winner'
 
 export type State = Array<Bet>
 
-type Action = ReceivePlaceBet
+type Action = ReceiveApplicationData | ReceivePlaceBet
 
 const initialState: State = [
   {
-    user: 'Eddie',
-    home: 'Liverpool',
-    away: 'Real Madrid',
-    date: '20180608',
+    userId: 'Eddie',
+    fixtureId: 'Liverpool',
     placement: 3
   },
   {
-    user: 'Tommy',
-    home: 'Liverpool',
-    away: 'Real Madrid',
-    date: '20180608',
+    userId: 'Tommy',
+    fixtureId: 'Liverpool',
     placement: 3
   },
   {
-    user: 'Kevin',
-    home: 'Liverpool',
-    away: 'Real Madrid',
-    date: '20180608',
+    userId: 'Kevin',
+    fixtureId: 'Liverpool',
     placement: 3
   },
   {
-    user: 'Viktor',
-    home: 'Liverpool',
-    away: 'Real Madrid',
-    date: '20180608',
+    userId: 'Viktor',
+    fixtureId: 'Liverpool',
     placement: 4
   },
   {
-    user: 'Eddie',
-    home: 'Roma',
-    away: 'Liverpool',
-    date: '20180603',
+    userId: 'Eddie',
+    fixtureId: 'Roma',
     placement: 1
   },
   {
-    user: 'Tommy',
-    home: 'Roma',
-    away: 'Liverpool',
-    date: '20180603',
+    userId: 'Tommy',
+    fixtureId: 'Roma',
     placement: 3
   },
   {
-    user: 'Kevin',
-    home: 'Roma',
-    away: 'Liverpool',
-    date: '20180603',
+    userId: 'Kevin',
+    fixtureId: 'Roma',
     placement: 3
   },
   {
-    user: 'Viktor',
-    home: 'Roma',
-    away: 'Liverpool',
-    date: '20180603',
+    userId: 'Viktor',
+    fixtureId: 'Roma',
     placement: 4
   },
   {
-    user: 'Eddie',
-    home: 'Real Madrid',
-    away: 'Bayern Münich',
-    date: '20180603',
+    userId: 'Eddie',
+    fixtureId: 'Real Madrid',
     placement: 1
   },
   {
-    user: 'Tommy',
-    home: 'Real Madrid',
-    away: 'Bayern Münich',
-    date: '20180603',
+    userId: 'Tommy',
+    fixtureId: 'Real Madrid',
     placement: 2
   },
   {
-    user: 'Kevin',
-    home: 'Real Madrid',
-    away: 'Bayern Münich',
-    date: '20180603',
+    userId: 'Kevin',
+    fixtureId: 'Real Madrid',
     placement: 3
   },
   {
-    user: 'Viktor',
-    home: 'Real Madrid',
-    away: 'Bayern Münich',
-    date: '20180603',
+    userId: 'Viktor',
+    fixtureId: 'Real Madrid',
     placement: 1
   }
 ]
 
 export default function reducer(state = initialState, action: Action): State {
   switch (action.type) {
+    case ViewActionTypes.receiveApplicationData:
+      return action.bets.slice()
     case DashboardActionTypes.receivePlaceBet:
       return state.map(
         bet =>
-          bet.home === action.fixture.home &&
-          bet.away === action.fixture.away &&
-          bet.date === action.fixture.date
-            ? { ...bet, placement: +action.winner }
+          bet.fixtureId === action.fixture.id
+            ? {
+                ...bet,
+                placement:
+                  action.winner === Winner.Home
+                    ? Placement.Home
+                    : Placement.Away
+              }
             : bet
       )
     default:
