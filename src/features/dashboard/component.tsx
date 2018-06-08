@@ -18,8 +18,25 @@ import { BetModal } from './components/bet-modal'
 
 interface Props extends StoreProps {}
 
+const TeamTitle = ({
+  title,
+  selected
+}: {
+  title: string
+  selected: boolean
+}) => (
+  <span
+    style={{
+      textDecoration: selected ? 'underline' : 'none'
+    }}
+  >
+    {title}
+  </span>
+)
+
 export default class Component extends React.PureComponent<Props> {
   render() {
+    console.log(this.props)
     return (
       <div
         style={{
@@ -55,7 +72,15 @@ export default class Component extends React.PureComponent<Props> {
                           style={{ width: '250px', cursor: 'pointer' }}
                           onClick={() => this.props.openBetModal(fixture)}
                         >
-                          {fixture.home} - {fixture.away}
+                          <TeamTitle
+                            title={fixture.home}
+                            selected={fixture.winner === Winner.Home}
+                          />{' '}
+                          -{' '}
+                          <TeamTitle
+                            title={fixture.away}
+                            selected={fixture.winner === Winner.Away}
+                          />
                         </TableCell>
                         {fixture.placements.map((placement, index) => (
                           <TableCell key={index} style={{ width: '150px' }}>
@@ -71,6 +96,16 @@ export default class Component extends React.PureComponent<Props> {
                         ))}
                       </TableRow>
                     ))}
+                    <TableRow key={index}>
+                      <TableCell component="th" scope="row">
+                        <i>Score</i>
+                      </TableCell>
+                      {stage.scores.map((score, index) => (
+                        <TableCell key={index} style={{ width: '150px' }}>
+                          {score}/{stage.fixtures.length}
+                        </TableCell>
+                      ))}
+                    </TableRow>
                   </TableBody>
                 </Table>
               </Paper>
