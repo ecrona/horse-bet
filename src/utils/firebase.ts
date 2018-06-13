@@ -1,9 +1,11 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/functions'
 import { User } from 'models/user'
 
 export class Firebase {
   private dbInstance: any
+  private functionsInstance: any
 
   private initApp() {
     firebase.initializeApp({
@@ -20,6 +22,10 @@ export class Firebase {
     this.dbInstance = firebase.firestore()
   }
 
+  private initFunctions() {
+    this.functionsInstance = firebase.functions()
+  }
+
   public get db(): firebase.firestore.Firestore {
     if (!this.dbInstance) {
       this.initDb()
@@ -28,11 +34,23 @@ export class Firebase {
     return this.dbInstance
   }
 
+  public get functions(): firebase.functions.Functions {
+    if (!this.functionsInstance) {
+      this.initFunctions()
+    }
+
+    return this.functionsInstance
+  }
+
   public init() {
     if (!firebase.apps.length) {
       this.initApp()
       this.initDb()
     }
+  }
+
+  public call(functionName: string) {
+    return this.functions.httpsCallable(functionName)
   }
 }
 

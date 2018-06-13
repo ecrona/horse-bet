@@ -8,6 +8,9 @@ export enum ActionTypes {
   receiveApplicationData = '[View] Receive base data'
 }
 
+const url =
+  'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json'
+
 export class ReceiveApplicationData implements Action {
   public readonly type = ActionTypes.receiveApplicationData
   constructor(
@@ -20,6 +23,10 @@ export class ReceiveApplicationData implements Action {
 export function load(): ThunkAction {
   return async (dispatch, getState, firebase) => {
     await firebase.init()
+    const data = await fetch(url)
+    const json = await data.json()
+    const response = await firebase.call('updateFixtures')(json)
+
     const userId = '5dvAPb52p1hDIJgXBvTS'
     const userCollection = await firebase.db.collection('users').get()
     const fixtureCollection = await firebase.db.collection('fixtures').get()

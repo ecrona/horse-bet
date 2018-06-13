@@ -3,9 +3,6 @@ import { Data } from '../models/data'
 import { Fixture } from '../models/fixture'
 import { Winner } from '../models/winner'
 
-const url =
-  'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json'
-
 class DataManager {
   constructor(private data: Data) {}
 
@@ -39,8 +36,6 @@ class DataManager {
 }
 
 // Factory
-export const createDataManager = async () => {
-  const response = await fetch(url)
-  const json = await response.json()
-  return new DataManager(json)
+export const createDataManager = (data: Data) => {
+  return new DataManager(data)
 }

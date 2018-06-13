@@ -11,6 +11,7 @@ type Action = ReceiveApplicationData
 const initialState = [
   {
     id: '1',
+    competitionId: '',
     home: 'Liverpool',
     away: 'Real Madrid',
     date: '20180608',
@@ -19,6 +20,7 @@ const initialState = [
   },
   {
     id: '2',
+    competitionId: '',
     home: 'Roma',
     away: 'Liverpool',
     date: '20180603',
@@ -27,6 +29,7 @@ const initialState = [
   },
   {
     id: '3',
+    competitionId: '',
     home: 'Real Madrid',
     away: 'Bayern Münich',
     date: '20180603',
