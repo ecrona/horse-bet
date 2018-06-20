@@ -4,7 +4,7 @@ import { User } from 'models/user'
 import { Placement } from 'models/placement'
 import { Bet } from 'models/bet'
 import { isAuthenticated } from 'utils/firebase/authentication'
-import { getUsers, getFixtures } from 'utils/firebase/database'
+import { getUsers, getFixtures, getCombinedBets } from 'utils/firebase/database'
 
 export enum ActionTypes {
   authenticate = '[View] Authenticate',
@@ -26,55 +26,17 @@ export class ReceiveApplicationData implements Action {
 
 export function load(): ThunkAction {
   return async (dispatch, getState, firebase) => {
-    await firebase.authenticate()
+    ;(window as any).f = firebase.authenticate.bind(firebase)
     const authenticated = await isAuthenticated(firebase)
 
     if (authenticated) {
       const userId = '5dvAPb52p1hDIJgXBvTS'
-      const userCollection = await firebase.db.collection('users').get()
-      const fixtureCollection = await firebase.db.collection('fixtures').get()
-      const betCollection = await firebase.db.collection('bets').get()
-      const betPlacementCollection = await firebase.db
-        .collection('betPlacements')
-        .where('date', '<=', new Date())
-        .get()
-      const userBetPlacementCollection = await firebase.db
-        .collection('betPlacements')
-        .where('userId', '==', userId)
-        .get()
-
-      const mapBetPlacement = (bet: any) => ({
-        userId: bet.userId,
-        fixtureId: bet.fixtureId,
-        placement: bet.winner ? Placement.Home : Placement.Away
-      })
-
-      const betPlacements = betPlacementCollection.docs
-        .map(doc => doc.data())
-        .map(mapBetPlacement)
-        .filter(bet => bet.userId !== userId)
-        .concat(
-          userBetPlacementCollection.docs
-            .map(doc => doc.data())
-            .map(mapBetPlacement)
-        )
-
-      const bets = betCollection.docs
-        .map(doc => ({ ...doc.data(), placement: Placement.Placed } as Bet))
-        .map(
-          bet =>
-            betPlacements.find(
-              betPlacement =>
-                betPlacement.userId === bet.userId &&
-                betPlacement.fixtureId === bet.fixtureId
-            ) || bet
-        )
 
       dispatch(
         new ReceiveApplicationData(
           await getUsers(firebase),
           await getFixtures(firebase),
-          bets
+          await getCombinedBets(firebase, userId)
         )
       )
     } else {
