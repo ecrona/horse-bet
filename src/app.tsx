@@ -6,10 +6,6 @@ import 'utils/polyfills'
 
 export class App extends React.Component<any, any> {
   render() {
-    return (
-      <Provider store={createStore()}>
-        <Layout />
-      </Provider>
-    )
+    return <Layout />
   }
 }
