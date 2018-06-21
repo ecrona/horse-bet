@@ -29,7 +29,8 @@ export class ReceivePlaceBet implements Action {
 }
 
 export function placeBet(fixture: Fixture, winner: Winner): ThunkAction {
-  return async (dispatch, getState) => {
+  return async (dispatch, getState, firebase) => {
+    console.log(fixture, winner)
     dispatch(new RequestPlaceBet())
     await fetch('/')
     await new Promise(resolve => setTimeout(resolve, 2000))

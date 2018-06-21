@@ -9,5 +9,6 @@ export interface Match {
   stadium: number
   channels: Array<number>
   finished: boolean
+  winner: number
   matchday: number
 }

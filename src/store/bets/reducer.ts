@@ -82,18 +82,14 @@ export default function reducer(state = initialState, action: Action): State {
     case ViewActionTypes.receiveApplicationData:
       return action.bets.slice()
     case DashboardActionTypes.receivePlaceBet:
-      return state.map(
-        bet =>
-          bet.fixtureId === action.fixture.id
-            ? {
-                ...bet,
-                placement:
-                  action.winner === Winner.Home
-                    ? Placement.Home
-                    : Placement.Away
-              }
-            : bet
-      )
+      return state.filter(bet => bet.fixtureId !== action.fixture.id).concat([
+        {
+          userId: '5dvAPb52p1hDIJgXBvTS',
+          fixtureId: action.fixture.id,
+          placement:
+            action.winner === Winner.Home ? Placement.Home : Placement.Away
+        }
+      ])
     default:
       return state
   }

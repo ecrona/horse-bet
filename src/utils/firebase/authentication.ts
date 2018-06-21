@@ -1,15 +1,18 @@
+import firebase from 'firebase'
 import { Firebase } from '.'
 
-export const isAuthenticated = async (firebase: Firebase) => {
+export const getUser = async (
+  firebase: Firebase
+): Promise<firebase.User | false> => {
   await firebase.auth().getRedirectResult()
 
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise<firebase.User | false>((resolve, reject) => {
     firebase.auth().onAuthStateChanged(function(user) {
-      return resolve(!!user)
+      return resolve(user || false)
     })
   })
 
-  const timeout = new Promise((resolve, reject) =>
+  const timeout = new Promise<false>((resolve, reject) =>
     setTimeout(() => resolve(false), 5000)
   )
 

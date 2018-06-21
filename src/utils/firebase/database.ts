@@ -39,6 +39,15 @@ const getUserBetPlacements = async (firebase: Firebase, userId: string) => {
   return betPlacements.docs.map(doc => doc.data() as BetWithWinner)
 }
 
+export const getMe = async (firebase: Firebase, email: string) => {
+  const user = await firebase.db
+    .collection('users')
+    .where('email', '==', email)
+    .get()
+
+  return user.docs.pop()
+}
+
 export const getUsers = async (firebase: Firebase) => {
   const users = await firebase.db.collection('users').get()
   return users.docs.map(doc => ({ id: doc.id, ...doc.data() } as User))

@@ -7,12 +7,15 @@ import { clearScreenDown } from 'readline'
 
 export class Firebase {
   private static _instance: Firebase
+  private _userId: string
 
   constructor(
     public db: firebase.firestore.Firestore,
     public functions: firebase.functions.Functions,
     public authProvider: firebase.auth.AuthProvider
-  ) {}
+  ) {
+    this._userId = ''
+  }
 
   public static get instance() {
     if (this._instance) {
@@ -35,6 +38,16 @@ export class Firebase {
     )
 
     return this._instance
+  }
+
+  public get userId() {
+    return this._userId
+  }
+
+  public set userId(userId: string) {
+    if (this._userId === '') {
+      this._userId = userId
+    }
   }
 
   public get auth() {

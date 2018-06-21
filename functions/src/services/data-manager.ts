@@ -9,25 +9,27 @@ class DataManager {
   public getTeam(id: number): string {
     const team = this.data.teams.find(team => team.id === id)
 
-    return team ? team.name : ''
+    return team ? team.name : id.toString()
   }
 
   public getFixtures() {
-    const knockout = this.data.groups
+    const knockout = this.data.knockout
     let matches: Array<Fixture> = []
     const rounds = Object.keys(knockout).map(round => {
       const knockoutMatches = knockout[round].matches
       matches = matches.concat(
-        knockoutMatches
-          .filter(match => match.home_team === 17 || match.away_team === 17)
-          .map(match => ({
-            competitionId: 'SFVpat7sB1cCU3DClA3D',
-            home: this.getTeam(match.home_team),
-            away: this.getTeam(match.away_team),
-            date: match.date,
-            stage: round,
-            winner: match.home_team === 17 ? Winner.Home : Winner.None
-          }))
+        knockoutMatches.filter(match => true).map(match => ({
+          competitionId: 'SFVpat7sB1cCU3DClA3D',
+          home: this.getTeam(match.home_team),
+          away: this.getTeam(match.away_team),
+          date: match.date,
+          stage: knockout[round].name,
+          winner: match.finished
+            ? match.winner === match.home_team
+              ? Winner.Home
+              : Winner.Away
+            : Winner.None
+        }))
       )
     })
 

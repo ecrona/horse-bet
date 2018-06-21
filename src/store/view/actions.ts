@@ -3,8 +3,13 @@ import { Fixture } from 'models/fixture'
 import { User } from 'models/user'
 import { Placement } from 'models/placement'
 import { Bet } from 'models/bet'
-import { isAuthenticated } from 'utils/firebase/authentication'
-import { getUsers, getFixtures, getCombinedBets } from 'utils/firebase/database'
+import { getUser } from 'utils/firebase/authentication'
+import {
+  getUsers,
+  getFixtures,
+  getCombinedBets,
+  getMe
+} from 'utils/firebase/database'
 
 export enum ActionTypes {
   authenticate = '[View] Authenticate',
@@ -30,19 +35,25 @@ export function load(): ThunkAction {
   return async (dispatch, getState, firebase) => {
     const data = await fetch(url)
     const json = await data.json()
-    const response = await firebase.call('updateFixtures')(json)
-    const authenticated = await isAuthenticated(firebase)
+    //const response = await firebase.call('updateFixtures')(json)
+    const user = await getUser(firebase)
 
-    if (authenticated) {
-      const userId = '5dvAPb52p1hDIJgXBvTS'
+    if (user && user.email) {
+      const me = await getMe(firebase, user.email || '')
 
-      dispatch(
-        new ReceiveApplicationData(
-          await getUsers(firebase),
-          await getFixtures(firebase),
-          await getCombinedBets(firebase, userId)
+      if (me && me.id) {
+        firebase.userId = me.id
+
+        dispatch(
+          new ReceiveApplicationData(
+            await getUsers(firebase),
+            await getFixtures(firebase),
+            await getCombinedBets(firebase, firebase.userId)
+          )
         )
-      )
+      } else {
+        dispatch(new Authenticate())
+      }
     } else {
       dispatch(new Authenticate())
     }
