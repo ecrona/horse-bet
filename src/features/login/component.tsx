@@ -1,11 +1,9 @@
 import * as React from 'react'
-import { StoreProps } from './container'
 import { Card, Button, CardContent, Typography } from '@material-ui/core'
+import { StoreProps } from './container'
 import { LoginMethod } from './models/login-method'
 
-interface Props extends StoreProps {
-  login: (method: LoginMethod) => void
-}
+interface Props extends StoreProps {}
 
 export default class Component extends React.PureComponent<Props> {
   render() {
