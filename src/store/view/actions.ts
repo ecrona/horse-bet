@@ -26,7 +26,6 @@ export class ReceiveApplicationData implements Action {
 
 export function load(): ThunkAction {
   return async (dispatch, getState, firebase) => {
-    ;(window as any).f = firebase.authenticate.bind(firebase)
     const authenticated = await isAuthenticated(firebase)
 
     if (authenticated) {
