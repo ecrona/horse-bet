@@ -5,7 +5,7 @@ export type State = View
 
 type Action = ReceiveApplicationData
 
-export default function reducer(state = View.Splash, action: Action): State {
+export default function reducer(state = View.Login, action: Action): State {
   switch (action.type) {
     case ActionTypes.receiveApplicationData:
       return View.Dashboard
