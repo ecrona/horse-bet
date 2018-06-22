@@ -18,6 +18,7 @@ export enum ActionTypes {
 
 const url =
   'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json'
+
 export class Authenticate implements Action {
   public readonly type = ActionTypes.authenticate
 }
