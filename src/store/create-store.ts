@@ -15,12 +15,12 @@ export default function configureStore() {
   )
   const store = createStore(rootReducer, middleware)
 
-  /*if (module.hot) {
-    module.hot.accept('./store/index.ts', () => {
-      const newReducer = require('./store/index.ts').default
-      store.replaceReducer(newReducer)
+  if (module.hot) {
+    module.hot.accept('./index.ts', () => {
+      const { rootReducer: nextRootReducer } = require('./index.ts')
+      store.replaceReducer(nextRootReducer)
     })
-  }*/
+  }
 
   return store
 }
