@@ -2,10 +2,12 @@ import { createSelector } from 'reselect'
 import { State } from 'store'
 import { Placement } from 'models/placement'
 import { FixtureWithPlacements } from '../models/fixture-with-placements'
+import { Winner } from 'models/winner'
 
 interface StageTable {
   name: string
   fixtures: Array<FixtureWithPlacements>
+  scores: Array<number>
 }
 
 export const getStageTables = createSelector(
@@ -31,7 +33,21 @@ export const getStageTables = createSelector(
                   ) || { placement: Placement.NotPlaced }
               )
               .map(bet => bet && bet.placement)
-          }))
+          })),
+        scores: []
+      }))
+      .map(stage => ({
+        ...stage,
+        scores: users.map(
+          (user, userIndex) =>
+            stage.fixtures.filter(
+              fixture =>
+                (fixture.placements[userIndex] === Placement.Home &&
+                  fixture.winner === Winner.Home) ||
+                (fixture.placements[userIndex] === Placement.Away &&
+                  fixture.winner === Winner.Away)
+            ).length
+        )
       }))
 )
 

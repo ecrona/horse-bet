@@ -1,16 +1,21 @@
 import firebase from 'firebase/app'
-import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/firestore'
+import 'firebase/functions'
 import { User } from 'models/user'
 import { clearScreenDown } from 'readline'
 
 export class Firebase {
   private static _instance: Firebase
+  private _userId: string
 
   constructor(
     public db: firebase.firestore.Firestore,
+    public functions: firebase.functions.Functions,
     public authProvider: firebase.auth.AuthProvider
-  ) {}
+  ) {
+    this._userId = ''
+  }
 
   public static get instance() {
     if (this._instance) {
@@ -28,10 +33,21 @@ export class Firebase {
 
     this._instance = new this(
       firebase.firestore(),
+      firebase.functions(),
       new firebase.auth.GoogleAuthProvider()
     )
 
     return this._instance
+  }
+
+  public get userId() {
+    return this._userId
+  }
+
+  public set userId(userId: string) {
+    if (this._userId === '') {
+      this._userId = userId
+    }
   }
 
   public get auth() {
@@ -43,6 +59,10 @@ export class Firebase {
     if (!response.user) {
       const r = await firebase.auth().signInWithRedirect(this.authProvider)
     }
+  }
+
+  public call(functionName: string) {
+    return this.functions.httpsCallable(functionName)
   }
 }
 

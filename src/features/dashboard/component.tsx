@@ -23,12 +23,28 @@ interface Props
 
 const styles = (theme: Theme) => ({
   tableWrapper: {
-    overflow: 'auto hidden',
+    overflow: 'auto',
     '& th:first-child': {
       minWidth: '225px'
     }
   }
 })
+
+const TeamTitle = ({
+  title,
+  selected
+}: {
+  title: string
+  selected: boolean
+}) => (
+  <span
+    style={{
+      textDecoration: selected ? 'underline' : 'none'
+    }}
+  >
+    {title}
+  </span>
+)
 
 export default withStyles(styles)(
   class Component extends React.PureComponent<Props> {
@@ -69,7 +85,15 @@ export default withStyles(styles)(
                               style={{ width: '250px', cursor: 'pointer' }}
                               onClick={() => this.props.openBetModal(fixture)}
                             >
-                              {fixture.home} - {fixture.away}
+                              <TeamTitle
+                                title={fixture.home}
+                                selected={fixture.winner === Winner.Home}
+                              />{' '}
+                              -{' '}
+                              <TeamTitle
+                                title={fixture.away}
+                                selected={fixture.winner === Winner.Away}
+                              />
                             </TableCell>
                             {fixture.placements.map((placement, index) => (
                               <TableCell key={index} style={{ width: '150px' }}>
@@ -85,6 +109,16 @@ export default withStyles(styles)(
                             ))}
                           </TableRow>
                         ))}
+                        <TableRow key={index}>
+                          <TableCell component="th" scope="row">
+                            <i>Score</i>
+                          </TableCell>
+                          {stage.scores.map((score, index) => (
+                            <TableCell key={index} style={{ width: '150px' }}>
+                              {score}/{stage.fixtures.length}
+                            </TableCell>
+                          ))}
+                        </TableRow>
                       </TableBody>
                     </Table>
                   </div>

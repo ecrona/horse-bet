@@ -1,4 +1,5 @@
 import { Action, ThunkAction } from 'utils/redux'
+import { saveBet } from 'utils/firebase/database'
 import { Fixture } from 'models/fixture'
 import { Winner } from 'models/winner'
 import { FixtureWithPlacements } from '../models/fixture-with-placements'
@@ -29,10 +30,12 @@ export class ReceivePlaceBet implements Action {
 }
 
 export function placeBet(fixture: Fixture, winner: Winner): ThunkAction {
-  return async (dispatch, getState) => {
+  return async (dispatch, getState, firebase) => {
+    const existingBet = getState().bets.find(
+      bet => bet.fixtureId === fixture.id && bet.userId === firebase.userId
+    )
     dispatch(new RequestPlaceBet())
-    await fetch('/')
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    await saveBet(firebase, fixture, winner, existingBet)
     dispatch(new ReceivePlaceBet(fixture, winner))
   }
 }
