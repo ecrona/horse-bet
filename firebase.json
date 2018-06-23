@@ -4,6 +4,10 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
+        "source": "assets/logo.png",
+        "destination": "/assets/logo.png"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
