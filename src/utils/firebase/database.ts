@@ -112,7 +112,7 @@ export const saveBet = async (
   })
 
   await firebase.db.collection('betPlacements').add({
-    date: fixture.date,
+    date: new Date(fixture.date),
     fixtureId: fixture.id,
     userId: firebase.userId,
     winner
