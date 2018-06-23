@@ -97,7 +97,7 @@ export default function reducer(state = initialState, action: Action): State {
       return state.filter(bet => bet.fixtureId !== action.fixture.id).concat([
         {
           id: '',
-          userId: '5dvAPb52p1hDIJgXBvTS',
+          userId: action.userId,
           fixtureId: action.fixture.id,
           placement:
             action.winner === Winner.Home ? Placement.Home : Placement.Away
