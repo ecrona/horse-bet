@@ -10,6 +10,11 @@ interface StageTable {
   scores: Array<number>
 }
 
+interface Score {
+  name: string
+  score: number
+}
+
 export const getStageTables = createSelector(
   (state: State) => state.fixtures,
   (state: State) => state.users,
@@ -49,6 +54,33 @@ export const getStageTables = createSelector(
             ).length
         )
       }))
+)
+
+export const getTotalScores = createSelector(
+  (state: State) => state.fixtures,
+  (state: State) => state.users,
+  (state: State) => state.bets,
+  (fixtures, users, bets): Array<Score> => {
+    return users
+      .map(user => {
+        return {
+          name: user.name,
+          score: bets.filter(
+            bet =>
+              bet.userId === user.id &&
+              fixtures.find(
+                fixture =>
+                  fixture.id === bet.fixtureId &&
+                  ((fixture.winner == Winner.Home &&
+                    bet.placement === Placement.Home) ||
+                    (fixture.winner === Winner.Away &&
+                      bet.placement === Placement.Away))
+              )
+          ).length
+        }
+      })
+      .sort((a, b) => b.score - a.score)
+  }
 )
 
 export const getSelectedBet = createSelector(
