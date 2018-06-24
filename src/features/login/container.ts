@@ -4,7 +4,9 @@ import Component from './component'
 import { LoginMethod } from './models/login-method'
 import { authenticate } from './store/actions'
 
-const mapStateToProps = (state: State) => ({})
+const mapStateToProps = (state: State) => ({
+  error: state.login.error
+})
 
 const mapDispatchToProps = (dispatch: any) => ({
   login: (method: LoginMethod) => dispatch(authenticate(method))
@@ -13,4 +15,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 export type StoreProps = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>
 
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component)

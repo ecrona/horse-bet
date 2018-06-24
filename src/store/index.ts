@@ -10,6 +10,7 @@ import usersReducer, { State as UsersState } from './users/reducer'
 import dashboardReducer, {
   State as DashboardState
 } from 'features/dashboard/store/reducer'
+import loginReducer, { State as LoginState } from 'features/login/store/reducer'
 
 export interface State {
   // Data sources
@@ -20,6 +21,7 @@ export interface State {
 
   // Features
   dashboard: DashboardState
+  login: LoginState
 }
 
 export const rootReducer = combineReducers({
@@ -30,5 +32,6 @@ export const rootReducer = combineReducers({
   users: usersReducer,
 
   // Features
-  dashboard: dashboardReducer
+  dashboard: dashboardReducer,
+  login: loginReducer
 })

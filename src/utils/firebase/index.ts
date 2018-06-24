@@ -11,8 +11,8 @@ export class Firebase {
 
   constructor(
     public db: firebase.firestore.Firestore,
-    public functions: firebase.functions.Functions,
-    public authProvider: firebase.auth.AuthProvider
+    private functions: firebase.functions.Functions,
+    private authProvider: firebase.auth.GoogleAuthProvider
   ) {
     this._userId = ''
   }
@@ -54,11 +54,14 @@ export class Firebase {
     return firebase.auth
   }
 
+  public selectAuthAccount() {
+    this.authProvider.setCustomParameters({
+      prompt: 'select_account'
+    })
+  }
+
   public async authenticate() {
-    const response = await firebase.auth().getRedirectResult()
-    if (!response.user) {
-      const r = await firebase.auth().signInWithRedirect(this.authProvider)
-    }
+    await firebase.auth().signInWithRedirect(this.authProvider)
   }
 
   public call(functionName: string) {

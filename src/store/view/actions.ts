@@ -1,4 +1,5 @@
 import { Action, ThunkAction } from 'utils/redux'
+import { AuthenticationError } from 'models/authentication-error'
 import { Fixture } from 'models/fixture'
 import { User } from 'models/user'
 import { Placement } from 'models/placement'
@@ -21,6 +22,7 @@ const url =
 
 export class Authenticate implements Action {
   public readonly type = ActionTypes.authenticate
+  constructor(public error: AuthenticationError) {}
 }
 
 export class ReceiveApplicationData implements Action {
@@ -38,6 +40,7 @@ export function load(): ThunkAction {
     const json = await data.json()
     //const response = await firebase.call('updateFixtures')(json)
     const user = await getUser(firebase)
+    await firebase.auth().signOut()
 
     if (user && user.email) {
       const me = await getMe(firebase, user.email || '')
@@ -53,10 +56,11 @@ export function load(): ThunkAction {
           )
         )
       } else {
-        dispatch(new Authenticate())
+        firebase.selectAuthAccount()
+        dispatch(new Authenticate(AuthenticationError.Unauthorized))
       }
     } else {
-      dispatch(new Authenticate())
+      dispatch(new Authenticate(AuthenticationError.None))
     }
   }
 }
