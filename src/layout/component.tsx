@@ -43,10 +43,7 @@ export default class Component extends React.PureComponent<Props> {
             fontSize: '24px'
           }}
         >
-          <img
-            style={{ height: '100px' }}
-            src="https://cdn.onlinewebfonts.com/svg/img_73645.png"
-          />
+          <img style={{ height: '100px' }} src="/assets/logo.png" />
           <span>Hästbett</span>
         </div>
 
