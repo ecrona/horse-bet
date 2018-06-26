@@ -18,18 +18,23 @@ class DataManager {
     const rounds = Object.keys(knockout).map(round => {
       const knockoutMatches = knockout[round].matches
       matches = matches.concat(
-        knockoutMatches.filter(match => true).map(match => ({
-          competitionId: 'SFVpat7sB1cCU3DClA3D',
-          home: this.getTeam(match.home_team),
-          away: this.getTeam(match.away_team),
-          date: match.date,
-          stage: knockout[round].name,
-          winner: match.finished
-            ? match.winner === match.home_team
-              ? Winner.Home
-              : Winner.Away
-            : Winner.None
-        }))
+        knockoutMatches
+          .filter(
+            match =>
+              typeof match.home_team === 'number' && match.home_team <= 32
+          )
+          .map(match => ({
+            competitionId: 'SFVpat7sB1cCU3DClA3D',
+            home: this.getTeam(match.home_team),
+            away: this.getTeam(match.away_team),
+            date: match.date,
+            stage: knockout[round].name,
+            winner: match.finished
+              ? match.winner === match.home_team
+                ? Winner.Home
+                : Winner.Away
+              : Winner.None
+          }))
       )
     })
 
