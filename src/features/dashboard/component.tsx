@@ -15,11 +15,16 @@ import green from '@material-ui/core/colors/green'
 import { Placement } from 'models/placement'
 import { Winner } from 'models/winner'
 import { BetModal } from './components/bet-modal'
-import { WithStyles, Theme, withStyles } from '@material-ui/core'
+import { HighScoreModal } from './components/high-score-modal'
+import { WithStyles, Theme, withStyles, Button } from '@material-ui/core'
 
 interface Props
   extends StoreProps,
     WithStyles<keyof ReturnType<typeof styles>> {}
+
+interface State {
+  showHighScore: boolean
+}
 
 const styles = (theme: Theme) => ({
   tableWrapper: {
@@ -47,7 +52,11 @@ const TeamTitle = ({
 )
 
 export default withStyles(styles)(
-  class Component extends React.PureComponent<Props> {
+  class Component extends React.PureComponent<Props, State> {
+    public state = {
+      showHighScore: true
+    }
+
     render() {
       console.log(this.props.totalScores)
       return (
@@ -58,6 +67,15 @@ export default withStyles(styles)(
             margin: '0 auto'
           }}
         >
+          <div style={{ marginBottom: 24, textAlign: 'center' }}>
+            <Button
+              variant="raised"
+              onClick={() => this.setState(() => ({ showHighScore: true }))}
+            >
+              Show highscores
+            </Button>
+          </div>
+
           <Grid container spacing={16}>
             {this.props.stages.map((stage, index) => (
               <Grid key={index} item xs={12}>
@@ -136,6 +154,11 @@ export default withStyles(styles)(
               this.props.placeBet(this.props.selectedFixture, winner)
             }
             onClose={this.props.closeBetModal}
+          />
+          <HighScoreModal
+            open={this.state.showHighScore}
+            score={this.props.totalScores}
+            onClose={() => this.setState(() => ({ showHighScore: false }))}
           />
         </div>
       )

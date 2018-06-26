@@ -4,84 +4,47 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button'
-import { Done } from '@material-ui/icons'
-import { Placement } from 'models/placement'
-import { BetModalState } from '../../models/bet-modal-state'
-import { BetButton } from '../bet-button'
-import { Winner } from 'models/winner'
+import { ListItemSecondaryAction } from '../../../../../node_modules/@material-ui/core'
+import { Score } from '../../models/scores'
 
-interface Props extends WithStyles<keyof ReturnType<typeof styles>> {
-  state: BetModalState
-  homeTeam: string
-  awayTeam: string
-  selectedBet: Placement
-  placeBet: (winner: Winner) => void
+interface Props {
+  open: boolean
+  score: Score[]
   onClose: () => void
 }
 
-const styles = (theme: Theme) => ({
-  button: {
-    minWidth: '180px',
-    margin: theme.spacing.unit
-  },
-  icon: {
-    marginRight: theme.spacing.unit
+export default class Component extends React.PureComponent<Props> {
+  render() {
+    return (
+      <Dialog
+        open={this.props.open}
+        onClose={this.props.onClose}
+        aria-labelledby="form-dialog-title"
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle id="form-dialog-title">High Score</DialogTitle>
+        <DialogContent>
+          <List>
+            {this.props.score.map((score, i: number) => (
+              <ListItem key={i}>
+                <ListItemText primary={score.name} />
+                <ListItemSecondaryAction>{score.score}</ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.props.onClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
   }
-})
-
-export default withStyles(styles)(
-  class Component extends React.PureComponent<Props> {
-    render() {
-      return (
-        <Dialog
-          open={
-            this.props.state === BetModalState.Opened ||
-            this.props.state === BetModalState.PlacingBet
-          }
-          onClose={() =>
-            this.props.state === BetModalState.Opened && this.props.onClose()
-          }
-          aria-labelledby="form-dialog-title"
-          fullWidth
-        >
-          <DialogTitle id="form-dialog-title">Place bet</DialogTitle>
-          <DialogContent>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center'
-              }}
-            >
-              <BetButton
-                title={this.props.homeTeam}
-                selected={this.props.selectedBet === Placement.Home}
-                onClick={() => this.props.placeBet(Winner.Home)}
-                disabled={this.props.state === BetModalState.PlacingBet}
-              />
-              <BetButton
-                title={this.props.awayTeam}
-                selected={this.props.selectedBet === Placement.Away}
-                onClick={() => this.props.placeBet(Winner.Away)}
-                disabled={this.props.state === BetModalState.PlacingBet}
-              />
-            </div>
-          </DialogContent>
-          {this.props.state === BetModalState.PlacingBet ? (
-            <div style={{ paddingBottom: '20px', margin: '0 auto' }}>
-              <CircularProgress size={75} />
-            </div>
-          ) : (
-            <DialogActions>
-              <Button onClick={this.props.onClose} color="primary">
-                Close
-              </Button>
-            </DialogActions>
-          )}
-        </Dialog>
-      )
-    }
-  }
-)
+}

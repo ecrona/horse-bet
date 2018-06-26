@@ -2,17 +2,13 @@ import { createSelector } from 'reselect'
 import { State } from 'store'
 import { Placement } from 'models/placement'
 import { FixtureWithPlacements } from '../models/fixture-with-placements'
+import { Score } from '../models/scores'
 import { Winner } from 'models/winner'
 
 interface StageTable {
   name: string
   fixtures: Array<FixtureWithPlacements>
   scores: Array<number>
-}
-
-interface Score {
-  name: string
-  score: number
 }
 
 export const getStageTables = createSelector(
