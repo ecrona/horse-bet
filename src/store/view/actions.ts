@@ -9,7 +9,9 @@ import {
   getUsers,
   getFixtures,
   getCombinedBets,
-  getMe
+  getMe,
+  shouldUpdateFixtures,
+  updateFixtureLastDate
 } from 'utils/firebase/database'
 
 export enum ActionTypes {
@@ -36,11 +38,14 @@ export class ReceiveApplicationData implements Action {
 
 export function load(): ThunkAction {
   return async (dispatch, getState, firebase) => {
-    const data = await fetch(url)
-    const json = await data.json()
-    //const response = await firebase.call('updateFixtures')(json)
+    const shouldUpdate = await shouldUpdateFixtures(firebase)
+    if (shouldUpdate) {
+      const data = await fetch(url)
+      const json = await data.json()
+      await firebase.call('updateFixtures')(json)
+      await updateFixtureLastDate(firebase)
+    }
     const user = await getUser(firebase)
-    await firebase.auth().signOut()
 
     if (user && user.email) {
       const me = await getMe(firebase, user.email || '')

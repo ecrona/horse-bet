@@ -45,6 +45,35 @@ const getUserBetPlacements = async (firebase: Firebase, userId: string) => {
   )
 }
 
+export const shouldUpdateFixtures = async (firebase: Firebase) => {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const lastUpdateDate = await firebase.db
+    .collection('fixtureUpdate')
+    .where('date', '<', today)
+    .get()
+
+  console.log(lastUpdateDate, today)
+
+  return lastUpdateDate.docs.length > 0
+}
+
+export const updateFixtureLastDate = async (firebase: Firebase) => {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  return firebase.db
+    .collection('fixtureUpdate')
+    .doc('lastUpdate')
+    .set(
+      {
+        date: today
+      },
+      { merge: true }
+    )
+}
+
 export const getMe = async (firebase: Firebase, email: string) => {
   const user = await firebase.db
     .collection('users')
