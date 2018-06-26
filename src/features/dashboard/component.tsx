@@ -49,6 +49,7 @@ const TeamTitle = ({
 export default withStyles(styles)(
   class Component extends React.PureComponent<Props> {
     render() {
+      console.log(this.props.totalScores)
       return (
         <div
           style={{
