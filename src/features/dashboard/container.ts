@@ -1,6 +1,10 @@
 import { connect } from 'react-redux'
 import { State } from 'store'
-import { getStageTables, getSelectedBet } from './store/selectors'
+import {
+  getStageTables,
+  getSelectedBet,
+  getTotalScores
+} from './store/selectors'
 import Component from './component'
 import {
   OpenBetModalAction,
@@ -16,6 +20,7 @@ const mapStateToProps = (state: State) => ({
   selectedFixture: state.dashboard.selectedFixture,
   selectedBet: getSelectedBet(state),
   stages: getStageTables(state),
+  totalScores: getTotalScores(state),
   users: state.users
 })
 
@@ -30,4 +35,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 export type StoreProps = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>
 
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component)
