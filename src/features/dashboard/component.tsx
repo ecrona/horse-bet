@@ -54,7 +54,7 @@ const TeamTitle = ({
 export default withStyles(styles)(
   class Component extends React.PureComponent<Props, State> {
     public state = {
-      showHighScore: true
+      showHighScore: false
     }
 
     render() {
