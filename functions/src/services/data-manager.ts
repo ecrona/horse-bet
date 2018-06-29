@@ -21,13 +21,16 @@ class DataManager {
         knockoutMatches
           .filter(
             match =>
-              typeof match.home_team === 'number' && match.home_team <= 32
+              typeof match.home_team === 'number' &&
+              match.home_team <= 32 &&
+              typeof match.away_team === 'number' &&
+              match.away_team <= 32
           )
           .map(match => ({
             competitionId: 'SFVpat7sB1cCU3DClA3D',
             home: this.getTeam(match.home_team),
             away: this.getTeam(match.away_team),
-            date: match.date,
+            date: new Date(match.date),
             stage: knockout[round].name,
             winner: match.finished
               ? match.winner === match.home_team

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ListItemSecondaryAction } from '@material-ui/core'
 import { Theme, WithStyles, withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -9,7 +10,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button'
-import { ListItemSecondaryAction } from '../../../../../node_modules/@material-ui/core'
 import { Score } from '../../models/score'
 
 interface Props {

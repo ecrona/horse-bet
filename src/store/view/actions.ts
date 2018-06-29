@@ -55,7 +55,7 @@ export function load(): ThunkAction {
 
         dispatch(
           new ReceiveApplicationData(
-            await getUsers(firebase),
+            await getUsers(me.id, firebase),
             await getFixtures(firebase),
             await getCombinedBets(firebase, firebase.userId)
           )

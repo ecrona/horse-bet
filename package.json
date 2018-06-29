@@ -1,6 +1,6 @@
 {
   "name": "horse-bet",
-  "version": "0.0.1",
+  "version": "0.3.0",
   "description": "A small betting game specified for soccer tournaments",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

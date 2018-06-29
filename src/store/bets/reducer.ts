@@ -96,7 +96,7 @@ export default function reducer(state = initialState, action: Action): State {
     case DashboardActionTypes.receivePlaceBet:
       return state.filter(bet => bet.fixtureId !== action.fixture.id).concat([
         {
-          id: '',
+          id: action.id,
           userId: action.userId,
           fixtureId: action.fixture.id,
           placement:

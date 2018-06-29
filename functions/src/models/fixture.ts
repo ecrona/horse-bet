@@ -4,7 +4,7 @@ interface BaseFixture {
   competitionId: string
   home: string
   away: string
-  date: string
+  date: string | Date
   stage: string
   winner: Winner
 }

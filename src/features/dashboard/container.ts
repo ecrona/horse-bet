@@ -3,7 +3,8 @@ import { State } from 'store'
 import {
   getStageTables,
   getSelectedBet,
-  getTotalScores
+  getTotalScores,
+  hasSelectedFixtureStarted
 } from './store/selectors'
 import Component from './component'
 import {
@@ -18,6 +19,7 @@ import { FixtureWithPlacements } from './models/fixture-with-placements'
 const mapStateToProps = (state: State) => ({
   betModalState: state.dashboard.betModalState,
   selectedFixture: state.dashboard.selectedFixture,
+  selectedFixtureStarted: hasSelectedFixtureStarted(state),
   selectedBet: getSelectedBet(state),
   stages: getStageTables(state),
   totalScores: getTotalScores(state),

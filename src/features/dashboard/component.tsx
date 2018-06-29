@@ -10,7 +10,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { Edit, Done, Clear } from '@material-ui/icons'
+import { Edit, Done, Timer } from '@material-ui/icons'
 import green from '@material-ui/core/colors/green'
 import { Placement } from 'models/placement'
 import { Winner } from 'models/winner'
@@ -58,7 +58,6 @@ export default withStyles(styles)(
     }
 
     render() {
-      console.log(this.props.totalScores)
       return (
         <div
           style={{
@@ -119,7 +118,7 @@ export default withStyles(styles)(
                                 {placement === Placement.Home && fixture.home}
                                 {placement === Placement.Away && fixture.away}
                                 {placement === Placement.NotPlaced && (
-                                  <Clear color="secondary" />
+                                  <Timer color="disabled" />
                                 )}
                                 {placement === Placement.Placed && (
                                   <Done color="primary" />
@@ -150,6 +149,7 @@ export default withStyles(styles)(
             homeTeam={this.props.selectedFixture.home}
             awayTeam={this.props.selectedFixture.away}
             selectedBet={this.props.selectedBet}
+            fixtureStarted={this.props.selectedFixtureStarted}
             placeBet={(winner: Winner) =>
               this.props.placeBet(this.props.selectedFixture, winner)
             }

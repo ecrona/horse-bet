@@ -83,9 +83,19 @@ export const getMe = async (firebase: Firebase, email: string) => {
   return user.docs.pop()
 }
 
-export const getUsers = async (firebase: Firebase) => {
-  const users = await firebase.db.collection('users').get()
-  return users.docs.map(doc => ({ id: doc.id, ...doc.data() } as User))
+export const getUsers = async (userId: string, firebase: Firebase) => {
+  const userCollection = await firebase.db.collection('users').get()
+  const users = userCollection.docs.map(
+    doc => ({ id: doc.id, ...doc.data() } as User)
+  )
+  const me = users.find(user => user.id === userId)
+  const usersExceptMe = users.filter(user => user.id !== userId)
+
+  if (me) {
+    return [me, ...usersExceptMe]
+  } else {
+    return usersExceptMe
+  }
 }
 
 export const getFixtures = async (firebase: Firebase) => {
@@ -124,7 +134,7 @@ export const saveBet = async (
   existingBet: Bet | undefined
 ) => {
   if (existingBet) {
-    return firebase.db
+    await firebase.db
       .collection('betPlacements')
       .doc(existingBet.id)
       .set(
@@ -133,6 +143,8 @@ export const saveBet = async (
         },
         { merge: true }
       )
+
+    return existingBet.id
   }
 
   await firebase.db.collection('bets').add({
@@ -140,10 +152,12 @@ export const saveBet = async (
     fixtureId: fixture.id
   })
 
-  await firebase.db.collection('betPlacements').add({
+  const betPlacement = await firebase.db.collection('betPlacements').add({
     date: new Date(fixture.date),
     fixtureId: fixture.id,
     userId: firebase.userId,
     winner
   })
+
+  return betPlacement.id
 }

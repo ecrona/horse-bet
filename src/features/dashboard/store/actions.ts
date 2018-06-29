@@ -27,6 +27,7 @@ export class RequestPlaceBet implements Action {
 export class ReceivePlaceBet implements Action {
   public readonly type = ActionTypes.receivePlaceBet
   constructor(
+    public id: string,
     public fixture: Fixture,
     public userId: string,
     public winner: Winner
@@ -39,7 +40,7 @@ export function placeBet(fixture: Fixture, winner: Winner): ThunkAction {
       bet => bet.fixtureId === fixture.id && bet.userId === firebase.userId
     )
     dispatch(new RequestPlaceBet())
-    await saveBet(firebase, fixture, winner, existingBet)
-    dispatch(new ReceivePlaceBet(fixture, firebase.userId, winner))
+    const id = await saveBet(firebase, fixture, winner, existingBet)
+    dispatch(new ReceivePlaceBet(id, fixture, firebase.userId, winner))
   }
 }
