@@ -32,7 +32,7 @@ const styles = (theme: Theme) => ({
   tableWrapper: {
     overflow: 'auto',
     '& th:first-child': {
-      minWidth: '225px'
+      minWidth: '175px'
     }
   }
 })
