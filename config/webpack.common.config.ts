@@ -19,6 +19,10 @@ export const config: webpack.Configuration = {
         enforce: 'pre',
         test: /\.js$/,
         use: 'source-map-loader'
+      },
+      {
+        test: /\.svg?$/,
+        loaders: ['file-loader']
       }
     ]
   },
@@ -27,6 +31,9 @@ export const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       chunksSortMode: 'dependency',
       inject: true,
+      meta: {
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+      },
       template: './public/index.html'
     })
   ],
