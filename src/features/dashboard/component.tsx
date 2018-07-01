@@ -18,6 +18,8 @@ import { BetModal } from './components/bet-modal'
 import { HighScoreModal } from './components/high-score-modal'
 import { WithStyles, Theme, withStyles, Button } from '@material-ui/core'
 
+const iso3166 = require('iso-3166-2')
+
 interface Props
   extends StoreProps,
     WithStyles<keyof ReturnType<typeof styles>> {}
@@ -44,9 +46,26 @@ const TeamTitle = ({
 }) => (
   <span
     style={{
+      display: 'flex',
+      alignItems: 'center',
+      minHeight: '30px',
+      fontWeight: selected ? 600 : 500,
       textDecoration: selected ? 'underline' : 'none'
     }}
   >
+    <img
+      src={require(`svg-country-flags/svg/${
+        title !== 'England'
+          ? iso3166.country(title).code.toLowerCase()
+          : 'gb-eng'
+      }.svg`)}
+      style={{
+        width: 30,
+        height: 20,
+        marginRight: 16,
+        boxShadow: '0 1px 1px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23)'
+      }}
+    />
     {title}
   </span>
 )
@@ -106,8 +125,7 @@ export default withStyles(styles)(
                               <TeamTitle
                                 title={fixture.home}
                                 selected={fixture.winner === Winner.Home}
-                              />{' '}
-                              -{' '}
+                              />
                               <TeamTitle
                                 title={fixture.away}
                                 selected={fixture.winner === Winner.Away}
