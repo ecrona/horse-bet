@@ -19,6 +19,10 @@ export const config: webpack.Configuration = {
         enforce: 'pre',
         test: /\.js$/,
         use: 'source-map-loader'
+      },
+      {
+        test: /\.svg?$/,
+        loaders: ['file-loader']
       }
     ]
   },

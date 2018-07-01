@@ -43,32 +43,34 @@ const TeamTitle = ({
 }: {
   title: string
   selected: boolean
-}) => (
-  <span
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      minHeight: '30px',
-      fontWeight: selected ? 600 : 500,
-      textDecoration: selected ? 'underline' : 'none'
-    }}
-  >
-    <img
-      src={require(`svg-country-flags/svg/${
-        title !== 'England'
-          ? iso3166.country(title).code.toLowerCase()
-          : 'gb-eng'
-      }.svg`)}
+}) => {
+  const icon = require(`svg-country-flags/svg/${
+    title !== 'England' ? iso3166.country(title).code.toLowerCase() : 'gb-eng'
+  }.svg`) as string
+
+  return (
+    <span
       style={{
-        width: 30,
-        height: 20,
-        marginRight: 16,
-        boxShadow: '0 1px 1px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23)'
+        display: 'flex',
+        alignItems: 'center',
+        minHeight: '30px',
+        fontWeight: selected ? 600 : 500,
+        textDecoration: selected ? 'underline' : 'none'
       }}
-    />
-    {title}
-  </span>
-)
+    >
+      <img
+        src={icon}
+        style={{
+          width: 30,
+          height: 20,
+          marginRight: 16,
+          boxShadow: '0 1px 1px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23)'
+        }}
+      />
+      {title}
+    </span>
+  )
+}
 
 export default withStyles(styles)(
   class Component extends React.PureComponent<Props, State> {

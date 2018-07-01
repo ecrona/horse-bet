@@ -16,10 +16,6 @@ export const config: webpack.Configuration = {
       {
         test: /\.tsx?$/,
         loaders: ['awesome-typescript-loader']
-      },
-      {
-        test: /\.svg?$/,
-        loaders: ['file-loader']
       }
     ]
   },
