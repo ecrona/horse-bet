@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "sourceMap": true,
+    "outDir": "build",
+    "jsx": "react",
+    "strict": false,
+    "typeRoots": ["./typings", "../../node_modules/@types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["es5", "dom", "es2015.promise"],
+    "paths": {
+      "@client/*": ["*"],
+      "@shared/*": ["../shared/*"],
+      "@env/*": ["../../env/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,3 @@
+*.ts
+!examples/*.ts
+!interfaces/*.ts
