@@ -4,7 +4,7 @@ import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { History } from 'history'
-import { endpoints } from 'endpoints'
+import { endpoints } from 'utils/endpoints'
 import { rootReducer } from './reducers'
 
 declare let module: { hot: any }

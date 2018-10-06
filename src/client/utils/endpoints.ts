@@ -1,34 +1,17 @@
-import * as Route from 'route-parser'
-import {
-  EndpointsMeta,
-  EndpointsMetaBase,
-  RequestMethod
-} from '@shared/endpoints'
+import { endpointsMeta } from '@shared/endpoints'
+import { xhr } from 'utils/xhr'
 
-export class EndpointsBase {
-  public _requestMethod: RequestMethod = RequestMethod.Get
-  public _url: string = ''
-}
+export const endpoints = {}
 
-export const EndpointsDecorator = (
-  meta: EndpointsMeta<EndpointsMetaBase>
-): ClassDecorator => target => {
-  for (const method in meta) {
-    if (meta.hasOwnProperty(method)) {
-      const methodMeta = meta[method]
-      target.prototype[method] = target.prototype[method].bind({
-        _requestMethod: methodMeta.requestMethod,
-        _url: methodMeta.route
-      })
-    }
+for (const endpointCollection in endpointsMeta) {
+  endpoints[endpointCollection] = {}
+
+  for (const endpoint in endpointsMeta[endpointCollection]) {
+    const endpointMeta = endpointsMeta[endpointCollection][endpoint]
+
+    endpoints[endpointCollection][endpoint] = data =>
+      xhr(endpointMeta.requestMethod, endpointMeta.route, data)
   }
-
-  return target
 }
 
-export const getUrl = (
-  url: string,
-  params: { [key: string]: any } = {}
-): string => {
-  return new Route(url).reverse(params) || ''
-}
+console.log(endpoints)

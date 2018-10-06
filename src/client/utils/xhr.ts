@@ -1,6 +1,6 @@
 import * as JWT from 'jwt-client'
 import { clientEnv } from '@env/client'
-import { RequestMethod } from '@shared/endpoints'
+import { RequestMethod } from '@shared/utils/endpoints'
 // import { actions } from 'store/common/actions'
 // import { store } from 'index'
 

@@ -1,4 +1,4 @@
-import { EndpointsMeta, Response, RequestMethod } from '@shared/endpoints'
+import { EndpointsMeta, Response, RequestMethod } from '@shared/utils/endpoints'
 
 export interface LoginRequest {
   username: string
