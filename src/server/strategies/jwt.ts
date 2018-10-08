@@ -26,4 +26,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
     done(null, payload)
   }
+
+  public authenticate() {}
 }

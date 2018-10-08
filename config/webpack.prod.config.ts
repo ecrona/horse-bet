@@ -4,7 +4,7 @@ import * as webpack from 'webpack'
 export const config: webpack.Configuration = {
   mode: 'production',
 
-  entry: ['./src/index.tsx'],
+  entry: ['./src/client/index.tsx'],
 
   optimization: {
     minimize: true

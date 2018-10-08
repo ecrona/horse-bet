@@ -9,7 +9,7 @@ export class UserEntity {
   displayName: string
 
   @Column({ length: 50, unique: true })
-  username: string
+  email: string
 
   @Column({ length: 100, nullable: true })
   password: string

@@ -14,9 +14,9 @@ interface UserBaseEndpoints {
 }
 
 export interface UserEndpointsData extends UserBaseEndpoints {
-  login: (credentials: LoginRequest) => Response<LoginResponse>
+  login: (credentials: LoginRequest) => any
 }
 
 export const userEndpointsMeta: EndpointsMeta<UserBaseEndpoints> = {
-  login: { route: '/user/login', requestMethod: RequestMethod.Post }
+  login: { route: '/user/login', requestMethod: RequestMethod.Get }
 }

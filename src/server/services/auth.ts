@@ -9,24 +9,14 @@ export class AuthService {
 
   constructor(private userService: UserService) {}
 
-  public async createToken(id: number, username: string) {
+  public async createToken(email: string) {
     const expiresIn = 60 * 60
     const secretOrKey = 'secret'
-    const user = { username }
-    const token = jwt.sign(user, secretOrKey, { expiresIn })
 
-    return { token }
+    return jwt.sign({ email }, secretOrKey, { expiresIn })
   }
 
-  public async validateUser(signedUser): Promise<void> {
-    if (signedUser && signedUser.username) {
-      this.authenticatedUser = await this.userService.getUserByUsername(
-        signedUser.username
-      )
-    }
-  }
-
-  public getAuthenticatedUser(): Readonly<UserEntity> {
-    return this.authenticatedUser
+  public async validateUser(email: string): Promise<UserEntity> {
+    return await this.userService.getUserByEmail(email)
   }
 }

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { serverEnv } from '@env/server'
-import { EventModule } from 'modules/event/module'
 import { UserModule } from 'modules/user/module'
 import { UserService } from 'services/user'
 
@@ -22,7 +21,6 @@ import { UserService } from 'services/user'
         migrationsDir: 'migration'
       }
     }),
-    EventModule,
     UserModule
   ]
 })
