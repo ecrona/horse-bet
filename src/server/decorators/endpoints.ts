@@ -35,23 +35,30 @@ export const Endpoints = (
         RequestMethodMap[methodMeta.requestMethod],
         target.prototype[method]
       )
-      Reflect.defineMetadata(
-        ROUTE_ARGS_METADATA,
-        {
-          [`${RouteParamtypes.QUERY}:0`]: {
-            index: 0,
-            data: 'test',
-            pipes: []
-          },
-          [`${RouteParamtypes.RESPONSE}:1`]: {
-            index: 1,
-            data: undefined,
-            pipes: []
-          }
-        },
-        target,
-        method
-      )
+
+      const routeArgsMeta = {
+        [`${RouteParamtypes.RESPONSE}:1`]: {
+          index: 1,
+          data: undefined,
+          pipes: []
+        }
+      }
+
+      if (methodMeta.requestMethod === RequestMethod.Get) {
+        routeArgsMeta[`${RouteParamtypes.QUERY}:0`] = {
+          index: 0,
+          data: 'data',
+          pipes: []
+        }
+      } else {
+        routeArgsMeta[`${RouteParamtypes.BODY}:0`] = {
+          index: 0,
+          data: undefined,
+          pipes: []
+        }
+      }
+
+      Reflect.defineMetadata(ROUTE_ARGS_METADATA, routeArgsMeta, target, method)
     }
   }
 

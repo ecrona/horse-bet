@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom'
 import { Layout } from './layout'
 import { Dashboard } from './features/dashboard'
 import 'utils/polyfills'
-import 'utils/endpoints'
 
 export class App extends React.Component<any, any> {
   render() {
