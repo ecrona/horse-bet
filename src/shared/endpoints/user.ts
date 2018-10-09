@@ -1,4 +1,9 @@
-import { EndpointsMeta, Response, RequestMethod } from '@shared/utils/endpoints'
+import {
+  Endpoint,
+  EndpointsMeta,
+  Response,
+  RequestMethod
+} from '@shared/utils/endpoints'
 
 export interface LoginRequest {
   username: string
@@ -14,7 +19,7 @@ interface UserBaseEndpoints {
 }
 
 export interface UserEndpointsData extends UserBaseEndpoints {
-  login: (credentials: LoginRequest) => any
+  login: Endpoint<LoginRequest, void>
 }
 
 export const userEndpointsMeta: EndpointsMeta<UserBaseEndpoints> = {

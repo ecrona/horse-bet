@@ -16,3 +16,14 @@ export enum RequestMethod {
   Patch,
   Delete
 }
+
+interface Request {
+  locals: {
+    email: string
+  }
+}
+
+export type Endpoint<TRequest, TResponse> = (
+  payload: TRequest,
+  request?: Request
+) => TResponse
