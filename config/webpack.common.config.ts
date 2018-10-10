@@ -28,11 +28,7 @@ export const config: webpack.Configuration = {
       {
         test: /\.sass?|.scss?|.css?$/,
         use: [
-<<<<<<< HEAD
           MiniCssExtractPlugin.loader,
-=======
-          'style-loader',
->>>>>>> master
           {
             loader: 'css-loader',
             options: {
