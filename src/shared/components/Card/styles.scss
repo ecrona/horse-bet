@@ -1,0 +1,9 @@
+@import '../../../variables.scss';
+
+.root {
+  background-color: #fff;
+}
+
+.spaced {
+  padding: $base * 2;
+}
