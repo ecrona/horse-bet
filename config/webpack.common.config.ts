@@ -10,7 +10,7 @@ export const config: webpack.Configuration = {
 
   resolve: {
     modules: [path.resolve('./src'), 'node_modules'],
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js', '.sass', '.scss']
   },
 
   module: {
@@ -23,6 +23,19 @@ export const config: webpack.Configuration = {
       {
         test: /\.svg?$/,
         loaders: ['file-loader']
+      },
+      {
+        test: /\.sass?|.scss?|.css?$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },
