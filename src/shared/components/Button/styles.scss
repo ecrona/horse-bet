@@ -3,15 +3,17 @@
 .root {
   border: none;
   outline: none;
-  padding: 0 ($base * 2) px;
-  min-height: $base * 4;
+  padding: 0 $base * 2px;
+  min-height: $base * 4px;
 
-  border-radius: $base / 2;
+  border-radius: $base * 0.5px;
   background-color: $grey;
   color: $textDarkPrimary;
   cursor: pointer;
   font-weight: 600;
   text-align: center;
+
+  transition: background-color 0.075s ease-in;
 
   &:hover {
     background-color: $greyDark;
