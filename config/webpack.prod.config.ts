@@ -2,17 +2,9 @@ import * as path from 'path'
 import * as webpack from 'webpack'
 
 export const config: webpack.Configuration = {
-  entry: ['./src/index.tsx'],
+  mode: 'production',
 
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loaders: ['awesome-typescript-loader'],
-        exclude: path.resolve(__dirname, '../node_modules')
-      }
-    ]
-  },
+  entry: ['./src/client/index.tsx'],
 
   optimization: {
     minimize: true

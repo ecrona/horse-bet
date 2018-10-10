@@ -1,21 +1,31 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import webpack from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 export const config: webpack.Configuration = {
   output: {
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, '../dist/client'),
     filename: 'bundle.js'
   },
 
   resolve: {
-    modules: [path.resolve('./src'), 'node_modules'],
-    extensions: ['.ts', '.tsx', '.js']
+    modules: [path.resolve('./src/client'), 'node_modules'],
+    extensions: ['.ts', '.tsx', '.js'],
+    plugins: [
+      new TsconfigPathsPlugin({ configFile: './src/client/tsconfig.json' })
+    ]
   },
 
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          configFileName: './src/client/tsconfig.json'
+        }
+      },
       {
         enforce: 'pre',
         test: /\.js$/,
@@ -42,14 +52,6 @@ export const config: webpack.Configuration = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      chunksSortMode: 'dependency',
-      inject: true,
-      meta: {
-        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-      },
-      template: './public/index.html'
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
