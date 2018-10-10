@@ -1,14 +1,14 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { App } from './app'
-import { AppContainer } from 'react-hot-loader'
-import { Provider } from 'react-redux'
-import createStore from 'store/create-store'
+// import { App } from './app'
+// import { AppContainer } from 'react-hot-loader'
+// import { Provider } from 'react-redux'
+// import createStore from 'store/create-store'
 import { Shell } from 'shell'
 
-declare let module: { hot: any }
+// declare let module: { hot: any }
 const rootElement = document.getElementById('app')
-const store = createStore()
+// const store = createStore()
 
 ReactDOM.render(<Shell />, rootElement)
 
