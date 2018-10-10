@@ -12,6 +12,8 @@ const store = createStore()
 
 ReactDOM.render(<Shell />, rootElement)
 
+// Old horses?
+
 // ReactDOM.render(
 //   <AppContainer>
 //     <Provider store={store}>
