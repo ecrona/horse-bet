@@ -1,7 +1,6 @@
 import { ActionCreatorsMapObject, bindActionCreators } from 'redux'
 import { Endpoints } from '@shared/endpoints'
 import { RootState } from './reducers'
-import { Firebase } from 'utils/firebase'
 
 interface Action<T extends string> {
   type: T
@@ -21,7 +20,7 @@ type Dispatch = (action: Dispatchable) => void
 export type ThunkAction = (
   dispatch: Dispatch,
   getState: () => RootState,
-  endpoints: Firebase
+  endpoints: Endpoints
 ) => void
 
 export type ActionsUnion<A extends ActionCreatorsMapObject> = ReturnType<

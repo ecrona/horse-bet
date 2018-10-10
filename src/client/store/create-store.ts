@@ -1,10 +1,10 @@
-import firebase from 'utils/firebase'
 import { createStore, applyMiddleware } from 'redux'
 import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { History } from 'history'
 import { endpoints } from 'utils/endpoints'
+import { mockEndpoints } from 'utils/mock-endpoints'
 import { rootReducer } from './reducers'
 
 declare let module: { hot: any }
@@ -12,8 +12,9 @@ declare let module: { hot: any }
 export default function configureStore(history: History) {
   const middleware = applyMiddleware(
     routerMiddleware(history),
-    // thunkMiddleware.withExtraArgument(endpoints),
-    thunkMiddleware.withExtraArgument(firebase),
+    thunkMiddleware.withExtraArgument(
+      process.env.USE_MOCK ? mockEndpoints : endpoints
+    ),
     createLogger()
   )
   const store = createStore(connectRouter(history)(rootReducer), middleware)

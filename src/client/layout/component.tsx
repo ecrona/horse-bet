@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 
 export class Layout extends React.PureComponent<Props> {
   componentDidMount() {
-    this.props.load()
+    //this.props.load()
   }
 
   render() {
@@ -45,10 +45,7 @@ export class Layout extends React.PureComponent<Props> {
           <img style={{ height: '100px' }} src="/assets/logo.png" />
           <span>Hästbett</span>
         </div>
-
-        {this.props.view === View.Login && <Login />}
-        {this.props.view === View.Splash && <Splash />}
-        {this.props.view === View.Dashboard && this.props.children}
+        {this.props.children}
       </MuiThemeProvider>
     )
   }

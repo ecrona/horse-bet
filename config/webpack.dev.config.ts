@@ -24,6 +24,12 @@ export const config: webpack.Configuration = {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
       },
       template: './dist/client/index.html'
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env': {
+        USE_MOCK: JSON.stringify(process.env.USE_MOCK)
+      }
     })
   ],
 

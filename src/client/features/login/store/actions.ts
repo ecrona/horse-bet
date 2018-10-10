@@ -5,7 +5,7 @@ export function authenticate(loginMethod: LoginMethod): ThunkAction {
   return async (dispatch, getState, firebase) => {
     switch (loginMethod) {
       case LoginMethod.Google:
-        firebase.authenticate()
+        console.log('google auth')
         break
     }
   }

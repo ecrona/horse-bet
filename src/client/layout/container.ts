@@ -1,15 +1,10 @@
 import { connect } from 'react-redux'
 import { mapState, mapDispatch } from 'store'
-import { load } from 'store/view/actions'
 import { Layout as Component } from './component'
 
-const mapStateToProps = mapState(state => ({
-  view: state.view
-}))
+const mapStateToProps = mapState(state => ({}))
 
-const mapDispatchToProps = mapDispatch({
-  load
-})
+const mapDispatchToProps = mapDispatch({})
 
 export type StoreProps = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>
