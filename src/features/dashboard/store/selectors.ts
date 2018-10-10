@@ -86,6 +86,10 @@ export const getSelectedBet = createSelector(
 
 export const hasSelectedFixtureStarted = createSelector(
   (state: State) => state.dashboard.selectedFixture,
+<<<<<<< HEAD
   selectedFixture =>
     new Date() > new Date(selectedFixture.date)
+=======
+  selectedFixture => new Date() > new Date(selectedFixture.date)
+>>>>>>> master
 )
