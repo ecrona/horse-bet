@@ -87,6 +87,5 @@ export const getSelectedBet = createSelector(
 export const hasSelectedFixtureStarted = createSelector(
   (state: State) => state.dashboard.selectedFixture,
   selectedFixture =>
-    console.log(new Date(), new Date(selectedFixture.date)) ||
     new Date() > new Date(selectedFixture.date)
 )
