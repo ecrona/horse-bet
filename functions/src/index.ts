@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions'
 import { createDataManager } from './services/data-manager'
 import { Fixture, IdentifableFixture } from './models/fixture'
 import { createFirestore } from './services/firestore'
-import * as cors from 'cors'
+import cors from 'cors'
 
 const useCors = cors({
   origin: true

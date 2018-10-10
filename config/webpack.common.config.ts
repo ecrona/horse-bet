@@ -1,6 +1,7 @@
-import * as HtmlWebpackPlugin from 'html-webpack-plugin'
-import * as path from 'path'
-import * as webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path from 'path'
+import webpack from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 export const config: webpack.Configuration = {
   output: {
@@ -23,6 +24,19 @@ export const config: webpack.Configuration = {
       {
         test: /\.svg?$/,
         loaders: ['file-loader']
+      },
+      {
+        test: /\.sass?|.scss?|.css?$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -35,6 +49,10 @@ export const config: webpack.Configuration = {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
       },
       template: './public/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     })
   ],
 
