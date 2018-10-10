@@ -1,0 +1,49 @@
+@import '../../../variables.scss';
+
+.root {
+  border: none;
+  outline: none;
+  padding: 0 ($base * 2) px;
+  min-height: $base * 4;
+
+  border-radius: $base / 2;
+  background-color: $grey;
+  color: $textDarkPrimary;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+
+  &:hover {
+    background-color: $greyDark;
+  }
+
+  &:active {
+    background-color: $greyDarker;
+  }
+
+  &:disabled {
+    cursor: initial;
+
+    &:hover,
+    &:active {
+      background-color: $grey;
+    }
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.primary {
+  background-color: $primary;
+  color: $textLightPrimary;
+
+  &:hover {
+    background-color: $primaryDark;
+  }
+
+  &:active {
+    background-color: $primaryDarker;
+  }
+}

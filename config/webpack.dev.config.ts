@@ -1,21 +1,21 @@
-import * as path from "path";
-import * as webpack from "webpack";
+import * as path from 'path'
+import * as webpack from 'webpack'
 
 export const config: webpack.Configuration = {
-  mode: "development",
+  mode: 'development',
 
   entry: [
-    "react-hot-loader/patch",
-    "webpack-dev-server/client?http://localhost:8080",
-    "webpack/hot/only-dev-server",
-    "./src/index.tsx"
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/index.tsx'
   ],
 
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loaders: ["awesome-typescript-loader"]
+        loaders: ['awesome-typescript-loader']
       }
     ]
   },
@@ -27,10 +27,10 @@ export const config: webpack.Configuration = {
 
   devServer: {
     hot: true,
-    contentBase: "./src",
+    contentBase: './public',
     port: 8080,
-    clientLogLevel: "error"
+    clientLogLevel: 'error'
   }
-};
+}
 
-export default config;
+export default config

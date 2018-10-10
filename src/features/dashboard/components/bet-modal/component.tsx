@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Typography } from '@material-ui/core'
 import { Theme, WithStyles, withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -17,6 +18,7 @@ interface Props extends WithStyles<keyof ReturnType<typeof styles>> {
   homeTeam: string
   awayTeam: string
   selectedBet: Placement
+  fixtureStarted: boolean
   placeBet: (winner: Winner) => void
   onClose: () => void
 }
@@ -47,6 +49,15 @@ export default withStyles(styles)(
           fullWidth
         >
           <DialogTitle id="form-dialog-title">Place bet</DialogTitle>
+          {this.props.fixtureStarted && (
+            <Typography
+              component="p"
+              color="error"
+              style={{ margin: '0 auto', paddingBottom: '20px' }}
+            >
+              The match has already started, a bet cannot be placed.
+            </Typography>
+          )}
           <DialogContent>
             <div
               style={{
@@ -59,13 +70,19 @@ export default withStyles(styles)(
                 title={this.props.homeTeam}
                 selected={this.props.selectedBet === Placement.Home}
                 onClick={() => this.props.placeBet(Winner.Home)}
-                disabled={this.props.state === BetModalState.PlacingBet}
+                disabled={
+                  this.props.state === BetModalState.PlacingBet ||
+                  this.props.fixtureStarted
+                }
               />
               <BetButton
                 title={this.props.awayTeam}
                 selected={this.props.selectedBet === Placement.Away}
                 onClick={() => this.props.placeBet(Winner.Away)}
-                disabled={this.props.state === BetModalState.PlacingBet}
+                disabled={
+                  this.props.state === BetModalState.PlacingBet ||
+                  this.props.fixtureStarted
+                }
               />
             </div>
           </DialogContent>

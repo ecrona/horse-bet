@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "dom", "es2015.promise"],
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "target": "es6",
+    "typeRoots": ["src/typings", "node_modules/@types"]
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}

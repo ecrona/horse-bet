@@ -1,9 +1,8 @@
 import { Placement } from './placement'
 
 export interface Bet {
-  user: string
-  home: string
-  away: string
-  date: string
+  id: string
+  userId: string
+  fixtureId: string
   placement: Placement
 }
