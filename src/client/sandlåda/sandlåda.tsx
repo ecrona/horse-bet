@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { Header } from './shared/components/Header/component'
-import { Button } from './shared/components/Button/component'
+import React from 'react'
+import { Button } from 'shared/components/Button/component'
 import { Card } from 'shared/components/Card/component'
+import { Header } from 'shared/components/Header/component'
 import { Toolbar } from 'shared/components/Toolbar/component'
 
 interface Props {}
 
-export class Shell extends React.PureComponent<Props> {
+export class Sandlåda extends React.PureComponent<Props> {
   render() {
     return (
       <div>

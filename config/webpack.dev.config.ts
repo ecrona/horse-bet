@@ -19,7 +19,7 @@ export const config: webpack.Configuration = {
 
     new HtmlWebpackPlugin({
       chunksSortMode: 'dependency',
-      inject: false,
+      inject: true,
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
       },

@@ -100,6 +100,7 @@
     "restful.js": "0.9.6",
     "route-parser": "0.0.5",
     "rxjs": "6.2.2",
+    "sass-loader": "^7.1.0",
     "source-map-loader": "0.2.3",
     "svg-country-flags": "1.2.2",
     "ts-node": "7.0.1",
