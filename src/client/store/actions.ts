@@ -1,8 +1,8 @@
 // Features
-import {
-  ActionTypes as DashboardActionTypes,
-  Actions as DashboardActions
-} from 'features/dashboard/store/actions'
+// import {
+//   ActionTypes as DashboardActionTypes,
+//   Actions as DashboardActions
+// } from 'features/dashboard/store/actions'
 
 // Common
 import {
@@ -12,10 +12,10 @@ import {
 
 export const ActionTypes = {
   // Features
-  dashboard: DashboardActionTypes,
+  // dashboard: DashboardActionTypes,
 
   // Common
   view: ViewActionTypes
 }
 
-export type Actions = DashboardActions | ViewActions
+export type Actions = ViewActions

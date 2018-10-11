@@ -1,9 +1,11 @@
 @import '../../../variables.scss';
 
+$spacedPadding: $base * 2 * 1px;
+
 .root {
   background-color: #fff;
 }
 
 .spaced {
-  padding: $base * 2;
+  padding: $spacedPadding;
 }

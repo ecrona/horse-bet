@@ -1,0 +1,15 @@
+@import 'variables.scss';
+
+:global {
+  html {
+    font-size: $fontSize;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+
+    background-color: $backgroundColor;
+    font-family: $font;
+  }
+}

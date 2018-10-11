@@ -11,15 +11,17 @@ export class Sandlåda extends React.PureComponent<Props> {
     return (
       <div>
         <Toolbar />
-        <Header>Header</Header>
 
-        <Button>Button</Button>
-        <Button disabled>Disabled</Button>
-        <Button variant="primary">Primary</Button>
-        <Button fullWidth>Full width</Button>
+        <div style={{ paddingTop: 40, paddingBottom: 40, textAlign: 'center' }}>
+          <Header>Round of 16th</Header>
+        </div>
 
-        <Card>Big card</Card>
-        <Card spaced>Spacey</Card>
+        <Card spaced>
+          <Button>Button</Button>
+          <Button disabled>Disabled</Button>
+          <Button variant="primary">Primary</Button>
+          <Button fullWidth>Full width</Button>
+        </Card>
       </div>
     )
   }

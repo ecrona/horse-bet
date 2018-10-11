@@ -1,18 +1,39 @@
 @import '../../../variables.scss';
 
+$spacing: $base * 2 * 1px;
+$titlePadding: $base * 3 * 1px;
+
 .root {
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  padding: 0 $spacing;
   min-height: 64px;
 
   background-color: transparent;
+  color: $textLightPrimary;
+}
+
+.left {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .title {
+  padding: 0 $titlePadding;
+
   color: $primary;
-  font-size: $baseText * 5;
+  font-size: 20px;
+  font-weight: 600;
   text-transform: uppercase;
 }
