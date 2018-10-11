@@ -1,3 +1,4 @@
+import { Round } from '@shared/models/round'
 import { Actions, ActionTypes } from 'store/actions'
 
 enum ViewState {
@@ -8,7 +9,7 @@ enum ViewState {
 
 export interface State {
   viewState: ViewState
-  data: Array<any>
+  data: Array<Round>
 }
 
 const initialState = {
@@ -18,9 +19,16 @@ const initialState = {
 
 export default function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
-    case ActionTypes.dashboard.openBetModal:
+    case ActionTypes.dashboard.requestData:
       return {
-        ...state
+        ...state,
+        viewState: ViewState.Fetching
+      }
+    case ActionTypes.dashboard.receiveData:
+      return {
+        ...state,
+        viewState: ViewState.FinishedFetching,
+        data: action.payload
       }
     default:
       return state

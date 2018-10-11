@@ -23,7 +23,4 @@ interface Request {
   }
 }
 
-export type Endpoint<TRequest, TResponse> = (
-  payload: TRequest,
-  request?: Request
-) => TResponse
+export type Endpoint<TRequest, TResponse> = (payload?: TRequest, request?: Request) => Response<TResponse>

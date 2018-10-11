@@ -9,7 +9,7 @@ interface Props
 
 const styles = (theme: Theme) => ({
   tableWrapper: {
-    overflow: 'auto',
+    "overflow": 'auto',
     '& th:first-child': {
       minWidth: '175px'
     }
@@ -18,6 +18,10 @@ const styles = (theme: Theme) => ({
 
 export const Dashboard = withStyles(styles)(
   class Component extends React.PureComponent<Props> {
+    componentDidMount() {
+      this.props.getData()
+    }
+
     render() {
       return (
         <div
@@ -27,7 +31,8 @@ export const Dashboard = withStyles(styles)(
             margin: '0 auto'
           }}
         >
-          hej
+          {this.props.rounds.length &&
+            this.props.rounds[0].matchDays[0].days[0].fixtures[0].homeTeam.name}
         </div>
       )
     }
