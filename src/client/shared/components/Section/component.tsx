@@ -3,17 +3,16 @@ import classNames from 'classnames'
 import styles from './styles.scss'
 
 interface Props {
-  children: any
   spaced?: boolean
 }
 
-export class Card extends React.PureComponent<Props> {
+export class Section extends React.PureComponent<Props> {
   render() {
-    const cardClasses = classNames({
+    const classes = classNames({
       [styles.root]: true,
       [styles.spaced]: this.props.spaced
     })
 
-    return <div className={cardClasses}>{this.props.children}</div>
+    return <div className={classes}>{this.props.children}</div>
   }
 }

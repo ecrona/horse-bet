@@ -9,8 +9,9 @@ enum VariantType {
 
 type Variant = 'default' | 'primary'
 
+// TODO: Variant in this case is more representative to "color".
+// Variant should represent a different type of button
 interface Props {
-  children: any
   disabled?: boolean
   fullWidth?: boolean
   variant?: Variant

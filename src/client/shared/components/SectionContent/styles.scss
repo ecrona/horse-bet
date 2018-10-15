@@ -1,0 +1,9 @@
+@import '../../../variables.scss';
+
+$topSpacing: $base * 3 * 1px;
+$bottomSpacing: $base * 5 * 1px;
+
+.root {
+  margin: 0;
+  padding: $topSpacing 0 $bottomSpacing;
+}

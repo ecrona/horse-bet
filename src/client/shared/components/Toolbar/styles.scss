@@ -13,8 +13,14 @@ $titlePadding: $base * 3 * 1px;
   padding: 0 $spacing;
   min-height: 64px;
 
-  background-color: transparent;
+  background-color: $backgroundColor;
   color: $textLightPrimary;
+}
+
+.center {
+  padding: 0 $titlePadding;
+
+  text-align: center;
 }
 
 .left {
@@ -29,11 +35,22 @@ $titlePadding: $base * 3 * 1px;
   justify-content: flex-end;
 }
 
+.subtitle {
+  display: block;
+
+  color: $textLightSecondary;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .title {
-  padding: 0 $titlePadding;
+  display: block;
+  margin: 0;
+  padding: 0;
 
   color: $primary;
   font-size: 20px;
   font-weight: 600;
+  line-height: 28px;
   text-transform: uppercase;
 }

@@ -4,12 +4,12 @@ import styles from './styles.scss'
 
 interface Props {}
 
-export class Header extends React.PureComponent<Props> {
+export class SectionTitle extends React.PureComponent<Props> {
   render() {
-    const headerClasses = classNames({
+    const classes = classNames({
       [styles.root]: true
     })
 
-    return <h1 className={headerClasses}>{this.props.children}</h1>
+    return <h2 className={classes}>{this.props.children}</h2>
   }
 }
