@@ -1,23 +1,15 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn
-} from 'typeorm'
+import { Entity, Column } from 'typeorm'
 import { BetPlacement } from '@shared/models/bet-placement'
-import { FixtureEntity } from './fixture'
-import { UserEntity } from './user'
 
 @Entity('bets')
 export class BetEntity {
-  @PrimaryGeneratedColumn()
-  id: number
+  @Column({ primary: true })
+  homeTeam: string
 
-  @Column()
-  fixtureId: number
+  @Column({ primary: true })
+  awayTeam: string
 
-  @Column()
+  @Column({ primary: true })
   userEmail: string
 
   @Column()

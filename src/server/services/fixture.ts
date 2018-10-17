@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { BetPlacement } from '@shared/models/bet-placement'
 import { FixtureEntity } from 'entities/fixture'
 import { BetEntity } from 'entities/bet'
-import { BetPlacement } from '@shared/models/bet-placement'
 
 @Injectable()
 export class FixtureService {
@@ -14,6 +14,14 @@ export class FixtureService {
     private readonly betRepository: Repository<BetEntity>
   ) {}
 
+  private getTeamLogo(name: string) {
+    return `/img/${name.toLocaleLowerCase()}.png`
+  }
+
+  async getFixture(awayTeam: string, homeTeam: string) {
+    return await this.fixtureRepository.findOne({ awayTeam, homeTeam })
+  }
+
   async getFixturesWithBets(email: string) {
     const fixtures = await this.fixtureRepository.find()
     const bets = await this.betRepository.find({
@@ -21,12 +29,38 @@ export class FixtureService {
     })
 
     return fixtures.map(fixture => {
-      const fixtureBet = bets.find(bet => bet.fixtureId === fixture.id)
+      const fixtureBet = bets.find(
+        bet =>
+          bet.awayTeam === fixture.awayTeam && bet.homeTeam === fixture.homeTeam
+      )
 
       return {
         ...fixture,
+        homeTeam: {
+          name: fixture.homeTeam,
+          logo: this.getTeamLogo(fixture.homeTeam)
+        },
+        awayTeam: {
+          name: fixture.awayTeam,
+          logo: this.getTeamLogo(fixture.awayTeam)
+        },
         betPlacement: fixtureBet ? fixtureBet.placement : BetPlacement.NotPlaced
       }
     })
+  }
+
+  async placeBet(
+    email: string,
+    awayTeam: string,
+    homeTeam: string,
+    placement: BetPlacement
+  ) {
+    const bet = new BetEntity()
+    bet.userEmail = email
+    bet.homeTeam = homeTeam
+    bet.awayTeam = awayTeam
+    bet.placement = placement
+
+    return Boolean(await this.betRepository.save(bet))
   }
 }

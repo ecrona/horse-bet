@@ -37,7 +37,7 @@ export const Endpoints = (
       )
 
       const routeArgsMeta = {
-        [`${RouteParamtypes.RESPONSE}:1`]: {
+        [`${RouteParamtypes.REQUEST}:1`]: {
           index: 1,
           data: undefined,
           pipes: []

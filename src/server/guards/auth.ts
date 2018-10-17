@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     const token = request.cookies.token
 
     try {
-      response.locals.email = (await jwt.verify(token, 'secret')).email
+      request.locals = { email: (await jwt.verify(token, 'secret')).email }
       return true
     } catch (e) {
       return false

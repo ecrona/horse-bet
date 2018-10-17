@@ -22,6 +22,5 @@ export class UserController implements UserEndpointsData {
   @HttpCode(200)
   async login(credentials, request) {
     console.log(request.locals)
-    return { test: 'hej' }
   }
 }
