@@ -21,12 +21,6 @@ export class UserService {
     return await this.userRepository.findOne({ email })
   }
 
-  async createUser(user: UserEntity): Promise<UserEntity> {
-    user.password = await this.getHash(user.password)
-
-    return this.userRepository.save(user)
-  }
-
   async getHash(password: string): Promise<string> {
     return bcrypt.hash(password, this.saltRounds)
   }

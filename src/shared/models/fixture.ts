@@ -1,10 +1,10 @@
-interface Team {
-  name: string
-  logo: string
-}
+import { BetPlacement } from './bet-placement'
+import { Round } from './round'
 
 export interface Fixture {
-  awayTeam: Team
-  homeTeam: Team
+  awayTeam: string
+  homeTeam: string
+  round: Round
   matchStart: string
+  betPlacement: BetPlacement
 }

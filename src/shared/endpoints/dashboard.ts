@@ -4,23 +4,14 @@ import {
   Response,
   RequestMethod
 } from '@shared/utils/endpoints'
-import { Round } from '@shared/models/round'
-
-export interface LoginRequest {
-  username: string
-  password: string
-}
-
-export interface LoginResponse {
-  token: string
-}
+import { Fixture } from '@shared/models/fixture'
 
 interface DashboardBaseEndpoints {
   get: any
 }
 
 export interface DashboardEndpointsData extends DashboardBaseEndpoints {
-  get: Endpoint<void, Array<Round>>
+  get: Endpoint<void, Array<Fixture>>
 }
 
 export const dashboardEndpointsMeta: EndpointsMeta<DashboardBaseEndpoints> = {
