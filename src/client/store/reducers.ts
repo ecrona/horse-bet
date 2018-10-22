@@ -1,14 +1,18 @@
 import { combineReducers } from 'redux'
 import { RouterState } from 'connected-react-router'
 
+// Common
+import common from './common/reducer'
+
 // Features
-// import dashboardReducer from 'features/dashboard/store/reducer'
-// import loginReducer from 'features/login/store/reducer'
+import dashboard from 'features/dashboard/store/reducer'
 
 const reducerMap = {
+  // Common
+  common,
+
   // Features
-  // dashboard: dashboardReducer,
-  // login: loginReducer
+  dashboard
 }
 
 export const rootReducer = combineReducers(reducerMap)

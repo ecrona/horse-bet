@@ -24,19 +24,22 @@ export const xhr = async (
 ) => {
   let hostUrl = `${host}${url}`
 
-  if (requestMethod === RequestMethod.Get) {
-    hostUrl = `${hostUrl}?data=${JSON.stringify(data)}`
-  }
-
-  const response = await fetch(hostUrl, {
+  const options: RequestInit = {
     method: requestMethodMap[requestMethod],
     headers: {
-      "Accept": 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      "Authorization": JWT.get()
-    },
-    body: requestMethod !== RequestMethod.Get && JSON.stringify(data)
-  })
+      Authorization: JWT.get()
+    }
+  }
+  if (requestMethod === RequestMethod.Get && data) {
+    hostUrl = `${hostUrl}?data=${JSON.stringify(data)}`
+  }
+  if (requestMethod !== RequestMethod.Get) {
+    options.body = JSON.stringify(data)
+  }
+
+  const response = await fetch(hostUrl, options)
 
   if (response.ok) {
     const text = await response.text()

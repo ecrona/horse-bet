@@ -10,21 +10,27 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
           awayTeam: { name: 'Bayern Münich', logo: '/' },
           homeTeam: { name: 'Juventus', logo: '/' },
           round: Round.RoundOf16,
-          matchStart: '2018-01-02 18:00:00',
+          startDate: '2018-01-02',
+          startDay: 'Monday',
+          startTime: '18:00',
           betPlacement: BetPlacement.NotPlaced
         },
         {
           awayTeam: { name: 'Valencia', logo: '/' },
           homeTeam: { name: 'Manchester City', logo: '/' },
           round: Round.RoundOf16,
-          matchStart: '2018-01-02 21:00:00',
+          startDate: '2018-01-02',
+          startDay: 'Monday',
+          startTime: '21:00',
           betPlacement: BetPlacement.NotPlaced
         },
         {
           awayTeam: { name: 'PSG', logo: '/' },
           homeTeam: { name: 'Napoli', logo: '/' },
           round: Round.RoundOf16,
-          matchStart: '2018-01-02 21:00:00',
+          startDate: '2018-01-03',
+          startDay: 'Wednesday',
+          startTime: '21:00',
           betPlacement: BetPlacement.NotPlaced
         }
       ])

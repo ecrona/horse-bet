@@ -10,6 +10,8 @@ export interface Fixture {
   awayTeam: Team
   homeTeam: Team
   round: Round
-  matchStart: string
+  startDate: string
+  startDay: string
+  startTime: string
   betPlacement: BetPlacement
 }
