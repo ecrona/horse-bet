@@ -15,6 +15,7 @@ interface Props {
   disabled?: boolean
   fullWidth?: boolean
   variant?: Variant
+  onClick?: (e: any) => any
 }
 
 export class Button extends React.PureComponent<Props> {
@@ -30,7 +31,11 @@ export class Button extends React.PureComponent<Props> {
     })
 
     return (
-      <button className={buttonClasses} disabled={this.props.disabled}>
+      <button
+        className={buttonClasses}
+        disabled={this.props.disabled}
+        onClick={this.props.onClick}
+      >
         {this.props.children}
       </button>
     )

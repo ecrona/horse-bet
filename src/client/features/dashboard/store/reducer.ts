@@ -1,18 +1,13 @@
 import { Fixture } from '@shared/models/fixture'
 import { Actions, ActionTypes } from 'store/actions'
-
-enum ViewState {
-  Interactive,
-  Fetching,
-  PlacingBet
-}
+import { ViewState } from '../models/view-state'
 
 export interface State {
   viewState: ViewState
   fixtures: Array<Fixture>
 }
 
-const initialState = {
+const initialState: State = {
   viewState: ViewState.Fetching,
   fixtures: []
 }
@@ -24,11 +19,28 @@ export default function reducer(state = initialState, action: Actions): State {
         ...state,
         viewState: ViewState.Fetching
       }
+    case ActionTypes.dashboard.requestPlaceBet:
+      return {
+        ...state,
+        viewState: ViewState.PlacingBet
+      }
     case ActionTypes.dashboard.receiveFixtures:
       return {
         ...state,
         viewState: ViewState.Interactive,
         fixtures: action.payload
+      }
+    case ActionTypes.dashboard.receivePlaceBet:
+      return {
+        ...state,
+        viewState: ViewState.Interactive,
+        fixtures: state.fixtures.map(
+          fixture =>
+            fixture.awayTeam.name === action.payload.awayTeam &&
+            fixture.homeTeam.name === action.payload.homeTeam
+              ? { ...fixture, betPlacement: action.payload.placement }
+              : fixture
+        )
       }
     default:
       return state

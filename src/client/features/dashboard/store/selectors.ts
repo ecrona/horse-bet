@@ -1,7 +1,20 @@
 import { createSelector } from 'reselect'
+import { Round } from '@shared/models/round'
 import { RootState } from 'store/reducers'
 
 const isUnique = (value, index, self) => self.indexOf(value) === index
+const getRoundName = (round: Round) => {
+  switch (round) {
+    case Round.Final:
+      return 'Final'
+    case Round.SemiFinals:
+      return 'Semi Finals'
+    case Round.QuarterFinals:
+      return 'Quarter Finals'
+    case Round.RoundOf16:
+      return 'Round of 16'
+  }
+}
 
 export const getRounds = createSelector(
   (state: RootState) => state.common.date,
@@ -11,7 +24,7 @@ export const getRounds = createSelector(
       .map(fixture => fixture.round)
       .filter(isUnique)
       .map(round => ({
-        round,
+        name: getRoundName(round),
         matchDays: fixtures
           .filter(fixture => fixture.round === round)
           .map(fixture => fixture.startDate)
@@ -36,7 +49,8 @@ export const getRounds = createSelector(
                     betPlacement: fixture.betPlacement,
                     placeable:
                       new Date(`${fixture.startDate} ${fixture.startTime}`) >
-                      new Date(date)
+                      new Date(date),
+                    startTime: fixture.startTime
                   }))
               }))
           }))
