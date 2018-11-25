@@ -22,7 +22,11 @@ export class Sandlåda extends React.PureComponent<Props> {
           <SectionSubtitle>Tuesday</SectionSubtitle>
 
           <SectionContent>
-            <Button>Liverpool</Button>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button>Liverpool</Button>
+              18:35
+              <Button>Röda Stjärnan</Button>
+            </div>
             First content
           </SectionContent>
 
