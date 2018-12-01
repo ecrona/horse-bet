@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import * as format from 'date-fns/format'
 import { BetPlacement } from '@shared/models/bet-placement'
 import { FixtureEntity } from 'entities/fixture'
 import { BetEntity } from 'entities/bet'
@@ -34,8 +35,13 @@ export class FixtureService {
           bet.awayTeam === fixture.awayTeam && bet.homeTeam === fixture.homeTeam
       )
 
+      const matchStart = new Date(fixture.matchStart)
+
       return {
-        ...fixture,
+        round: fixture.round,
+        startDate: format(matchStart, 'YYYY-MM-DD'),
+        startDay: format(matchStart, 'dddd'),
+        startTime: format(matchStart, 'HH:ss'),
         homeTeam: {
           name: fixture.homeTeam,
           logo: this.getTeamLogo(fixture.homeTeam)

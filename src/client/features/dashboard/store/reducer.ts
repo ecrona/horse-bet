@@ -1,6 +1,7 @@
 import { Fixture } from '@shared/models/fixture'
 import { Actions, ActionTypes } from 'store/actions'
 import { ViewState } from '../models/view-state'
+import { toggleViewState } from './helpers'
 
 export interface State {
   viewState: ViewState
@@ -27,13 +28,13 @@ export default function reducer(state = initialState, action: Actions): State {
     case ActionTypes.dashboard.receiveFixtures:
       return {
         ...state,
-        viewState: ViewState.Interactive,
+        viewState: ViewState.Bets,
         fixtures: action.payload
       }
     case ActionTypes.dashboard.receivePlaceBet:
       return {
         ...state,
-        viewState: ViewState.Interactive,
+        viewState: ViewState.Bets,
         fixtures: state.fixtures.map(
           fixture =>
             fixture.awayTeam.name === action.payload.awayTeam &&
@@ -41,6 +42,11 @@ export default function reducer(state = initialState, action: Actions): State {
               ? { ...fixture, betPlacement: action.payload.placement }
               : fixture
         )
+      }
+    case ActionTypes.dashboard.toggleViewState:
+      return {
+        ...state,
+        viewState: toggleViewState(state.viewState)
       }
     default:
       return state

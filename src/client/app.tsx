@@ -10,8 +10,8 @@ export class App extends React.Component<any, any> {
     return (
       <div style={{ maxWidth: '500px', margin: '0 auto' }}>
         <Switch>
-          <Route exact path="/" component={Sandlåda} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/sandlåda" component={Sandlåda} />
+          <Route exact path="/" component={Dashboard} />
           <Route
             component={props => console.log(props) || <div>Not found</div>}
           />

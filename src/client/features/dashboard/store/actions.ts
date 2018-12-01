@@ -6,7 +6,8 @@ export enum ActionTypes {
   requestFixtures = '[Dashboard] Request fixtures',
   receiveFixtures = '[Dashboard] Receive fixtures',
   requestPlaceBet = '[Dashboard] Request place bet',
-  receivePlaceBet = '[Dashboard] Receive place bet'
+  receivePlaceBet = '[Dashboard] Receive place bet',
+  toggleViewState = '[Dashboard] Toggle view state'
 }
 
 export const actions = {
@@ -19,7 +20,12 @@ export const actions = {
     homeTeam: string,
     placement: BetPlacement
   ) =>
-    createAction(ActionTypes.receivePlaceBet, { awayTeam, homeTeam, placement })
+    createAction(ActionTypes.receivePlaceBet, {
+      awayTeam,
+      homeTeam,
+      placement
+    }),
+  toggleViewState: () => createAction(ActionTypes.toggleViewState)
 }
 
 export const getFixtures = (): ThunkAction => async (
