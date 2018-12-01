@@ -18,6 +18,7 @@ class EpicHorseLoader extends React.PureComponent<
 > {
   state = { transition: false }
 
+  // How naughty
   componentWillReceiveProps(nextProps) {
     if (nextProps.show) {
       setTimeout(() => this.setState({ transition: true }))
