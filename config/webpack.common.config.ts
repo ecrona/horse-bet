@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
@@ -55,7 +56,13 @@ export const config: webpack.Configuration = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: './src/client/assets',
+        to: './assets'
+      }
+    ])
   ],
 
   devtool: 'source-map'

@@ -14,6 +14,7 @@ type Variant = 'default' | 'primary'
 interface Props {
   disabled?: boolean
   fullWidth?: boolean
+  style?: any
   variant?: Variant
   onClick?: (e: any) => any
 }
@@ -34,6 +35,7 @@ export class Button extends React.PureComponent<Props> {
       <button
         className={buttonClasses}
         disabled={this.props.disabled}
+        style={this.props.style}
         onClick={this.props.onClick}
       >
         {this.props.children}

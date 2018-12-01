@@ -6,6 +6,7 @@ import { Toolbar } from 'shared/components/Toolbar/component'
 import { SectionTitle } from '@client/shared/components/SectionTitle/component'
 import { SectionSubtitle } from '@client/shared/components/SectionSubtitle/component'
 import { SectionContent } from '@client/shared/components/SectionContent/component'
+import { Fixture } from './Fixture/component'
 
 interface Props {}
 
@@ -22,12 +23,7 @@ export class Sandlåda extends React.PureComponent<Props> {
           <SectionSubtitle>Tuesday</SectionSubtitle>
 
           <SectionContent>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button>Liverpool</Button>
-              18:35
-              <Button>Röda Stjärnan</Button>
-            </div>
-            First content
+            <Fixture />
           </SectionContent>
 
           <SectionSubtitle>Wednesday</SectionSubtitle>
