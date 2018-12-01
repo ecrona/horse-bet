@@ -1,5 +1,6 @@
 export enum ViewState {
-  Interactive,
+  Bets,
+  Details,
   Fetching,
   PlacingBet
 }

@@ -100,7 +100,6 @@
     "redux-thunk": "2.3.0",
     "reflect-metadata": "0.1.12",
     "reselect": "3.0.1",
-    "restful.js": "0.9.6",
     "route-parser": "0.0.5",
     "rxjs": "6.2.2",
     "sass-loader": "^7.1.0",

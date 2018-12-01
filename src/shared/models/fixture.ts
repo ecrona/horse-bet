@@ -1,7 +1,7 @@
 import { BetPlacement } from './bet-placement'
 import { Round } from './round'
 
-interface Team {
+export interface Team {
   name: string
   logo: string
 }
