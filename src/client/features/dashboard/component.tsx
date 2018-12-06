@@ -7,8 +7,7 @@ import { SectionTitle } from 'shared/components/SectionTitle/component'
 import { SectionSubtitle } from 'shared/components/SectionSubtitle/component'
 import { StoreProps } from './container'
 import { ViewState } from './models/view-state'
-import { MatchBet } from './components/match-bet'
-import { MatchDetail } from './components/match-detail'
+import { Fixture } from './components/Fixture'
 
 interface Props extends StoreProps {}
 
@@ -19,13 +18,9 @@ class EpicHorseLoader extends React.PureComponent<
   state = { transition: false }
 
   // How naughty
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.show) {
-      setTimeout(() => this.setState({ transition: true }))
-    }
-
-    if (!nextProps.show) {
-      setTimeout(() => this.setState({ transition: false }))
+  componentDidUpdate(prevProps) {
+    if (this.props.show !== prevProps.show) {
+      setTimeout(() => this.setState({ transition: this.props.show }))
     }
   }
 
@@ -81,55 +76,34 @@ export class Dashboard extends React.PureComponent<Props> {
   }
 
   render() {
-    const { viewState, rounds, placeBet, toggleViewState } = this.props
+    const { rounds, placeBet } = this.props
 
-    return (
+    if (this.isLoading()) {
+      return <EpicHorseLoader show={this.isLoading()} />
+    }
+
+    return rounds.map(round => (
       <React.Fragment>
-        <EpicHorseLoader show={this.isLoading()} />
-        {!this.isLoading() &&
-          rounds.map(round => (
-            <React.Fragment>
-              <Header>{round.name}</Header>
-              {round.matchDays.map(matchDay => (
-                <div style={{ position: 'relative' }}>
-                  <Section spaced>
-                    <SectionTitle>{matchDay.matchDay}</SectionTitle>
-                    {matchDay.days.map(day => (
-                      <React.Fragment>
-                        <SectionSubtitle>{day.weekDay}</SectionSubtitle>
+        <Header>{round.name}</Header>
 
-                        <SectionContent>
-                          {day.fixtures.map(fixture => (
-                            <React.Fragment>
-                              {viewState === ViewState.Bets && (
-                                <MatchBet
-                                  fixture={fixture}
-                                  placeBet={placeBet}
-                                />
-                              )}
-                              {viewState === ViewState.Details && (
-                                <MatchDetail fixture={fixture} />
-                              )}
-                            </React.Fragment>
-                          ))}
-                        </SectionContent>
-                      </React.Fragment>
-                    ))}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        right: '10px',
-                        top: '10px'
-                      }}
-                    >
-                      <Button onClick={toggleViewState}>View Details</Button>
-                    </div>
-                  </Section>
-                </div>
-              ))}
-            </React.Fragment>
-          ))}
+        {round.matchDays.map(matchDay => (
+          <Section spaced>
+            <SectionTitle>{matchDay.matchDay}</SectionTitle>
+
+            {matchDay.days.map(day => (
+              <React.Fragment>
+                <SectionSubtitle>{day.weekDay}</SectionSubtitle>
+
+                <SectionContent>
+                  {day.fixtures.map(fixture => (
+                    <Fixture fixture={fixture} placeBet={placeBet} />
+                  ))}
+                </SectionContent>
+              </React.Fragment>
+            ))}
+          </Section>
+        ))}
       </React.Fragment>
-    )
+    ))
   }
 }

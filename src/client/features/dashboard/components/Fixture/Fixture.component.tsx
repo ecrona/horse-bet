@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button } from 'shared/components/Button/component'
 import { BetPlacement } from '@shared/models/bet-placement'
 import { DashboardFixture } from '../../models/dashboard-fixture'
-import styles from './styles.scss'
+import styles from './Fixture.styles.scss'
 
 interface Props {
   fixture: DashboardFixture
@@ -13,7 +13,7 @@ interface Props {
   ) => void
 }
 
-export class MatchBet extends React.PureComponent<Props> {
+export class Fixture extends React.PureComponent<Props> {
   render() {
     const { fixture, placeBet } = this.props
 
@@ -34,6 +34,7 @@ export class MatchBet extends React.PureComponent<Props> {
           >
             {fixture.homeTeam.name}
           </Button>
+
           <img
             src="assets/logotypes/liverpool.png"
             className={styles.logotype}
@@ -44,6 +45,7 @@ export class MatchBet extends React.PureComponent<Props> {
 
         <div className={styles.team}>
           <img src="assets/logotypes/bayern.png" className={styles.logotype} />
+
           <Button
             variant={
               fixture.betPlacement === BetPlacement.Away ? 'primary' : 'default'
