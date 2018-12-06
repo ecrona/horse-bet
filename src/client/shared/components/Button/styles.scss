@@ -25,7 +25,10 @@
   }
 
   &:disabled {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
     background-color: transparent;
+    color: rgba(0, 0, 0, 0.75);
     cursor: initial;
 
     &:hover,
@@ -52,7 +55,10 @@
   }
 
   &:disabled {
+    border: none;
+
     background-color: $primary;
+    color: $textLightPrimary;
     cursor: initial;
 
     &:hover,
