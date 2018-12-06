@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Button } from 'shared/components/Button/component'
 import { Header } from 'shared/components/Header/component'
 import { Section } from 'shared/components/Section/component'
 import { SectionContent } from 'shared/components/SectionContent/component'
@@ -8,6 +7,7 @@ import { SectionSubtitle } from 'shared/components/SectionSubtitle/component'
 import { StoreProps } from './container'
 import { ViewState } from './models/view-state'
 import { Fixture } from './components/Fixture'
+import { Toolbar } from 'shared/components/Toolbar/component'
 
 interface Props extends StoreProps {}
 
@@ -19,9 +19,9 @@ class EpicHorseLoader extends React.PureComponent<
 
   // How naughty
   componentDidUpdate(prevProps) {
-    if (this.props.show !== prevProps.show) {
-      setTimeout(() => this.setState({ transition: this.props.show }))
-    }
+    // if (this.props.show !== prevProps.show) {
+    //   setTimeout(() => this.setState({ transition: this.props.show }))
+    // }
   }
 
   render() {
@@ -78,12 +78,14 @@ export class Dashboard extends React.PureComponent<Props> {
   render() {
     const { rounds, placeBet } = this.props
 
-    if (this.isLoading()) {
-      return <EpicHorseLoader show={this.isLoading()} />
-    }
+    // if (this.isLoading()) {
+    //   return <EpicHorseLoader show={this.isLoading()} />
+    // }
 
     return rounds.map(round => (
       <React.Fragment>
+        <Toolbar />
+
         <Header>{round.name}</Header>
 
         {round.matchDays.map(matchDay => (

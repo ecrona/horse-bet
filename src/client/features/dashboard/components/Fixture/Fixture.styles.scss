@@ -20,6 +20,16 @@
   height: 32px;
 }
 
+.buttonHome {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.buttonAway {
+  flex: 1;
+  margin-left: 8px;
+}
+
 .team {
   display: flex;
   flex: 1;

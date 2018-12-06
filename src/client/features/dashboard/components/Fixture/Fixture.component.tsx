@@ -21,9 +21,9 @@ export class Fixture extends React.PureComponent<Props> {
       <div className={styles.root}>
         <div className={styles.team}>
           <Button
-            variant="primary"
+            className={styles.buttonHome}
             disabled={!fixture.placeable}
-            style={{ flex: 1, marginRight: 8 }}
+            selected={fixture.betPlacement === BetPlacement.Home}
             onClick={() =>
               placeBet(
                 fixture.awayTeam.name,
@@ -47,11 +47,9 @@ export class Fixture extends React.PureComponent<Props> {
           <img src="assets/logotypes/bayern.png" className={styles.logotype} />
 
           <Button
-            variant={
-              fixture.betPlacement === BetPlacement.Away ? 'primary' : 'default'
-            }
+            className={styles.buttonAway}
             disabled={!fixture.placeable}
-            style={{ flex: 1, marginLeft: 8 }}
+            selected={fixture.betPlacement === BetPlacement.Away}
             onClick={() =>
               placeBet(
                 fixture.awayTeam.name,

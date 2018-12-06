@@ -25,11 +25,12 @@
   }
 
   &:disabled {
+    background-color: transparent;
     cursor: initial;
 
     &:hover,
     &:active {
-      background-color: $grey;
+      background-color: transparent;
     }
   }
 }
@@ -38,15 +39,25 @@
   width: 100%;
 }
 
-.primary {
+.selected {
   background-color: $primary;
   color: $textLightPrimary;
 
   &:hover {
-    background-color: $primaryDark;
+    background-color: $primary;
   }
 
   &:active {
-    background-color: $primaryDarker;
+    background-color: $primary;
+  }
+
+  &:disabled {
+    background-color: $primary;
+    cursor: initial;
+
+    &:hover,
+    &:active {
+      background-color: $primary;
+    }
   }
 }
