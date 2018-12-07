@@ -6,8 +6,8 @@ import { createMockPromise } from '../create-mock-promise'
 export const dashboardMockEndpoints: DashboardEndpointsData = {
   get: createMockPromise([
     {
-      awayTeam: { name: 'Bayern Münich', logo: '/' },
-      homeTeam: { name: 'Juventus', logo: '/' },
+      awayTeam: { name: 'Bayern Münich', logo: 'assets/logotypes/bayern.png' },
+      homeTeam: { name: 'Juventus', logo: 'assets/logotypes/juve.png' },
       round: Round.RoundOf16,
       startDate: '2018-01-02',
       startDay: 'Monday',
@@ -15,8 +15,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       betPlacement: BetPlacement.Away
     },
     {
-      awayTeam: { name: 'Valencia', logo: '/' },
-      homeTeam: { name: 'Manchester City', logo: '/' },
+      awayTeam: { name: 'Real Madrid', logo: 'assets/logotypes/real.png' },
+      homeTeam: {
+        name: 'Manchester City',
+        logo: 'assets/logotypes/man-utd.png'
+      },
       round: Round.RoundOf16,
       startDate: '2018-01-02',
       startDay: 'Monday',
@@ -24,12 +27,30 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       betPlacement: BetPlacement.Home
     },
     {
-      awayTeam: { name: 'PSG', logo: '/' },
-      homeTeam: { name: 'Napoli', logo: '/' },
+      awayTeam: { name: 'PSG', logo: 'assets/logotypes/psg.png' },
+      homeTeam: { name: 'Man U', logo: 'assets/logotypes/man-utd.png' },
       round: Round.RoundOf16,
       startDate: '2019-01-03',
       startDay: 'Wednesday',
       startTime: '21:00',
+      betPlacement: BetPlacement.NotPlaced
+    },
+    {
+      awayTeam: { name: 'Liverpool', logo: 'assets/logotypes/liverpool.png' },
+      homeTeam: { name: 'Roma', logo: 'assets/logotypes/roma.png' },
+      round: Round.RoundOf16,
+      startDate: '2019-01-03',
+      startDay: 'Wednesday',
+      startTime: '21:00',
+      betPlacement: BetPlacement.NotPlaced
+    },
+    {
+      awayTeam: { name: 'Inter', logo: 'assets/logotypes/roma.png' },
+      homeTeam: { name: 'Tottenham', logo: 'assets/logotypes/tottenham.png' },
+      round: Round.RoundOf16,
+      startDate: '2019-01-03',
+      startDay: 'Wednesday',
+      startTime: '18:00',
       betPlacement: BetPlacement.NotPlaced
     }
   ]),

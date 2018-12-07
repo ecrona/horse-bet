@@ -35,16 +35,13 @@ export class Fixture extends React.PureComponent<Props> {
             {fixture.homeTeam.name}
           </Button>
 
-          <img
-            src="assets/logotypes/liverpool.png"
-            className={styles.logotype}
-          />
+          <img src={fixture.homeTeam.logo} className={styles.logotype} />
         </div>
 
         <span className={styles.details}>{fixture.startTime}</span>
 
         <div className={styles.team}>
-          <img src="assets/logotypes/bayern.png" className={styles.logotype} />
+          <img src={fixture.awayTeam.logo} className={styles.logotype} />
 
           <Button
             className={styles.buttonAway}
