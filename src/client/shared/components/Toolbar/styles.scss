@@ -10,7 +10,7 @@ $titlePadding: $base * 3 * 1px;
   flex-direction: row;
   align-items: center;
 
-  padding: 0 $spacing;
+  padding: 0 $spacing - 12px;
   min-height: 64px;
 
   background-color: $backgroundColor;
@@ -21,6 +21,10 @@ $titlePadding: $base * 3 * 1px;
   padding: 0 $titlePadding;
 
   text-align: center;
+}
+
+.icon {
+  color: #fff;
 }
 
 .left {
