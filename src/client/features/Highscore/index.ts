@@ -1,1 +1,1 @@
-export * from './Highscore.component'
+export * from './Highscore.container'

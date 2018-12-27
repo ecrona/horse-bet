@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { serverEnv } from '@env/server'
-import { UserModule } from 'modules/user/module'
 import { DashboardModule } from 'modules/dashboard/module'
+import { HighscoresModule } from 'modules/highscores/module'
+import { UserModule } from 'modules/user/module'
 
 @Module({
   imports: [
@@ -21,8 +22,9 @@ import { DashboardModule } from 'modules/dashboard/module'
         migrationsDir: 'migration'
       }
     }),
-    UserModule,
-    DashboardModule
+    DashboardModule,
+    HighscoresModule,
+    UserModule
   ]
 })
 export class AppModule {}

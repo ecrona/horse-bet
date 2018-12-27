@@ -6,13 +6,15 @@ import common from './common/reducer'
 
 // Features
 import dashboard from 'features/dashboard/store/reducer'
+import highscore from 'features/Highscore/store/reducer'
 
 const reducerMap = {
   // Common
   common,
 
   // Features
-  dashboard
+  dashboard,
+  highscore
 }
 
 export const rootReducer = combineReducers(reducerMap)
