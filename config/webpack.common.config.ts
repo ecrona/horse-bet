@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
@@ -57,12 +58,22 @@ export const config: webpack.Configuration = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
+
     new CopyWebpackPlugin([
       {
         from: './src/client/assets',
         to: './assets'
       }
-    ])
+    ]),
+
+    new HtmlWebpackPlugin({
+      chunksSortMode: 'dependency',
+      inject: true,
+      meta: {
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+      },
+      template: './src/index.html'
+    })
   ],
 
   devtool: 'source-map'

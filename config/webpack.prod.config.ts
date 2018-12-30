@@ -1,5 +1,6 @@
 import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
 export const config: webpack.Configuration = {
   mode: 'production',
@@ -7,19 +8,17 @@ export const config: webpack.Configuration = {
   entry: ['./src/client/index.tsx'],
 
   optimization: {
-    minimize: true
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      chunksSortMode: 'dependency',
-      inject: true,
-      meta: {
-        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-      },
-      template: './src/index.html'
-    }),
-
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
