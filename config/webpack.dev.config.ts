@@ -23,7 +23,7 @@ export const config: webpack.Configuration = {
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
       },
-      template: './dist/client/index.html'
+      template: './src/index.html'
     }),
 
     new webpack.DefinePlugin({
