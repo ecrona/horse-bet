@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm'
-import { BetPlacement } from '@shared/models/bet-placement'
+import { MatchWinner } from '@shared/models/match-winner'
 import { Round } from '@shared/models/round'
 
 @Entity('fixtures')
@@ -17,5 +17,8 @@ export class FixtureEntity {
   matchStart: string
 
   @Column()
-  winner: BetPlacement
+  matchWinner: MatchWinner
+
+  @Column()
+  score: string
 }

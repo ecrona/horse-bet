@@ -4,6 +4,8 @@ import { Repository } from 'typeorm'
 import { BetEntity } from 'entities/bet'
 import { FixtureEntity } from 'entities/fixture'
 import { UserEntity } from 'entities/user'
+import { BetPlacement } from '@shared/models/bet-placement'
+import { MatchWinner } from '@shared/models/match-winner'
 
 @Injectable()
 export class HighscoresService {
@@ -34,7 +36,12 @@ export class HighscoresService {
                 bet.userEmail === user.email &&
                 bet.awayTeam === fixture.awayTeam &&
                 bet.homeTeam === fixture.homeTeam &&
-                bet.placement === fixture.winner
+                ((bet.placement === BetPlacement.Home &&
+                  fixture.matchWinner === MatchWinner.Home) ||
+                  (bet.placement === BetPlacement.Away &&
+                    fixture.matchWinner === MatchWinner.Away) ||
+                  (bet.placement === BetPlacement.NotPlaced &&
+                    fixture.matchWinner === MatchWinner.InProgress))
             )
           ).length
         }))

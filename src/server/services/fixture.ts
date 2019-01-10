@@ -50,7 +50,11 @@ export class FixtureService {
           name: fixture.awayTeam,
           logo: this.getTeamLogo(fixture.awayTeam)
         },
-        betPlacement: fixtureBet ? fixtureBet.placement : BetPlacement.NotPlaced
+        betPlacement: fixtureBet
+          ? fixtureBet.placement
+          : BetPlacement.NotPlaced,
+        matchWinner: fixture.matchWinner,
+        score: fixture.score
       }
     })
   }
