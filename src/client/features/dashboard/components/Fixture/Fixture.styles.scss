@@ -1,8 +1,8 @@
 .root {
   display: flex;
   flex-direction: row;
-  height: 48px;
-  min-height: 48px;
+  height: 64px;
+  min-height: 64px;
 }
 
 .details {
@@ -22,13 +22,41 @@
 }
 
 .buttonHome {
-  flex: 1;
-  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+
+  span {
+    flex: 1;
+    text-align: center;
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .buttonAway {
-  flex: 1;
-  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+
+  span {
+    flex: 1;
+    text-align: center;
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .team {

@@ -22,7 +22,7 @@ export class Fixture extends React.PureComponent<Props> {
         <div className={styles.team}>
           <Button
             className={styles.buttonHome}
-            disabled={!fixture.placeable}
+            // disabled={!fixture.placeable}
             selected={fixture.betPlacement === BetPlacement.Home}
             onClick={() =>
               placeBet(
@@ -32,20 +32,17 @@ export class Fixture extends React.PureComponent<Props> {
               )
             }
           >
-            {fixture.homeTeam.name}
+            <img src={fixture.homeTeam.logo} className={styles.logotype} />
+            <span>{fixture.homeTeam.name}</span>
           </Button>
-
-          <img src={fixture.homeTeam.logo} className={styles.logotype} />
         </div>
 
-        <span className={styles.details}>{fixture.startTime}</span>
+        <span className={styles.details}>vs {/*fixture.startTime*/}</span>
 
         <div className={styles.team}>
-          <img src={fixture.awayTeam.logo} className={styles.logotype} />
-
           <Button
             className={styles.buttonAway}
-            disabled={!fixture.placeable}
+            // disabled={!fixture.placeable}
             selected={fixture.betPlacement === BetPlacement.Away}
             onClick={() =>
               placeBet(
@@ -55,7 +52,8 @@ export class Fixture extends React.PureComponent<Props> {
               )
             }
           >
-            {fixture.awayTeam.name}
+            <span>{fixture.awayTeam.name}</span>
+            <img src={fixture.awayTeam.logo} className={styles.logotype} />
           </Button>
         </div>
       </div>
