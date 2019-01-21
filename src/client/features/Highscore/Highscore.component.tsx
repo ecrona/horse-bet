@@ -4,6 +4,7 @@ import { Toolbar } from '@client/shared/components/Toolbar/component'
 import styles from './Highscore.styles.scss'
 import { StoreProps } from './Highscore.container'
 import { ViewState } from './models/view-state'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 interface Props extends StoreProps {}
 
@@ -20,7 +21,9 @@ export class Highscore extends React.PureComponent<Props> {
         <Toolbar subtitle="Highscore" canGoBack hideHighscore />
 
         {viewState === ViewState.Fetching && (
-          <span style={{ color: 'salmon' }}>Fetching your moma</span>
+          <div className={styles.loader}>
+            <CircularProgress size={56} />
+          </div>
         )}
 
         {viewState === ViewState.Highscores && (
