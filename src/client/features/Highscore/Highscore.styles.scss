@@ -16,24 +16,20 @@
   }
 }
 
-.rank {
-  width: 48px;
-}
-
-.name {
-}
-
-.spacing {
-  height: 24px;
-}
-
-.self {
+.me {
   position: relative;
 
   background-color: #419544 !important;
   color: #fff;
   font-weight: 500;
 
-  box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.21);
   z-index: 1;
+}
+
+.rank {
+  width: 48px;
+}
+
+.spacing {
+  height: 24px;
 }

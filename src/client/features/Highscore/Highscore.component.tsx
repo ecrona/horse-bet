@@ -27,16 +27,14 @@ export class Highscore extends React.PureComponent<Props> {
           <React.Fragment>
             <div className={styles.spacing} />
 
-            <div className={classnames(styles.item, styles.self)}>
-              <span className={styles.rank}>{myHighscore.rank}</span>
-              <span className={styles.name}>
-                {myHighscore.name} ({myHighscore.score}){' '}
-                <span style={{ color: 'rgba(255,255,255,0.75)' }}>(Me)</span>
-              </span>
-            </div>
-
             {highscores.map(highscore => (
-              <div key={highscore.name} className={styles.item}>
+              <div
+                key={highscore.name}
+                className={classnames({
+                  [styles.item]: true,
+                  [styles.me]: highscore.me
+                })}
+              >
                 <span className={styles.rank}>{highscore.rank}</span>
                 <span className={styles.name}>
                   {highscore.name} ({highscore.score} rätt)
