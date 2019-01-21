@@ -86,7 +86,7 @@ export class Dashboard extends React.PureComponent<Props> {
       .map(key => rounds[key])
       .map(round => (
         <React.Fragment>
-          <Toolbar />
+          <Toolbar subtitle="Champions league" />
 
           <Header>{round.name}</Header>
 
