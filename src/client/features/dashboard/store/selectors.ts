@@ -20,45 +20,63 @@ export const getRounds = createSelector(
   (state: RootState) => state.common.date,
   (state: RootState) => state.dashboard.fixtures,
   (date, fixtures) => {
-    console.log({ fixtures })
-    return fixtures
-      .map(fixture => fixture.round)
-      .filter(isUnique)
-      .map(round => ({
-        name: getRoundName(round),
-        matchDays: fixtures
-          .filter(fixture => fixture.round === round)
-          .map(fixture => fixture.startDate)
-          .filter(isUnique)
-          .map((startDate, index) => {
-            console.log({ fixtures, startDate })
+    return fixtures.reduce((rounds, fixture) => {
+      if (!rounds[fixture.round]) {
+        rounds[fixture.round] = {
+          name: getRoundName(fixture.round),
+          fixtures: []
+        }
+      }
 
-            return {
-              matchDay: `Matchday ${index + 1}`,
-              days: fixtures
-                .filter(fixture => fixture.startDate === startDate)
-                .map(fixture => fixture.startDay)
-                .filter(isUnique)
-                .map(startDay => ({
-                  weekDay: startDay,
-                  fixtures: fixtures
-                    .filter(
-                      fixture =>
-                        fixture.startDate === fixture.startDate &&
-                        fixture.startDay === startDay
-                    )
-                    .map(fixture => ({
-                      awayTeam: fixture.awayTeam,
-                      homeTeam: fixture.homeTeam,
-                      betPlacement: fixture.betPlacement,
-                      placeable:
-                        new Date(`${fixture.startDate} ${fixture.startTime}`) >
-                        new Date(date),
-                      startTime: fixture.startTime
-                    }))
-                }))
-            }
-          })
-      }))
+      rounds[fixture.round].fixtures.push({
+        awayTeam: fixture.awayTeam,
+        homeTeam: fixture.homeTeam,
+        betPlacement: fixture.betPlacement,
+        placeable:
+          new Date(`${fixture.startDate} ${fixture.startTime}`) >
+          new Date(date),
+        startTime: fixture.startTime
+      })
+
+      return rounds
+    }, {})
+
+    // return fixtures
+    //   .map(fixture => fixture.round)
+    //   .filter(isUnique)
+    //   .map(round => ({
+    //     name: getRoundName(round),
+    //     fixtures: fixtures
+    //       .filter(fixture => fixture.round === round)
+    //       .map((startDate, index) => {
+    //         console.log({ fixtures, startDate })
+
+    //         return {
+    //           matchDay: `Matchday ${index + 1}`,
+    //           days: fixtures
+    //             .filter(fixture => fixture.startDate === startDate)
+    //             .map(fixture => fixture.startDay)
+    //             .filter(isUnique)
+    //             .map(startDay => ({
+    //               weekDay: startDay,
+    //               fixtures: fixtures
+    //                 .filter(
+    //                   fixture =>
+    //                     fixture.startDate === fixture.startDate &&
+    //                     fixture.startDay === startDay
+    //                 )
+    //                 .map(fixture => ({
+    //                   awayTeam: fixture.awayTeam,
+    //                   homeTeam: fixture.homeTeam,
+    //                   betPlacement: fixture.betPlacement,
+    //                   placeable:
+    //                     new Date(`${fixture.startDate} ${fixture.startTime}`) >
+    //                     new Date(date),
+    //                   startTime: fixture.startTime
+    //                 }))
+    //             }))
+    //         }
+    //       })
+    //   }))
   }
 )

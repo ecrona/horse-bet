@@ -82,30 +82,20 @@ export class Dashboard extends React.PureComponent<Props> {
     //   return <EpicHorseLoader show={this.isLoading()} />
     // }
 
-    return rounds.map(round => (
-      <React.Fragment>
-        <Toolbar />
+    return Object.keys(rounds)
+      .map(key => rounds[key])
+      .map(round => (
+        <React.Fragment>
+          <Toolbar />
 
-        <Header>{round.name}</Header>
+          <Header>{round.name}</Header>
 
-        {round.matchDays.map(matchDay => (
           <Section spaced>
-            <SectionTitle>{matchDay.matchDay}</SectionTitle>
-
-            {matchDay.days.map(day => (
-              <React.Fragment>
-                <SectionSubtitle>{day.weekDay}</SectionSubtitle>
-
-                <SectionContent>
-                  {day.fixtures.map(fixture => (
-                    <Fixture fixture={fixture} placeBet={placeBet} />
-                  ))}
-                </SectionContent>
-              </React.Fragment>
+            {round.fixtures.map(fixture => (
+              <Fixture fixture={fixture} placeBet={placeBet} />
             ))}
           </Section>
-        ))}
-      </React.Fragment>
-    ))
+        </React.Fragment>
+      ))
   }
 }
