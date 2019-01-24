@@ -1,5 +1,5 @@
-interface Fixture {}
+import { ApiFixture } from './api-fixture'
 
 export interface ApiAdapter {
-  getFixtures(): any
+  getFixtures(): Promise<Array<ApiFixture>>
 }

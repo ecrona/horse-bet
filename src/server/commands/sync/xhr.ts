@@ -11,7 +11,7 @@ const requestMethodMap = {
   [RequestMethod.Delete]: 'DELETE'
 }
 
-export const xhr = async (
+export const xhr = async <T>(
   requestMethod: RequestMethod,
   url: string,
   headers?: any,
@@ -36,7 +36,7 @@ export const xhr = async (
   if (response.ok) {
     const text = await response.text()
 
-    return text && JSON.parse(text)
+    return text && (JSON.parse(text) as T)
   }
 
   if (response.status === 401) {

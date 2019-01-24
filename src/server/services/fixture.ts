@@ -23,6 +23,10 @@ export class FixtureService {
     return await this.fixtureRepository.findOne({ awayTeam, homeTeam })
   }
 
+  async getFixtures() {
+    return await this.fixtureRepository.find()
+  }
+
   async getFixturesWithBets(email: string) {
     const fixtures = await this.fixtureRepository.find()
     const bets = await this.betRepository.find({
@@ -57,6 +61,10 @@ export class FixtureService {
         score: fixture.score
       }
     })
+  }
+
+  async createFixtures(fixtures: Array<FixtureEntity>) {
+    return await this.fixtureRepository.save(fixtures)
   }
 
   async placeBet(

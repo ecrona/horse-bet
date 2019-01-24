@@ -21,4 +21,7 @@ export class FixtureEntity {
 
   @Column()
   score: string
+
+  @Column({ type: 'timestamp', nullable: true })
+  lastSync: string
 }

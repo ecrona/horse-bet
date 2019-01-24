@@ -2,6 +2,7 @@ import { Command, Positional } from 'nestjs-command'
 import { Injectable } from '@nestjs/common'
 import { FixtureService } from 'services/fixture'
 import { FootballData } from './api-adapters/football-data'
+import { MatchWinner } from '@shared/models/match-winner'
 
 @Injectable()
 export class SyncCommand {
@@ -17,8 +18,54 @@ export class SyncCommand {
     })
     test: number
   ) {
-    console.log('hej')
     const api = new FootballData()
-    await api.getFixtures()
+    const fixtures = (await api.getFixtures()).map(match => ({
+      homeTeam: match.homeTeam,
+      awayTeam: match.awayTeam,
+      matchStart: match.matchStart,
+      round: match.round,
+      winner: match.winner,
+      score:
+        match.winner === MatchWinner.InProgress
+          ? ''
+          : `${
+              match.winner === MatchWinner.Home && match.penalties ? 'P ' : ''
+            }${match.homeScore}-${match.awayScore}${
+              match.winner === MatchWinner.Away && match.penalties ? ' P' : ''
+            }`,
+      lastUpdated: match.lastUpdated
+    }))
+
+    const existingFixtures = await this.fixtureService.getFixtures()
+
+    const fixturesToAdd = fixtures.filter(
+      fixture =>
+        !existingFixtures.find(
+          existingFixture =>
+            existingFixture.homeTeam === fixture.homeTeam &&
+            existingFixture.awayTeam === fixture.homeTeam
+        )
+    )
+
+    const fixturesToUpdate = fixtures.filter(fixture =>
+      existingFixtures.find(
+        existingFixture =>
+          existingFixture.homeTeam === fixture.homeTeam &&
+          existingFixture.awayTeam === fixture.homeTeam &&
+          existingFixture.lastSync < fixture.lastUpdated
+      )
+    )
+
+    await this.fixtureService.createFixtures(
+      fixturesToAdd.map(fixture => ({
+        homeTeam: fixture.homeTeam,
+        awayTeam: fixture.awayTeam,
+        round: fixture.round,
+        matchStart: fixture.matchStart,
+        matchWinner: fixture.winner,
+        score: fixture.score,
+        lastSync: fixture.lastUpdated
+      }))
+    )
   }
 }
