@@ -100,7 +100,7 @@ export class FootballData implements ApiAdapter {
       case 'AWAY_TEAM':
         return MatchWinner.Away
       default:
-        return MatchWinner.InProgress
+        return MatchWinner.None
     }
   }
 

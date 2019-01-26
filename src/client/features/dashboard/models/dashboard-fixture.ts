@@ -7,4 +7,5 @@ export interface DashboardFixture {
   betPlacement: BetPlacement
   placeable: boolean
   startTime: string
+  score: string
 }

@@ -41,7 +41,7 @@ export class HighscoresService {
                   (bet.placement === BetPlacement.Away &&
                     fixture.matchWinner === MatchWinner.Away) ||
                   (bet.placement === BetPlacement.NotPlaced &&
-                    fixture.matchWinner === MatchWinner.InProgress))
+                    fixture.matchWinner === MatchWinner.None))
             )
           ).length
         }))

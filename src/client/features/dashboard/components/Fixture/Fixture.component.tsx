@@ -37,7 +37,9 @@ export class Fixture extends React.PureComponent<Props> {
           </Button>
         </div>
 
-        <span className={styles.details}>vs {/*fixture.startTime*/}</span>
+        <span className={styles.details}>
+          {fixture.score || fixture.startTime || 'vs'}
+        </span>
 
         <div className={styles.team}>
           <Button

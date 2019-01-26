@@ -82,20 +82,23 @@ export class Dashboard extends React.PureComponent<Props> {
     //   return <EpicHorseLoader show={this.isLoading()} />
     // }
 
-    return Object.keys(rounds)
-      .map(key => rounds[key])
-      .map(round => (
-        <React.Fragment>
-          <Toolbar subtitle="Champions league" />
+    return (
+      <React.Fragment>
+        <Toolbar subtitle="Champions league" />
 
-          <Header>{round.name}</Header>
-
-          <Section spaced>
-            {round.fixtures.map(fixture => (
-              <Fixture fixture={fixture} placeBet={placeBet} />
-            ))}
-          </Section>
-        </React.Fragment>
-      ))
+        {Object.keys(rounds)
+          .map(key => rounds[key])
+          .map(round => (
+            <React.Fragment>
+              <Header>{round.name}</Header>
+              <Section spaced>
+                {round.fixtures.map(fixture => (
+                  <Fixture fixture={fixture} placeBet={placeBet} />
+                ))}
+              </Section>
+            </React.Fragment>
+          ))}
+      </React.Fragment>
+    )
   }
 }

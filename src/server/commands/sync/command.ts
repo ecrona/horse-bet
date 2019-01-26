@@ -26,7 +26,7 @@ export class SyncCommand {
       round: match.round,
       winner: match.winner,
       score:
-        match.winner === MatchWinner.InProgress
+        match.winner === MatchWinner.None
           ? ''
           : `${
               match.winner === MatchWinner.Home && match.penalties ? 'P ' : ''

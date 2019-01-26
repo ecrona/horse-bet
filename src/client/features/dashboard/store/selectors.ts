@@ -35,7 +35,8 @@ export const getRounds = createSelector(
         placeable:
           new Date(`${fixture.startDate} ${fixture.startTime}`) >
           new Date(date),
-        startTime: fixture.startTime
+        startTime: fixture.startTime,
+        score: fixture.score
       })
 
       return rounds
