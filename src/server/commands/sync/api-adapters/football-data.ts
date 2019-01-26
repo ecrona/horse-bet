@@ -1,9 +1,10 @@
-import { ApiAdapter } from './api-adapter'
-import { xhr } from '../xhr'
+import * as format from 'date-fns/format'
 import { RequestMethod } from '@shared/utils/endpoints'
 import { Round } from '@shared/models/round'
 import { MatchWinner } from '@shared/models/match-winner'
+import { ApiAdapter } from './api-adapter'
 import { ApiFixture } from './api-fixture'
+import { xhr } from '../xhr'
 
 interface Season {
   id: number
@@ -103,6 +104,45 @@ export class FootballData implements ApiAdapter {
     }
   }
 
+  private getTeamName(teamName: string) {
+    switch (teamName) {
+      case 'Real Madrid CF':
+        return 'Real Madrid'
+      case 'AFC Ajax':
+        return 'Ajax'
+      case 'Juventus FC':
+        return 'Juventus'
+      case 'Club Atlético de Madrid':
+        return 'Atlético Madrid'
+      case 'Manchester City FC':
+        return 'Man City'
+      case 'FC Schalke 04':
+        return 'Schalke'
+      case 'BV Borussia 09 Dortmund':
+        return 'Dortmund'
+      case 'Tottenham Hotspur FC':
+        return 'Tottenham'
+      case 'FC Porto':
+        return 'Porto'
+      case 'AS Roma':
+        return 'Roma'
+      case 'FC Bayern München':
+        return 'Bayern München'
+      case 'Liverpool FC':
+        return 'Liverpool'
+      case 'Paris Saint-Germain FC':
+        return 'PSG'
+      case 'Manchester United FC':
+        return 'Man Utd'
+      case 'FC Barcelona':
+        return 'Barcelona'
+      case 'Olympique Lyonnais':
+        return 'Lyon'
+      default:
+        return teamName
+    }
+  }
+
   async getFixtures() {
     const response = await xhr<ApiResponse>(
       RequestMethod.Get,
@@ -113,9 +153,9 @@ export class FootballData implements ApiAdapter {
     return response.matches
       .filter(match => match.utcDate.substr(0, 4) === '2019')
       .map(match => ({
-        homeTeam: match.homeTeam.name,
-        awayTeam: match.awayTeam.name,
-        matchStart: match.utcDate,
+        homeTeam: this.getTeamName(match.homeTeam.name),
+        awayTeam: this.getTeamName(match.awayTeam.name),
+        matchStart: format(new Date(match.utcDate), 'YYYY-MM-DD HH:mm:ss'),
         round: this.getRound(match.stage),
         winner: this.getWinner(match.score.winner),
         homeScore:
@@ -123,7 +163,7 @@ export class FootballData implements ApiAdapter {
         awayScore:
           match.score.extraTime.awayTeam || match.score.fullTime.awayTeam || 0,
         penalties: match.score.duration === 'PENALTY_SHOOTOUT',
-        lastUpdated: match.lastUpdated
+        lastUpdated: format(new Date(match.lastUpdated), 'YYYY-MM-DD HH:mm:ss')
       }))
       .reduce(
         (matches, match) => {

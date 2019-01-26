@@ -43,7 +43,7 @@ export class SyncCommand {
         !existingFixtures.find(
           existingFixture =>
             existingFixture.homeTeam === fixture.homeTeam &&
-            existingFixture.awayTeam === fixture.homeTeam
+            existingFixture.awayTeam === fixture.awayTeam
         )
     )
 
@@ -51,13 +51,13 @@ export class SyncCommand {
       existingFixtures.find(
         existingFixture =>
           existingFixture.homeTeam === fixture.homeTeam &&
-          existingFixture.awayTeam === fixture.homeTeam &&
+          existingFixture.awayTeam === fixture.awayTeam &&
           existingFixture.lastSync < fixture.lastUpdated
       )
     )
 
     await this.fixtureService.createFixtures(
-      fixturesToAdd.map(fixture => ({
+      [...fixturesToAdd, ...fixturesToUpdate].map(fixture => ({
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,
         round: fixture.round,
