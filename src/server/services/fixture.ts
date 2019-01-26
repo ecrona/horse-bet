@@ -16,11 +16,18 @@ export class FixtureService {
   ) {}
 
   private getTeamLogo(name: string) {
-    return `/img/${name.toLocaleLowerCase()}.png`
+    return `/assets/logotypes/${name.toLocaleLowerCase().replace(' ', '-')}.png`
   }
 
   async getFixture(awayTeam: string, homeTeam: string) {
     return await this.fixtureRepository.findOne({ awayTeam, homeTeam })
+  }
+
+  async getFixtures() {
+    return (await this.fixtureRepository.find()).map(fixture => ({
+      ...fixture,
+      lastSync: format(new Date(fixture.lastSync), 'YYYY-MM-DD HH:mm:ss')
+    }))
   }
 
   async getFixturesWithBets(email: string) {
@@ -57,6 +64,10 @@ export class FixtureService {
         score: fixture.score
       }
     })
+  }
+
+  async createFixtures(fixtures: Array<FixtureEntity>) {
+    return await this.fixtureRepository.save(fixtures)
   }
 
   async placeBet(

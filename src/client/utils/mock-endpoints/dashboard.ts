@@ -7,59 +7,98 @@ import { MatchWinner } from '@client/../shared/models/match-winner'
 export const dashboardMockEndpoints: DashboardEndpointsData = {
   get: createMockPromise([
     {
-      awayTeam: { name: 'Bayern Münich', logo: 'assets/logotypes/bayern.png' },
-      homeTeam: { name: 'Juventus', logo: 'assets/logotypes/juve.png' },
-      round: Round.RoundOf16,
-      startDate: '2018-01-02',
-      startDay: 'Monday',
-      startTime: '18:00',
-      betPlacement: BetPlacement.Away,
-      matchWinner: MatchWinner.Home,
-      score: '4-1'
-    },
-    {
-      awayTeam: { name: 'Real Madrid', logo: 'assets/logotypes/real.png' },
+      round: 3,
+      startDate: '2019-02-13',
+      startDay: 'Wednesday',
+      startTime: '21:00',
       homeTeam: {
-        name: 'Manchester City',
-        logo: 'assets/logotypes/man-utd.png'
+        name: 'Real Madrid',
+        logo: '/assets/logotypes/real-madrid.png'
       },
-      round: Round.RoundOf16,
-      startDate: '2018-01-02',
-      startDay: 'Monday',
-      startTime: '21:00',
-      betPlacement: BetPlacement.Home,
-      matchWinner: MatchWinner.InProgress,
-      score: '0-1'
-    },
-    {
-      awayTeam: { name: 'PSG', logo: 'assets/logotypes/psg.png' },
-      homeTeam: { name: 'Man U', logo: 'assets/logotypes/man-utd.png' },
-      round: Round.RoundOf16,
-      startDate: '2019-01-03',
-      startDay: 'Wednesday',
-      startTime: '21:00',
+      awayTeam: { name: 'Ajax', logo: '/assets/logotypes/ajax.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.InProgress,
       score: ''
     },
     {
-      awayTeam: { name: 'Liverpool', logo: 'assets/logotypes/liverpool.png' },
-      homeTeam: { name: 'Roma', logo: 'assets/logotypes/roma.png' },
-      round: Round.RoundOf16,
-      startDate: '2019-01-03',
+      round: 3,
+      startDate: '2019-02-20',
       startDay: 'Wednesday',
       startTime: '21:00',
+      homeTeam: { name: 'Juventus', logo: '/assets/logotypes/juventus.png' },
+      awayTeam: {
+        name: 'Atlético Madrid',
+        logo: '/assets/logotypes/atlético-madrid.png'
+      },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.InProgress,
       score: ''
     },
     {
-      awayTeam: { name: 'Inter', logo: 'assets/logotypes/roma.png' },
-      homeTeam: { name: 'Tottenham', logo: 'assets/logotypes/tottenham.png' },
-      round: Round.RoundOf16,
-      startDate: '2019-01-03',
+      round: 3,
+      startDate: '2019-02-19',
+      startDay: 'Tuesday',
+      startTime: '21:00',
+      homeTeam: {
+        name: 'Bayern München',
+        logo: '/assets/logotypes/bayern-münchen.png'
+      },
+      awayTeam: { name: 'Liverpool', logo: '/assets/logotypes/liverpool.png' },
+      betPlacement: BetPlacement.NotPlaced,
+      matchWinner: MatchWinner.InProgress,
+      score: ''
+    },
+    {
+      round: 3,
+      startDate: '2019-02-19',
+      startDay: 'Tuesday',
+      startTime: '21:00',
+      homeTeam: { name: 'Barcelona', logo: '/assets/logotypes/barcelona.png' },
+      awayTeam: { name: 'Lyon', logo: '/assets/logotypes/lyon.png' },
+      betPlacement: BetPlacement.NotPlaced,
+      matchWinner: MatchWinner.InProgress,
+      score: ''
+    },
+    {
+      round: 3,
+      startDate: '2019-02-12',
+      startDay: 'Tuesday',
+      startTime: '21:00',
+      homeTeam: { name: 'PSG', logo: '/assets/logotypes/psg.png' },
+      awayTeam: { name: 'Man Utd', logo: '/assets/logotypes/man-utd.png' },
+      betPlacement: BetPlacement.NotPlaced,
+      matchWinner: MatchWinner.InProgress,
+      score: ''
+    },
+    {
+      round: 3,
+      startDate: '2019-02-12',
+      startDay: 'Tuesday',
+      startTime: '21:00',
+      homeTeam: { name: 'Porto', logo: '/assets/logotypes/porto.png' },
+      awayTeam: { name: 'Roma', logo: '/assets/logotypes/roma.png' },
+      betPlacement: BetPlacement.NotPlaced,
+      matchWinner: MatchWinner.InProgress,
+      score: ''
+    },
+    {
+      round: 3,
+      startDate: '2019-02-20',
       startDay: 'Wednesday',
-      startTime: '18:00',
+      startTime: '21:00',
+      homeTeam: { name: 'Man City', logo: '/assets/logotypes/man-city.png' },
+      awayTeam: { name: 'Schalke', logo: '/assets/logotypes/schalke.png' },
+      betPlacement: BetPlacement.NotPlaced,
+      matchWinner: MatchWinner.InProgress,
+      score: ''
+    },
+    {
+      round: 3,
+      startDate: '2019-02-13',
+      startDay: 'Wednesday',
+      startTime: '21:00',
+      homeTeam: { name: 'Dortmund', logo: '/assets/logotypes/dortmund.png' },
+      awayTeam: { name: 'Tottenham', logo: '/assets/logotypes/tottenham.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.InProgress,
       score: ''

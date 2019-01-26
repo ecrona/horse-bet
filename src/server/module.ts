@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { CommandModule } from 'nestjs-command'
 import { serverEnv } from '@env/server'
 import { DashboardModule } from 'modules/dashboard/module'
 import { HighscoresModule } from 'modules/highscores/module'
 import { UserModule } from 'modules/user/module'
+import { SyncModule } from 'commands/sync/module'
 
 @Module({
   imports: [
@@ -22,9 +24,11 @@ import { UserModule } from 'modules/user/module'
         migrationsDir: 'migration'
       }
     }),
+    CommandModule,
     DashboardModule,
     HighscoresModule,
-    UserModule
+    UserModule,
+    SyncModule
   ]
 })
 export class AppModule {}
