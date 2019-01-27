@@ -86,14 +86,66 @@ export class Dashboard extends React.PureComponent<Props> {
       <React.Fragment>
         <Toolbar subtitle="Champions league" />
 
+        <div
+          style={{
+            margin: '16px 0 0',
+            padding: '16px',
+            borderRadius: 4,
+            backgroundColor: 'tan',
+            fontWeight: 500,
+            boxShadow: '0 1.5px 2px rgba(0,0,0,0.2)',
+            textAlign: 'center'
+          }}
+        >
+          <span>Betting will be locked after the first match has started</span>
+        </div>
+
         {Object.keys(rounds)
           .map(key => rounds[key])
           .map(round => (
             <React.Fragment>
               <Header>{round.name}</Header>
+
               <Section spaced>
-                {round.fixtures.map(fixture => (
-                  <Fixture fixture={fixture} placeBet={placeBet} />
+                <SectionTitle>Betting</SectionTitle>
+
+                {round.fixtures.map((fixture, index) => (
+                  <div>
+                    <Fixture fixture={fixture} placeBet={placeBet} />
+
+                    <div
+                      style={{
+                        margin: '4px 0 32px',
+                        display: 'flex',
+                        color: 'rgba(0,0,0,0.67)',
+                        fontWeight: 500
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: 11,
+                          flex: 1,
+                          textAlign: 'center'
+                        }}
+                      >
+                        First match
+                        <div>6th February 21:00</div>
+                      </div>
+
+                      <div style={{ width: '80px' }} />
+
+                      <div
+                        style={{
+                          fontSize: 11,
+                          flex: 1,
+                          textAlign: 'center'
+                        }}
+                      >
+                        Second match
+                        <div>24th February 21:00</div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </Section>
             </React.Fragment>
