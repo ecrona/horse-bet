@@ -15,4 +15,13 @@ export interface ServerEnv extends BaseEnv {
       migrationsDir: string
     }
   }
+  email: {
+    host: string
+    port: number
+    secure: boolean
+    auth: {
+      user: string
+      pass: string
+    }
+  }
 }

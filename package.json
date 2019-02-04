@@ -17,6 +17,7 @@
     "start:server:dev": "nodemon",
     "start:server:prod": "node dist/server/src/server/main.js",
     "command:sync": "ts-node -P src/server/tsconfig.json -r tsconfig-paths/register src/server/cli.ts sync:fixtures 3",
+    "command:notify:invite": "ts-node -P src/server/tsconfig.json -r tsconfig-paths/register src/server/cli.ts notify:invite",
     "migration:prepare": "ts-node scripts/prepare-migrations.ts",
     "migration:generate": "npm run migration:prepare && ts-node ./node_modules/typeorm/cli.js migration:generate -n",
     "migration:run": "npm run migration:prepare && ts-node ./node_modules/typeorm/cli.js migration:run",
@@ -36,6 +37,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "3.0.1",
+    "@nest-modules/mailer": "^0.4.1",
     "@nestjs/common": "5.1.0",
     "@nestjs/core": "5.1.0",
     "@nestjs/passport": "1.1.0",
