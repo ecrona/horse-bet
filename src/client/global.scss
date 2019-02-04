@@ -13,3 +13,35 @@
     font-family: $font;
   }
 }
+
+:root {
+  // Colors
+  --horse-primary-light: #7fb37d;
+  --horse-primary: #4caf50;
+  --horse-primary-dark: #419544;
+  --horse-primary-darker: #306f33;
+  --horse-primary-text: #fff;
+
+  --horse-secondary: #fde87e;
+
+  --horse-tertiary: tan;
+
+  --horse-grey: #ddd;
+  --horse-grey-dark: #ccc;
+  --horse-grey-darker: #bbb;
+
+  --horse-background: #343637;
+
+  // Text colors
+  $textDarkPrimary: rgba(0, 0, 0, 0.87);
+  $textDarkSecondary: rgba(0, 0, 0, 0.67);
+  $textDarkMuted: rgba(0, 0, 0, 0.5);
+
+  $textLightPrimary: #fff;
+  $textLightSecondary: rgba(255, 255, 255, 0.75);
+  $textLightMuted: rgba(255, 255, 255, 0.5);
+
+  // Font
+  $font: Roboto, Segoe UI, Verdana;
+  $fontSize: 16px;
+}
