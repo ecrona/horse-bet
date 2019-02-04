@@ -14,7 +14,7 @@ export class FixtureEntity {
   round: Round
 
   @Column('timestamp')
-  matchStart: string
+  matchStart: Date
 
   @Column()
   matchWinner: MatchWinner

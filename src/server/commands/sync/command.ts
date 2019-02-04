@@ -56,12 +56,12 @@ export class SyncCommand {
       )
     )
 
-    await this.fixtureService.createFixtures(
+    await this.fixtureService.saveFixtures(
       [...fixturesToAdd, ...fixturesToUpdate].map(fixture => ({
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,
         round: fixture.round,
-        matchStart: fixture.matchStart,
+        matchStart: new Date(fixture.matchStart),
         matchWinner: fixture.winner,
         score: fixture.score,
         lastSync: fixture.lastUpdated

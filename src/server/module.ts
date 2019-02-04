@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { MailerModule } from '@nest-modules/mailer'
 import { CommandModule } from 'nestjs-command'
 import { serverEnv } from '@env/server'
 import { DashboardModule } from 'modules/dashboard/module'
 import { HighscoresModule } from 'modules/highscores/module'
 import { UserModule } from 'modules/user/module'
 import { SyncModule } from 'commands/sync/module'
+import { MailModule } from 'commands/mail/module'
 
 @Module({
   imports: [
@@ -24,11 +26,20 @@ import { SyncModule } from 'commands/sync/module'
         migrationsDir: 'migration'
       }
     }),
+    MailerModule.forRoot({
+      transport: serverEnv.email,
+      defaults: {
+        forceEmbeddedImages: true,
+        from: '"nest-modules" <modules@nestjs.com>'
+      },
+      templateDir: './src/common/email-templates'
+    }) as any,
     CommandModule,
     DashboardModule,
     HighscoresModule,
     UserModule,
-    SyncModule
+    SyncModule,
+    MailModule
   ]
 })
 export class AppModule {}
