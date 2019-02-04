@@ -7,7 +7,7 @@ import { DashboardModule } from 'modules/dashboard/module'
 import { HighscoresModule } from 'modules/highscores/module'
 import { UserModule } from 'modules/user/module'
 import { SyncModule } from 'commands/sync/module'
-import { NotifyModule } from 'commands/notify/module'
+import { MailModule } from 'commands/mail/module'
 
 @Module({
   imports: [
@@ -39,7 +39,7 @@ import { NotifyModule } from 'commands/notify/module'
     HighscoresModule,
     UserModule,
     SyncModule,
-    NotifyModule
+    MailModule
   ]
 })
 export class AppModule {}

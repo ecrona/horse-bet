@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Repository, MoreThan } from 'typeorm'
 import * as format from 'date-fns/format'
 import { BetPlacement } from '@shared/models/bet-placement'
 import { FixtureEntity } from 'entities/fixture'
@@ -28,6 +28,12 @@ export class FixtureService {
       ...fixture,
       lastSync: format(new Date(fixture.lastSync), 'YYYY-MM-DD HH:mm:ss')
     }))
+  }
+
+  async getActiveFixtures() {
+    return await this.fixtureRepository.find({
+      matchStart: MoreThan(new Date())
+    })
   }
 
   async getFixturesWithBets(email: string) {

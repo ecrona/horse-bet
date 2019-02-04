@@ -61,7 +61,7 @@ export class SyncCommand {
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,
         round: fixture.round,
-        matchStart: fixture.matchStart,
+        matchStart: new Date(fixture.matchStart),
         matchWinner: fixture.winner,
         score: fixture.score,
         lastSync: fixture.lastUpdated
