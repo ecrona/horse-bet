@@ -56,7 +56,7 @@ export class SyncCommand {
       )
     )
 
-    await this.fixtureService.createFixtures(
+    await this.fixtureService.saveFixtures(
       [...fixturesToAdd, ...fixturesToUpdate].map(fixture => ({
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,

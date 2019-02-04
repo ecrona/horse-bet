@@ -69,7 +69,7 @@ export class FixtureService {
       })
   }
 
-  async createFixtures(fixtures: Array<FixtureEntity>) {
+  async saveFixtures(fixtures: Array<FixtureEntity>) {
     return await this.fixtureRepository.save(fixtures)
   }
 
