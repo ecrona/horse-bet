@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { Header } from 'shared/components/Header/component'
 import { Section } from 'shared/components/Section/component'
-import { SectionContent } from 'shared/components/SectionContent/component'
 import { SectionTitle } from 'shared/components/SectionTitle/component'
-import { SectionSubtitle } from 'shared/components/SectionSubtitle/component'
 import { StoreProps } from './Dashboard.container'
 import { ViewState } from './models/view-state'
 import { Fixture } from './components/Fixture'
@@ -84,7 +82,7 @@ export class Dashboard extends React.PureComponent<Props> {
 
     return (
       <React.Fragment>
-        <Toolbar subtitle="Champions league" />
+        <Toolbar subtitle="Champions League" />
 
         <div
           style={{

@@ -22,16 +22,42 @@ export const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        test: /\.js$/,
+        // include: /(node_modules\/(@webcomponents\/shadycss|lit-html|lit-element)\/).*/,
+        loader: 'babel-loader',
+        include: /node_modules(?:\/|\\)lit-element|lit-html/,
         options: {
-          configFileName: './src/client/tsconfig.json'
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                modules: false,
+                targets: {
+                  ie: 11
+                }
+              }
+            ]
+          ],
+          plugins: [
+            [
+              '@babel/plugin-transform-runtime',
+              {
+                corejs: false,
+                helpers: true,
+                regenerator: true,
+                useESModules: false
+              }
+            ]
+          ]
         }
       },
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        use: 'source-map-loader'
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/,
+        options: {
+          configFileName: './src/client/tsconfig.json'
+        }
       },
       {
         test: /\.svg?$/,
