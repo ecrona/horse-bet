@@ -105,15 +105,13 @@ export class Dashboard extends React.PureComponent<Props> {
               <Header>{round.name}</Header>
 
               <Section spaced>
-                <SectionTitle>Betting</SectionTitle>
-
                 {round.fixtures.map((fixture, index) => (
-                  <div>
+                  <div key={index}>
                     <Fixture fixture={fixture} placeBet={placeBet} />
 
                     <div
                       style={{
-                        margin: '4px 0 32px',
+                        margin: '12px 0 32px',
                         display: 'flex',
                         color: 'rgba(0,0,0,0.67)',
                         fontWeight: 500
@@ -121,8 +119,9 @@ export class Dashboard extends React.PureComponent<Props> {
                     >
                       <div
                         style={{
-                          fontSize: 11,
+                          fontSize: 12,
                           flex: 1,
+                          paddingLeft: 40,
                           textAlign: 'center'
                         }}
                       >
@@ -134,8 +133,9 @@ export class Dashboard extends React.PureComponent<Props> {
 
                       <div
                         style={{
-                          fontSize: 11,
+                          fontSize: 12,
                           flex: 1,
+                          paddingRight: 40,
                           textAlign: 'center'
                         }}
                       >

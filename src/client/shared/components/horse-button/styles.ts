@@ -12,7 +12,7 @@ export default html`
       width: 100%;
     }
 
-    :host(:disabled) .button {
+    :host([disabled]) .button {
       border: 1px solid rgba(0, 0, 0, 0.12);
 
       background-color: transparent;
@@ -67,7 +67,7 @@ export default html`
 
     .secondary {
       background-color: var(--horse-secondary);
-      color: var(--horse-primary-text);
+      color: var(--horse-secondary-text);
     }
 
     .secondary:hover {
@@ -80,7 +80,7 @@ export default html`
 
     .tertiary {
       background-color: var(--horse-tertiary);
-      color: var(--horse-primary-text);
+      color: var(--horse-tertiary-text);
     }
 
     .tertiary:hover {
@@ -89,6 +89,12 @@ export default html`
 
     .tertiary:active {
       background-color: var(--horse-tertiary);
+    }
+
+    :host([disabled]) .button.tertiary {
+      background-color: var(--horse-tertiary-light);
+      border-color: var(--horse-tertiary);
+      color: var(--horse-text);
     }
   </style>
 `
