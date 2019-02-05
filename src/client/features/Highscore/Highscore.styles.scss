@@ -19,8 +19,9 @@
 .me {
   position: relative;
 
-  background-color: #419544 !important;
-  color: #fff;
+  // background-color: #419544 !important;
+  background-color: var(--horse-tertiary);
+  // color: #fff;
   font-weight: 500;
 
   z-index: 1;
