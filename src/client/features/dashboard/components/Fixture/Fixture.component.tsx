@@ -47,6 +47,7 @@ export class Fixture extends React.PureComponent<Props> {
                 fixture.matchWinner
               )}
               onClick={() =>
+                !disabled &&
                 placeBet(
                   fixture.awayTeam.name,
                   fixture.homeTeam.name,
@@ -73,6 +74,7 @@ export class Fixture extends React.PureComponent<Props> {
                 fixture.matchWinner
               )}
               onClick={() =>
+                !disabled &&
                 placeBet(
                   fixture.awayTeam.name,
                   fixture.homeTeam.name,

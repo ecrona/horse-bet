@@ -13,8 +13,11 @@ export class FixtureEntity {
   @Column()
   round: Round
 
-  @Column('timestamp')
-  matchStart: Date
+  @Column({ type: 'timestamp', nullable: true })
+  firstMatchStart: Date
+
+  @Column({ type: 'timestamp', nullable: true })
+  secondMatchStart: Date
 
   @Column()
   matchWinner: MatchWinner

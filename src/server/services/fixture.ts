@@ -32,7 +32,7 @@ export class FixtureService {
 
   async getActiveFixtures() {
     return await this.fixtureRepository.find({
-      matchStart: MoreThan(new Date())
+      firstMatchStart: MoreThan(new Date())
     })
   }
 
@@ -43,7 +43,7 @@ export class FixtureService {
     })
 
     return fixtures
-      .sort((a, b) => (a.matchStart < b.matchStart ? 1 : -1))
+      .sort((a, b) => (a.firstMatchStart < b.firstMatchStart ? 1 : -1))
       .map(fixture => {
         const fixtureBet = bets.find(
           bet =>
@@ -51,13 +51,16 @@ export class FixtureService {
             bet.homeTeam === fixture.homeTeam
         )
 
-        const matchStart = new Date(fixture.matchStart)
-
         return {
           round: fixture.round,
-          startDate: format(matchStart, 'YYYY-MM-DD'),
-          startDay: format(matchStart, 'dddd'),
-          startTime: format(matchStart, 'HH:ss'),
+          firstMatchStart: format(
+            new Date(fixture.firstMatchStart),
+            'YYYY-MM-DD HH:ss'
+          ),
+          secondMatchStart: format(
+            new Date(fixture.secondMatchStart),
+            'YYYY-MM-DD HH:ss'
+          ),
           homeTeam: {
             name: fixture.homeTeam,
             logo: this.getTeamLogo(fixture.homeTeam)

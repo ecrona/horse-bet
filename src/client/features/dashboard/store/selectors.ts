@@ -33,54 +33,13 @@ export const getRounds = createSelector(
         homeTeam: fixture.homeTeam,
         betPlacement: fixture.betPlacement,
         matchWinner: fixture.matchWinner,
-        placeable:
-          new Date(`${fixture.startDate} ${fixture.startTime}`) >
-          new Date(date),
-        startDate: fixture.startDate,
-        startDay: fixture.startDay,
-        startTime: fixture.startTime,
+        placeable: new Date(fixture.firstMatchStart) > new Date(date),
+        firstMatchStart: fixture.firstMatchStart,
+        secondMatchStart: fixture.secondMatchStart,
         score: fixture.score
       })
 
       return rounds
     }, {})
-
-    // return fixtures
-    //   .map(fixture => fixture.round)
-    //   .filter(isUnique)
-    //   .map(round => ({
-    //     name: getRoundName(round),
-    //     fixtures: fixtures
-    //       .filter(fixture => fixture.round === round)
-    //       .map((startDate, index) => {
-    //         console.log({ fixtures, startDate })
-
-    //         return {
-    //           matchDay: `Matchday ${index + 1}`,
-    //           days: fixtures
-    //             .filter(fixture => fixture.startDate === startDate)
-    //             .map(fixture => fixture.startDay)
-    //             .filter(isUnique)
-    //             .map(startDay => ({
-    //               weekDay: startDay,
-    //               fixtures: fixtures
-    //                 .filter(
-    //                   fixture =>
-    //                     fixture.startDate === fixture.startDate &&
-    //                     fixture.startDay === startDay
-    //                 )
-    //                 .map(fixture => ({
-    //                   awayTeam: fixture.awayTeam,
-    //                   homeTeam: fixture.homeTeam,
-    //                   betPlacement: fixture.betPlacement,
-    //                   placeable:
-    //                     new Date(`${fixture.startDate} ${fixture.startTime}`) >
-    //                     new Date(date),
-    //                   startTime: fixture.startTime
-    //                 }))
-    //             }))
-    //         }
-    //       })
-    //   }))
   }
 )
