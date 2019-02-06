@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+
+  color: var(--horse-muted-text);
+  font-weight: 500;
+}
+
+.divider {
+  width: 80px;
+}
+
+.matchDate {
+  flex: 1;
+
+  font-size: 12px;
+  text-align: center;
+
+  &:first-child {
+    padding-left: 40px;
+  }
+
+  &:last-child {
+    padding-right: 40px;
+  }
+}

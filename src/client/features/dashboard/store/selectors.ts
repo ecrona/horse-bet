@@ -32,9 +32,12 @@ export const getRounds = createSelector(
         awayTeam: fixture.awayTeam,
         homeTeam: fixture.homeTeam,
         betPlacement: fixture.betPlacement,
+        matchWinner: fixture.matchWinner,
         placeable:
           new Date(`${fixture.startDate} ${fixture.startTime}`) >
           new Date(date),
+        startDate: fixture.startDate,
+        startDay: fixture.startDay,
         startTime: fixture.startTime,
         score: fixture.score
       })

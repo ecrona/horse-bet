@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Header } from 'shared/components/Header/component'
 import { Section } from 'shared/components/Section/component'
-import { SectionTitle } from 'shared/components/SectionTitle/component'
 import { StoreProps } from './Dashboard.container'
 import { ViewState } from './models/view-state'
 import { Fixture } from './components/Fixture'
 import { Toolbar } from 'shared/components/Toolbar/component'
+import LockIcon from '@material-ui/icons/Lock'
 
 interface Props extends StoreProps {}
 
@@ -107,42 +107,8 @@ export class Dashboard extends React.PureComponent<Props> {
               <Section spaced>
                 {round.fixtures.map((fixture, index) => (
                   <div key={index}>
+                    <LockIcon />
                     <Fixture fixture={fixture} placeBet={placeBet} />
-
-                    <div
-                      style={{
-                        margin: '12px 0 32px',
-                        display: 'flex',
-                        color: 'rgba(0,0,0,0.67)',
-                        fontWeight: 500
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: 12,
-                          flex: 1,
-                          paddingLeft: 40,
-                          textAlign: 'center'
-                        }}
-                      >
-                        First match
-                        <div>6th February 21:00</div>
-                      </div>
-
-                      <div style={{ width: '80px' }} />
-
-                      <div
-                        style={{
-                          fontSize: 12,
-                          flex: 1,
-                          paddingRight: 40,
-                          textAlign: 'center'
-                        }}
-                      >
-                        Second match
-                        <div>24th February 21:00</div>
-                      </div>
-                    </div>
                   </div>
                 ))}
               </Section>

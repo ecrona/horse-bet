@@ -3,6 +3,8 @@ import { BetPlacement } from '@shared/models/bet-placement'
 import { DashboardFixture } from '../../models/dashboard-fixture'
 import styles from './Fixture.styles.scss'
 import 'shared/components/horse-button'
+import { Information } from './components/Information'
+import { MatchWinner } from '@client/../shared/models/match-winner'
 
 interface Props {
   fixture: DashboardFixture
@@ -14,14 +16,15 @@ interface Props {
 }
 
 export class Fixture extends React.PureComponent<Props> {
-  getColor(selected: boolean): HorseButton.ColorType {
+  getColor(
+    selected: boolean,
+    winnerType: MatchWinner,
+    matchWinner: MatchWinner
+  ): HorseButton.ColorType {
     if (!selected) return 'default'
-
-    // if win/loss
-    // win === primary
-    // loss === secondary
-
-    return 'tertiary'
+    if (matchWinner === MatchWinner.None) return 'tertiary'
+    if (matchWinner === winnerType) return 'primary'
+    return 'secondary'
   }
 
   render() {
@@ -51,47 +54,61 @@ export class Fixture extends React.PureComponent<Props> {
     const disabled = !fixture.placeable ? { disabled: true } : undefined
 
     return (
-      <div className={styles.root}>
-        <div className={styles.team}>
-          <horse-button
-            fullWidth
-            {...disabled}
-            color={this.getColor(fixture.betPlacement === BetPlacement.Home)}
-            onClick={() =>
-              placeBet(
-                fixture.awayTeam.name,
-                fixture.homeTeam.name,
-                BetPlacement.Home
-              )
-            }
-          >
-            <div className={styles.buttonHome}>
-              <img src={fixture.homeTeam.logo} className={styles.logotype} />
-              <span>{fixture.homeTeam.name}</span>
-            </div>
-          </horse-button>
+      <div className={styles.container}>
+        <div className={styles.matchup}>
+          <div className={styles.team}>
+            <horse-button
+              fullWidth
+              {...disabled}
+              color={this.getColor(
+                fixture.betPlacement === BetPlacement.Home,
+                MatchWinner.Home,
+                fixture.matchWinner
+              )}
+              onClick={() =>
+                placeBet(
+                  fixture.awayTeam.name,
+                  fixture.homeTeam.name,
+                  BetPlacement.Home
+                )
+              }
+            >
+              <div className={styles.buttonHome}>
+                <img src={fixture.homeTeam.logo} className={styles.logotype} />
+                <span>{fixture.homeTeam.name}</span>
+              </div>
+            </horse-button>
+          </div>
+
+          <span className={styles.details}>{fixture.score || '-'}</span>
+
+          <div className={styles.team}>
+            <horse-button
+              fullWidth
+              {...disabled}
+              color={this.getColor(
+                fixture.betPlacement === BetPlacement.Away,
+                MatchWinner.Away,
+                fixture.matchWinner
+              )}
+              onClick={() =>
+                placeBet(
+                  fixture.awayTeam.name,
+                  fixture.homeTeam.name,
+                  BetPlacement.Away
+                )
+              }
+            >
+              <div className={styles.buttonAway}>
+                <span>{fixture.awayTeam.name}</span>
+                <img src={fixture.awayTeam.logo} className={styles.logotype} />
+              </div>
+            </horse-button>
+          </div>
         </div>
 
-        <span className={styles.details}>{fixture.score || '-'}</span>
-
-        <div className={styles.team}>
-          <horse-button
-            fullWidth
-            {...disabled}
-            color={this.getColor(fixture.betPlacement === BetPlacement.Away)}
-            onClick={() =>
-              placeBet(
-                fixture.awayTeam.name,
-                fixture.homeTeam.name,
-                BetPlacement.Away
-              )
-            }
-          >
-            <div className={styles.buttonAway}>
-              <span>{fixture.awayTeam.name}</span>
-              <img src={fixture.awayTeam.logo} className={styles.logotype} />
-            </div>
-          </horse-button>
+        <div className={styles.information}>
+          <Information fixture={fixture} />
         </div>
       </div>
     )
