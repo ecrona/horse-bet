@@ -30,25 +30,6 @@ export class Fixture extends React.PureComponent<Props> {
   render() {
     const { fixture, placeBet } = this.props
 
-    console.log({ fixture })
-    /*
-      @placeable
-      # selected = tertiary default
-      # unselected = default
-
-      @locked
-      # selected = tertiary default
-      # unselected = outlined default
-
-      @win
-      # selected = primary outlined or default
-      # unselected = outlined default
-
-      @loss
-      # selected = secondary outlined or default
-      # unselected = outlined default
-    */
-
     // React wrongly adds the attribute regardless of true | false.
     // Prevent by spreading an object with the attribute.
     const disabled = !fixture.placeable ? { disabled: true } : undefined

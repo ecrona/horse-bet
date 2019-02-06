@@ -2,7 +2,6 @@
   display: flex;
 
   color: var(--horse-muted-text);
-  font-weight: 500;
 }
 
 .divider {
@@ -13,6 +12,8 @@
   flex: 1;
 
   font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
   text-align: center;
 
   &:first-child {

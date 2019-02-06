@@ -28,8 +28,9 @@ export default html`
       min-height: 72px;
       width: inherit;
 
-      border-radius: 4px;
       background-color: var(--horse-grey);
+      border-radius: 4px;
+      box-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.19);
       color: var(--horse-text-dark);
       cursor: pointer;
       font-size: inherit;

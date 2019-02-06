@@ -6,6 +6,7 @@ import { ViewState } from './models/view-state'
 import { Fixture } from './components/Fixture'
 import { Toolbar } from 'shared/components/Toolbar/component'
 import LockIcon from '@material-ui/icons/Lock'
+import styles from './Dashboard.styles.scss'
 
 interface Props extends StoreProps {}
 
@@ -104,10 +105,10 @@ export class Dashboard extends React.PureComponent<Props> {
             <React.Fragment>
               <Header>{round.name}</Header>
 
-              <Section spaced>
+              <Section>
                 {round.fixtures.map((fixture, index) => (
-                  <div key={index}>
-                    <LockIcon />
+                  <div key={index} className={styles.fixture}>
+                    {/* <LockIcon /> */}
                     <Fixture fixture={fixture} placeBet={placeBet} />
                   </div>
                 ))}

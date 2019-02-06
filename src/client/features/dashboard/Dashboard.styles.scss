@@ -1,0 +1,7 @@
+.fixture {
+  padding: 24px 16px 32px;
+
+  &:nth-child(2n-1) {
+    background-color: #f4f5f7;
+  }
+}

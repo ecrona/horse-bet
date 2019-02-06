@@ -8,7 +8,7 @@ interface Props {
 
 export function Information(props: Props) {
   const { fixture } = props
-  const date = `${fixture.startDate} ${fixture.startTime}`
+  const date = `${fixture.startDate} - ${fixture.startTime}`
 
   return (
     <div className={styles.container}>
