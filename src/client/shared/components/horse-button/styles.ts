@@ -65,6 +65,11 @@ export default html`
       background-color: var(--horse-primary);
     }
 
+    :host([disabled]) .primary {
+      background-color: var(--horse-primary);
+      color: var(--horse-primary-text);
+    }
+
     .secondary {
       background-color: var(--horse-secondary);
       color: var(--horse-secondary-text);
@@ -76,6 +81,11 @@ export default html`
 
     .secondary:active {
       background-color: var(--horse-secondary);
+    }
+
+    :host([disabled]) .secondary {
+      background-color: var(--horse-secondary);
+      color: var(--horse-secondary-text);
     }
 
     .tertiary {
@@ -91,7 +101,7 @@ export default html`
       background-color: var(--horse-tertiary);
     }
 
-    :host([disabled]) .button.tertiary {
+    :host([disabled]) .tertiary {
       background-color: var(--horse-tertiary-light);
       border-color: var(--horse-tertiary);
       color: var(--horse-text);
