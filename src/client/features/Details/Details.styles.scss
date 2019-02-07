@@ -1,3 +1,43 @@
 .container {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px 16px 16px;
+
+  color: #fff;
+}
+
+.teamName {
+  display: block;
+  padding-bottom: 20px;
+
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.logo {
+  width: 25vw;
+  height: 25vw;
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.score {
+  display: block;
+  margin-top: 72px;
+  width: 80px;
+
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
 }
