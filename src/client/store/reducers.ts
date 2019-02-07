@@ -5,7 +5,7 @@ import { RouterState } from 'connected-react-router'
 import common from './common/reducer'
 
 // Features
-import dashboard from 'features/dashboard/store/reducer'
+import dashboard from 'features/Dashboard/store/reducer'
 import highscore from 'features/Highscore/store/reducer'
 
 const reducerMap = {

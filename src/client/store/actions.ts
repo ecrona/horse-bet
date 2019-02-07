@@ -8,7 +8,7 @@ import {
 import {
   ActionTypes as DashboardActionTypes,
   Actions as DashboardActions
-} from 'features/dashboard/store/actions'
+} from 'features/Dashboard/store/actions'
 import {
   ActionTypes as HighscoreActionTypes,
   Actions as HighscoreActions

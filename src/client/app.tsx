@@ -2,9 +2,9 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'utils/polyfills'
 import 'global.scss'
-import { Dashboard } from 'features/dashboard'
+import { Dashboard } from 'features/Dashboard'
 import { Highscore } from 'features/Highscore'
-import { Login } from 'features/login'
+import { Login } from 'features/Login'
 
 export class App extends React.Component<any, any> {
   render() {
