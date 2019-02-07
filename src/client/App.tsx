@@ -3,23 +3,26 @@ import { Route, Switch } from 'react-router-dom'
 import { Dashboard } from 'features/Dashboard'
 import { Details } from 'features/Details'
 import { Highscore } from 'features/Highscore'
-import { Login } from 'features/Login'
-import { StoreProps } from './App.container'
+import { Layout } from './features/Layout'
 import 'utils/polyfills'
 import 'global.scss'
 
-export class App extends React.Component<StoreProps, any> {
+export class App extends React.Component<any, any> {
   render() {
     return (
       <div style={{ maxWidth: '500px', margin: '0 auto' }}>
-        {this.props.authenticated && (
+        <Layout>
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/highscore" component={Highscore} />
+            <Route exact path="/highscore" component={Highscore} />
+            <Route
+              exact
+              path="/fixture/:homeTeam/:awayTeam"
+              component={Details}
+            />
             <Route component={props => <div>Not found</div>} />
           </Switch>
-        )}
-        {!this.props.authenticated && <Login show />}
+        </Layout>
       </div>
     )
   }

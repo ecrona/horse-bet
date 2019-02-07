@@ -14,7 +14,12 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Man City', logo: '/assets/logotypes/man-city.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ' '
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'KC', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -27,7 +32,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       },
       betPlacement: BetPlacement.Away,
       matchWinner: MatchWinner.Home,
-      score: '3-0'
+      score: '3-0',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -37,7 +46,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Schalke', logo: '/assets/logotypes/schalke.png' },
       betPlacement: BetPlacement.Home,
       matchWinner: MatchWinner.Home,
-      score: '7-2'
+      score: '7-2',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -50,7 +63,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Liverpool', logo: '/assets/logotypes/liverpool.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ''
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -60,7 +77,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Lyon', logo: '/assets/logotypes/lyon.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ''
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -73,7 +94,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Ajax', logo: '/assets/logotypes/ajax.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ''
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -83,7 +108,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Tottenham', logo: '/assets/logotypes/tottenham.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ''
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -93,7 +122,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Man Utd', logo: '/assets/logotypes/man-utd.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ''
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     },
     {
       round: Round.RoundOf16,
@@ -103,7 +136,11 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       awayTeam: { name: 'Roma', logo: '/assets/logotypes/roma.png' },
       betPlacement: BetPlacement.NotPlaced,
       matchWinner: MatchWinner.None,
-      score: ''
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away }
+      ]
     }
   ]),
   placeBet: createMockPromise(undefined)

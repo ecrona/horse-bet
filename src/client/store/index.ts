@@ -36,7 +36,9 @@ export function createAction<T extends string, P>(type: T, payload?: P) {
   return payload === undefined ? { type } : { type, payload }
 }
 
-export const mapState = <T>(stateMap: (state: RootState) => T) => stateMap
+export const mapState = <T>(
+  stateMap: (state: RootState, ownProps?: any) => T
+) => stateMap
 export const mapDispatch = <T extends ActionCreatorsMapObject>(
   actions: T
 ): ((dispatch: any) => T) => dispatch => bindActionCreators(actions, dispatch)
