@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { createBrowserHistory } from 'history'
-import { App } from './App.container'
+import { App } from './App'
 import createStore from './store/create-store'
 
 declare let module: { hot: any }
@@ -27,8 +27,8 @@ ReactDOM.render(
 )
 
 if (module.hot) {
-  module.hot.accept(['./app.tsx'], () => {
-    const NewApp = require('./app.tsx').App
+  module.hot.accept(['./App'], () => {
+    const NewApp = require('./App').App
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
