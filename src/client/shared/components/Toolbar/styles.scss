@@ -15,6 +15,7 @@ $titlePadding: $base * 3 * 1px;
 
   background-color: $backgroundColor;
   color: $textLightPrimary;
+  z-index: 1;
 }
 
 .center {

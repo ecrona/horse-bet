@@ -72,6 +72,7 @@ export default html`
     :host([disabled]) .primary {
       background-color: var(--horse-primary);
       color: var(--horse-primary-text);
+      filter: none;
     }
 
     .secondary {
@@ -90,6 +91,7 @@ export default html`
     :host([disabled]) .secondary {
       background-color: var(--horse-secondary);
       color: var(--horse-secondary-text);
+      filter: none;
     }
 
     .tertiary {
