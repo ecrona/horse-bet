@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Dashboard } from 'features/Dashboard'
+import { Details } from 'features/Details'
 import { Highscore } from 'features/Highscore'
 import { Login } from 'features/Login'
-import { StoreProps } from './app.container'
+import { StoreProps } from './App.container'
 import 'utils/polyfills'
 import 'global.scss'
 

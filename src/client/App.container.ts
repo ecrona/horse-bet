@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { mapState, mapDispatch } from 'store'
-import { App as Component } from './app'
+import { App as Component } from './App'
 
 const mapStateToProps = mapState(state => ({
   authenticated: state.common.authenticated
