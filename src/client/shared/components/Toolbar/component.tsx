@@ -28,7 +28,7 @@ export class Toolbar extends React.PureComponent<Props> {
         </div>
 
         <span className={styles.center}>
-          <span className={styles.title}>Horse bet</span>
+          <span className={styles.title}>Hästbett</span>
 
           {this.props.subtitle && (
             <span className={styles.subtitle}>{this.props.subtitle}</span>

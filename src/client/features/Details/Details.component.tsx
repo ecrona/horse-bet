@@ -1,13 +1,16 @@
 import * as React from 'react'
 import styles from './Details.styles.scss'
-
-import 'shared/components/horse-button'
+import { Toolbar } from '@client/shared/components/Toolbar/component'
 
 // interface Props extends StoreProps {}
 interface Props {}
 
 export class Details extends React.PureComponent<Props> {
   render() {
-    return <div className={styles.container} />
+    return (
+      <React.Fragment>
+        <Toolbar subtitle="Game details" canGoBack hideHighscore />
+      </React.Fragment>
+    )
   }
 }
