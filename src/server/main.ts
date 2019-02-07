@@ -11,7 +11,7 @@ import * as GoogleStrategy from 'passport-google-oauth'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
-  //app.useGlobalFilters(new NotFoundExceptionFilter())
+  app.useGlobalFilters(new NotFoundExceptionFilter())
   app.useStaticAssets(path.join(`${__dirname}/../../dist/client`))
   app.use(cookieParser())
 

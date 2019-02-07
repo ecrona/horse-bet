@@ -6,6 +6,7 @@ import {
   setMilliseconds,
   differenceInMilliseconds
 } from 'date-fns'
+import { getFixtures } from 'features/Dashboard/store/actions'
 
 import { ThunkAction, ActionsUnion, createAction } from 'store'
 
@@ -27,6 +28,7 @@ export const actions = {
 export const updateDate = (): ThunkAction => dispatch => {
   const now = new Date()
   dispatch(actions.setDate(format(now, 'YYYY-MM-DD HH:mm')))
+  dispatch(getFixtures())
 
   const currentMinute = getMinutes(now)
   const closestMinute =

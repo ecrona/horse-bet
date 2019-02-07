@@ -12,8 +12,6 @@ interface Props extends StoreProps {}
 export class Dashboard extends React.PureComponent<Props> {
   componentDidMount() {
     this.props.getFixtures()
-    // TODO: Put this in a layout wrapper
-    this.props.updateDate()
   }
 
   isLoading() {
