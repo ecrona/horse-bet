@@ -3,8 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository, MoreThan } from 'typeorm'
 import * as format from 'date-fns/format'
 import { BetPlacement } from '@shared/models/bet-placement'
+import { hasFixtureBegun } from '@shared/validators/fixture'
 import { FixtureEntity } from 'entities/fixture'
 import { BetEntity } from 'entities/bet'
+import { UserEntity } from 'entities/user'
 
 @Injectable()
 export class FixtureService {
@@ -12,7 +14,9 @@ export class FixtureService {
     @InjectRepository(FixtureEntity)
     private readonly fixtureRepository: Repository<FixtureEntity>,
     @InjectRepository(BetEntity)
-    private readonly betRepository: Repository<BetEntity>
+    private readonly betRepository: Repository<BetEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>
   ) {}
 
   private getTeamLogo(name: string) {
@@ -38,18 +42,18 @@ export class FixtureService {
 
   async getFixturesWithBets(email: string) {
     const fixtures = await this.fixtureRepository.find()
-    const bets = await this.betRepository.find({
-      userEmail: email
-    })
+    const bets = await this.betRepository.find()
+    const users = await this.userRepository.find()
 
     return fixtures
       .sort((a, b) => (a.firstMatchStart < b.firstMatchStart ? 1 : -1))
       .map(fixture => {
-        const fixtureBet = bets.find(
+        const fixtureBets = bets.filter(
           bet =>
             bet.awayTeam === fixture.awayTeam &&
             bet.homeTeam === fixture.homeTeam
         )
+        const userBet = fixtureBets.find(bet => bet.userEmail === email)
 
         return {
           round: fixture.round,
@@ -69,11 +73,16 @@ export class FixtureService {
             name: fixture.awayTeam,
             logo: this.getTeamLogo(fixture.awayTeam)
           },
-          betPlacement: fixtureBet
-            ? fixtureBet.placement
-            : BetPlacement.NotPlaced,
+          betPlacement: userBet ? userBet.placement : BetPlacement.NotPlaced,
           matchWinner: fixture.matchWinner,
-          score: fixture.score
+          score: fixture.score,
+          bets: hasFixtureBegun(fixture)
+            ? fixtureBets.map(bet => ({
+                name: users.find(user => user.email === bet.userEmail)
+                  .displayName,
+                placement: bet.placement
+              }))
+            : []
         }
       })
   }
