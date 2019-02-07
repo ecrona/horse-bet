@@ -11,7 +11,19 @@ export class Details extends React.PureComponent<StoreProps> {
     return (
       <React.Fragment>
         <Toolbar subtitle="Game details" canGoBack hideHighscore />
-        <img src={this.props.fixture.awayTeam.logo} />
+
+        <div className={styles.container}>
+          <div>
+            <img src={this.props.fixture.homeTeam.logo} />
+          </div>
+
+          <div>{this.props.fixture.score}</div>
+
+          <div>
+            <img src={this.props.fixture.awayTeam.logo} />
+          </div>
+        </div>
+
         {this.props.fixture.bets.map(bet => (
           <div>
             {bet.name} -> {bet.placement}
