@@ -1,6 +1,7 @@
 import { BaseEnv } from './base'
 
 export interface ServerEnv extends BaseEnv {
+  authRedirectUrl: string
   database: {
     type: string
     host: string

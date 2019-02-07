@@ -1,10 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
-import * as passport from 'passport'
-import { ExtractJwt, Strategy } from 'passport-jwt'
 import { AuthService } from 'services/auth'
 
 import * as GoogleStrategy from 'passport-google-oauth'
+import { serverEnv } from '@env/server'
 
 @Injectable()
 export class GoogleJwtStrategy extends PassportStrategy(
@@ -16,7 +15,7 @@ export class GoogleJwtStrategy extends PassportStrategy(
         clientID:
           '819322914036-35v2lon8ubg5rjjh94p1j3e49p1ukasv.apps.googleusercontent.com',
         clientSecret: 'Dor48ryavMaCp4XUd0kNZLGr',
-        callbackURL: 'http://localhost:3000/auth/google/callback'
+        callbackURL: `${serverEnv.authRedirectUrl}/auth/google/callback`
       },
       (accessToken, refreshToken, profile, done) =>
         this.verify(accessToken, refreshToken, profile, done)
