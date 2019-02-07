@@ -73,3 +73,30 @@
   align-items: center;
   justify-content: center;
 }
+
+.detailsButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  min-height: 36px;
+  text-transform: uppercase;
+  max-height: 36px;
+  font-weight: 600;
+  font-size: 11px;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+
+  transition: background-color 0.075s ease-in;
+
+  &:hover {
+    background-color: var(--horse-grey-dark);
+  }
+
+  &:active {
+    background-color: var(--horse-grey-darker);
+  }
+}

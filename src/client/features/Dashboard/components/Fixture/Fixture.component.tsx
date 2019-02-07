@@ -90,8 +90,10 @@ export class Fixture extends React.PureComponent<Props> {
           </div>
         </div>
 
-        <div className={styles.information}>
-          <Information fixture={fixture} />
+        <div style={{ textAlign: 'center', paddingTop: 20 }}>
+          {/* <Information fixture={fixture} /> */}
+
+          <button className={styles.detailsButton}>View details</button>
         </div>
       </div>
     )
