@@ -6,7 +6,6 @@ import { ViewState } from './models/view-state'
 import { Fixture } from './components/Fixture'
 import { Toolbar } from 'shared/components/Toolbar/component'
 import styles from './Dashboard.styles.scss'
-import { Link } from 'react-router-dom'
 
 interface Props extends StoreProps {}
 
@@ -53,13 +52,6 @@ export class Dashboard extends React.PureComponent<Props> {
                 {round.fixtures.map((fixture, index) => (
                   <div key={index} className={styles.fixture}>
                     {/* <LockIcon /> */}
-                    <Link
-                      to={`/fixture/${fixture.homeTeam.name}/${
-                        fixture.awayTeam.name
-                      }`}
-                    >
-                      röööÖöÖÖöv
-                    </Link>
                     <Fixture fixture={fixture} placeBet={placeBet} />
                   </div>
                 ))}

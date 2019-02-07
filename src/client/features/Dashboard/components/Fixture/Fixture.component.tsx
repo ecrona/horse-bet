@@ -3,8 +3,8 @@ import { BetPlacement } from '@shared/models/bet-placement'
 import { DashboardFixture } from '../../models/dashboard-fixture'
 import styles from './Fixture.styles.scss'
 import 'shared/components/horse-button'
-import { Information } from './components/Information'
 import { MatchWinner } from '@client/../shared/models/match-winner'
+import { Link } from 'react-router-dom'
 
 interface Props {
   fixture: DashboardFixture
@@ -90,8 +90,14 @@ export class Fixture extends React.PureComponent<Props> {
           </div>
         </div>
 
-        <div className={styles.information}>
-          <Information fixture={fixture} />
+        <div style={{ textAlign: 'center', paddingTop: 20 }}>
+          <Link
+            className={styles.detailsButtonLink}
+            to={`/fixture/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
+            title="Click to view fixture details"
+          >
+            <button className={styles.detailsButton}>View details</button>
+          </Link>
         </div>
       </div>
     )
