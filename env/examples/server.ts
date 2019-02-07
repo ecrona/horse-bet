@@ -3,6 +3,7 @@ import { baseEnv } from './base'
 
 export const serverEnv: ServerEnv = {
   ...baseEnv,
+  authRedirectUrl: 'http://localhost:3000',
   database: {
     type: 'mysql',
     host: 'localhost',
