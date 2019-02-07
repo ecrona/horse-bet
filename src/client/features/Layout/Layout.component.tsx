@@ -2,7 +2,11 @@ import React from 'react'
 import { Login } from '../Login/Login.component'
 import { StoreProps } from './Layout.container'
 
-export class Layout extends React.Component<StoreProps, any> {
+export class Layout extends React.PureComponent<StoreProps, any> {
+  componentDidMount() {
+    this.props.updateDate()
+  }
+
   render() {
     return (
       <React.Fragment>

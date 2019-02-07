@@ -1,3 +1,4 @@
+import * as path from 'path'
 import {
   ExceptionFilter,
   Catch,
@@ -9,6 +10,6 @@ import {
 export class NotFoundExceptionFilter implements ExceptionFilter {
   public catch(exception: NotFoundExceptionFilter, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse()
-    response.sendFile('index.html')
+    response.sendFile(path.join(`${__dirname}/../../../dist/client/index.html`))
   }
 }
