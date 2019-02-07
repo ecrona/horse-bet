@@ -13,11 +13,14 @@ export default html`
     }
 
     :host([disabled]) .button {
-      border: 1px solid rgba(0, 0, 0, 0.12);
+      /* border: 1px solid rgba(0, 0, 0, 0.12); */
+      border: none;
 
       background-color: transparent;
-      color: rgba(0, 0, 0, 0.75);
+      box-shadow: none;
+      color: rgba(0, 0, 0, 0.67);
       cursor: not-allowed;
+      filter: grayscale(0.5);
     }
 
     .button {
