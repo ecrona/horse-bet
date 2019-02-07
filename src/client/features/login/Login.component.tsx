@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styles from './Login.styles.scss'
 
+import 'shared/components/horse-button'
+
 // interface Props extends StoreProps {}
 interface Props {}
 
@@ -10,22 +12,13 @@ export class Login extends React.PureComponent<
 > {
   state = { transition: false }
 
-  // How naughty
-  componentDidUpdate(prevProps) {
-    // if (this.props.show !== prevProps.show) {
-    //   setTimeout(() => this.setState({ transition: this.props.show }))
-    // }
-  }
+  /*
+    Make it spin while logging in?
+  */
 
   render() {
     return (
-      <div
-        style={{
-          display: this.props.show ? 'flex' : 'none',
-          alignItems: 'center',
-          height: '50vh'
-        }}
-      >
+      <div className={styles.container}>
         <div
           style={{
             display: 'flex',
@@ -34,7 +27,7 @@ export class Login extends React.PureComponent<
             alignItems: 'center',
             height: '180px',
             width: '180px',
-            margin: '20px auto',
+            margin: '20px auto 40px',
             background: '#fff',
             boxShadow: '0px 2px 10px 4px #fdfdfd',
             borderRadius: '100%',
@@ -48,6 +41,10 @@ export class Login extends React.PureComponent<
         >
           <img style={{ height: '100px' }} src="/assets/logo.png" />
           <span>Hästbett</span>
+        </div>
+
+        <div>
+          <horse-button color="primary">Log in</horse-button>
         </div>
       </div>
     )
