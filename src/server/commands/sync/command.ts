@@ -22,7 +22,8 @@ export class SyncCommand {
     const fixtures = (await api.getFixtures()).map(match => ({
       homeTeam: match.homeTeam,
       awayTeam: match.awayTeam,
-      matchStart: match.matchStart,
+      firstMatchStart: match.firstMatchStart,
+      secondMatchStart: match.secondMatchStart,
       round: match.round,
       winner: match.winner,
       score:
@@ -61,7 +62,8 @@ export class SyncCommand {
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,
         round: fixture.round,
-        matchStart: new Date(fixture.matchStart),
+        firstMatchStart: new Date(fixture.firstMatchStart),
+        secondMatchStart: new Date(fixture.secondMatchStart),
         matchWinner: fixture.winner,
         score: fixture.score,
         lastSync: fixture.lastUpdated

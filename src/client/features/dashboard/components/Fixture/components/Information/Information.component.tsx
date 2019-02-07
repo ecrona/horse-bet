@@ -8,20 +8,19 @@ interface Props {
 
 export function Information(props: Props) {
   const { fixture } = props
-  const date = `${fixture.startDate} - ${fixture.startTime}`
 
   return (
     <div className={styles.container}>
       <div className={styles.matchDate}>
         First match
-        <div>{date}</div>
+        <div>{fixture.firstMatchStart}</div>
       </div>
 
       <div className={styles.divider} />
 
       <div className={styles.matchDate}>
         Second match
-        <div>{date}</div>
+        <div>{fixture.secondMatchStart}</div>
       </div>
     </div>
   )

@@ -155,7 +155,8 @@ export class FootballData implements ApiAdapter {
       .map(match => ({
         homeTeam: this.getTeamName(match.homeTeam.name),
         awayTeam: this.getTeamName(match.awayTeam.name),
-        matchStart: format(new Date(match.utcDate), 'YYYY-MM-DD HH:mm:ss'),
+        firstMatchStart: format(new Date(match.utcDate), 'YYYY-MM-DD HH:mm:ss'),
+        secondMatchStart: null,
         round: this.getRound(match.stage),
         winner: this.getWinner(match.score.winner),
         homeScore:
@@ -179,7 +180,11 @@ export class FootballData implements ApiAdapter {
                 _match.awayTeam === match.homeTeam &&
                 _match.homeTeam === match.awayTeam
               ) {
-                return { ...match, matchStart: _match.matchStart }
+                return {
+                  ...match,
+                  firstMatchStart: _match.firstMatchStart,
+                  secondMatchStart: match.firstMatchStart
+                }
               }
 
               return _match

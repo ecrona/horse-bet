@@ -17,7 +17,7 @@ export default html`
 
       background-color: transparent;
       color: rgba(0, 0, 0, 0.75);
-      cursor: initial;
+      cursor: not-allowed;
     }
 
     .button {

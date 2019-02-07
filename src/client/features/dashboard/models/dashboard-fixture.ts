@@ -8,8 +8,7 @@ export interface DashboardFixture {
   betPlacement: BetPlacement
   matchWinner: MatchWinner
   placeable: boolean
-  startDate: string
-  startDay: string
-  startTime: string
+  firstMatchStart: string
+  secondMatchStart: string
   score: string
 }
