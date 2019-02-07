@@ -5,13 +5,13 @@ import { ConnectedRouter } from 'connected-react-router'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { createBrowserHistory } from 'history'
-import { App } from './app'
+import { App } from './app.container'
 import createStore from './store/create-store'
 
 declare let module: { hot: any }
 const rootElement = document.getElementById('app')
 const history = createBrowserHistory()
-const store = createStore(history)
+export const store = createStore(history)
 
 ReactDOM.render(
   <AppContainer>

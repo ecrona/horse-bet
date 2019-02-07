@@ -39,12 +39,14 @@ export class Login extends React.PureComponent<
             transition: 'transform 20s linear'
           }}
         >
-          <img style={{ height: '100px' }} src="/assets/logo.png" />
+          <img style={{ height: '100px' }} src="/assets/logotypes/logo.png" />
           <span>Hästbett</span>
         </div>
 
         <div>
-          <horse-button color="primary">Log in</horse-button>
+          <a href="/auth/google">
+            <horse-button color="primary">Log in</horse-button>
+          </a>
         </div>
       </div>
     )

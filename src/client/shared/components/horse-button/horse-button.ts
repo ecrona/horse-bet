@@ -27,7 +27,7 @@ export class HorseButton extends LitElement {
     return html`
       ${styles}
 
-      <button class=${classes} disabled=${this.disabled}>
+      <button class=${classes} ?disabled=${this.disabled}>
         <slot></slot>
       </button>
     `

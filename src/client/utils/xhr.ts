@@ -1,8 +1,8 @@
 import * as JWT from 'jwt-client'
 import { clientEnv } from '@env/client'
 import { RequestMethod } from '@shared/utils/endpoints'
-// import { actions } from 'store/common/actions'
-// import { store } from 'index'
+import { actions } from 'store/common/actions'
+import { store } from 'index'
 
 const requestMethodMap = {
   [RequestMethod.Get]: 'GET',
@@ -47,8 +47,8 @@ export const xhr = async (
     return text && JSON.parse(text)
   }
 
-  if (response.status === 401) {
-    // store.dispatch(actions.unauthenticate())
+  if (response.status === 403) {
+    store.dispatch(actions.unauthenticate())
   }
 
   throw new Error(response.status.toString())

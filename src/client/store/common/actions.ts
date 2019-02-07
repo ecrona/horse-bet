@@ -8,7 +8,6 @@ import {
 } from 'date-fns'
 
 import { ThunkAction, ActionsUnion, createAction } from 'store'
-import { AuthenticationError } from 'models/authentication-error'
 
 const minuteInterval = 5
 const minuteCollection = Array.from(Array(60 / minuteInterval))
@@ -16,13 +15,12 @@ const minuteCollection = Array.from(Array(60 / minuteInterval))
   .reverse()
 
 export enum ActionTypes {
-  authenticate = '[Common] Authenticate',
+  unauthenticate = '[Common] Unauthenticate',
   setDate = '[Common] Set date'
 }
 
 export const actions = {
-  authenticate: (error: AuthenticationError) =>
-    createAction(ActionTypes.authenticate, error),
+  unauthenticate: () => createAction(ActionTypes.unauthenticate),
   setDate: (date: string) => createAction(ActionTypes.setDate, date)
 }
 

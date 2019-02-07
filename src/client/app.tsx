@@ -1,35 +1,24 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import 'utils/polyfills'
-import 'global.scss'
 import { Dashboard } from 'features/Dashboard'
 import { Highscore } from 'features/Highscore'
 import { Login } from 'features/Login'
+import { StoreProps } from './app.container'
+import 'utils/polyfills'
+import 'global.scss'
 
-export class App extends React.Component<any, any> {
+export class App extends React.Component<StoreProps, any> {
   render() {
-    /*
-      reroute everything to login
-
-      if (!logedin) {
-        return <Redirect route="/login" />
-        -> logins
-      }
-
-      
-      -> dashboard
-    */
-
-    console.log('app', { props: this.props })
-
     return (
       <div style={{ maxWidth: '500px', margin: '0 auto' }}>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/highscore" component={Highscore} />
-          <Route path="/login" component={Login} />
-          <Route component={props => <div>Not found</div>} />
-        </Switch>
+        {this.props.authenticated && (
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/highscore" component={Highscore} />
+            <Route component={props => <div>Not found</div>} />
+          </Switch>
+        )}
+        {!this.props.authenticated && <Login show />}
       </div>
     )
   }
