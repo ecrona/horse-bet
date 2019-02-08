@@ -32,7 +32,7 @@ export class Fixture extends React.PureComponent<Props> {
 
     // React wrongly adds the attribute regardless of true | false.
     // Prevent by spreading an object with the attribute.
-    const disabled = !fixture.placeable ? { disabled: true } : undefined
+    const disProps = !fixture.placeable ? { disabled: true } : undefined
 
     return (
       <div className={styles.container}>
@@ -40,14 +40,14 @@ export class Fixture extends React.PureComponent<Props> {
           <div className={styles.team}>
             <horse-button
               fullWidth
-              {...disabled}
+              {...disProps}
               color={this.getColor(
                 fixture.betPlacement === BetPlacement.Home,
                 MatchWinner.Home,
                 fixture.matchWinner
               )}
               onClick={() =>
-                !disabled &&
+                !disProps &&
                 placeBet(
                   fixture.awayTeam.name,
                   fixture.homeTeam.name,
@@ -67,14 +67,14 @@ export class Fixture extends React.PureComponent<Props> {
           <div className={styles.team}>
             <horse-button
               fullWidth
-              {...disabled}
+              {...disProps}
               color={this.getColor(
                 fixture.betPlacement === BetPlacement.Away,
                 MatchWinner.Away,
                 fixture.matchWinner
               )}
               onClick={() =>
-                !disabled &&
+                !disProps &&
                 placeBet(
                   fixture.awayTeam.name,
                   fixture.homeTeam.name,
