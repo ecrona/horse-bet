@@ -12,7 +12,7 @@ export default html`
       width: 100%;
     }
 
-    :host([disabled]) .button {
+    .button[disabled] {
       /* border: 1px solid rgba(0, 0, 0, 0.12); */
       border: none;
 
