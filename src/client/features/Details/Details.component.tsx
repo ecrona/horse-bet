@@ -10,6 +10,12 @@ export class Details extends React.PureComponent<StoreProps> {
     const { fixture } = this.props
     console.log(fixture)
 
+    const percentage = Math.round(
+      (fixture.bets.filter(bet => bet.placement === BetPlacement.Home).length /
+        fixture.bets.length) *
+        100
+    )
+
     return (
       <React.Fragment>
         <Toolbar subtitle="Fixture details" canGoBack hideHighscore />
@@ -26,6 +32,17 @@ export class Details extends React.PureComponent<StoreProps> {
             <span className={styles.teamName}>{fixture.awayTeam.name}</span>
             <img className={styles.logo} src={fixture.awayTeam.logo} />
           </div>
+        </div>
+
+        <div className={styles.percentage}>
+          <div
+            className={styles.percentageHomeTeam}
+            style={{ width: `${percentage}%` }}
+          >
+            {percentage}%
+          </div>
+
+          <div className={styles.percentageAwayTeam}>{100 - percentage}%</div>
         </div>
 
         <div>

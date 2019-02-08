@@ -8,6 +8,7 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 export const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, '../dist/client'),
+    publicPath: '/',
     filename: 'bundle.js'
   },
 
@@ -60,7 +61,7 @@ export const config: webpack.Configuration = {
         }
       },
       {
-        test: /\.svg?$/,
+        test: /\(.svg|.ico|.png)?$/,
         loaders: ['file-loader']
       },
       {

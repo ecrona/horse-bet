@@ -40,6 +40,7 @@
   color: #fff;
   font-size: 28px;
   font-weight: 600;
+  letter-spacing: 8px;
   text-align: center;
 }
 
@@ -65,4 +66,36 @@
   margin-right: 20px;
   width: 28px;
   height: 28px;
+}
+
+.percentage {
+  position: relative;
+  margin-top: 64px;
+  display: flex;
+  height: 40px;
+  overflow: none;
+  box-shadow: 0 2px 3.5px rgba(0, 0, 0, 0.22);
+  z-index: 1;
+}
+
+.percentageHomeTeam,
+.percentageAwayTeam {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.percentageHomeTeam {
+  position: relative;
+  z-index: 1;
+  height: 40px;
+  background-color: var(--horse-primary);
+}
+
+.percentageAwayTeam {
+  flex: 1;
+  height: 40px;
+  background-color: var(--horse-tertiary);
 }
