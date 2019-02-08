@@ -12,7 +12,7 @@ export class Details extends React.PureComponent<StoreProps> {
 
     return (
       <React.Fragment>
-        <Toolbar subtitle="Game details" canGoBack hideHighscore />
+        <Toolbar subtitle="Fixture details" canGoBack hideHighscore />
 
         <div className={styles.container}>
           <div className={styles.team}>
@@ -28,11 +28,26 @@ export class Details extends React.PureComponent<StoreProps> {
           </div>
         </div>
 
-        {fixture.bets.map(bet => (
-          <div>
-            {bet.name} -> {bet.placement}
-          </div>
-        ))}
+        <div>
+          {fixture.bets.map((bet, index) => (
+            <div key={index} className={styles.listItem}>
+              {bet.placement === BetPlacement.Home && (
+                <img
+                  className={styles.listItemLogo}
+                  src={fixture.homeTeam.logo}
+                />
+              )}
+              {bet.placement === BetPlacement.Away && (
+                <img
+                  className={styles.listItemLogo}
+                  src={fixture.awayTeam.logo}
+                />
+              )}
+
+              {bet.name}
+            </div>
+          ))}
+        </div>
       </React.Fragment>
     )
   }
