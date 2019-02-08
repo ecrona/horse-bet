@@ -27,13 +27,13 @@ export class MailCommand {
           Du har blivit nogrann utvald till att delta i det välkända Hästbettet.
           Gå till https://hästbett.se för att logga in och delta!
           \n\n
-          Alla deltagare som vill vara med måste swischa 100:- till 0762027637, där vinnarna kommer få potten.
+          Alla deltagare som vill vara med måste swisha 100:- till 0762027637, där vinnarna kommer få potten.
         `,
         html: `
           Du har blivit nogrann utvald till att delta i det välkända Hästbettet.
           Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att logga in och delta!
           <br /> <br />
-          Alla deltagare som vill vara med måste swischa 100:- till <b>0762027637</b>, där vinnarna kommer få potten.
+          Alla deltagare som vill vara med måste swisha 100:- till <b>0762027637</b>, där vinnarna kommer få potten.
         `
       })
     }
