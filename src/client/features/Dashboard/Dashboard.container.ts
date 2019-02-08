@@ -11,7 +11,6 @@ const mapStateToProps = mapState(state => ({
 }))
 
 const mapDispatchToProps = mapDispatch({
-  getFixtures,
   placeBet,
   toggleViewState: actions.toggleViewState
 })

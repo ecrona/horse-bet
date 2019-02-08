@@ -23,10 +23,18 @@ export class MailCommand {
         to: user.email,
         from: 'ecrona@gmail.com',
         subject: 'Välkommen till Hästbett!',
-        text:
-          'Du har blivit nogrann utvald till att delta i det välkända Hästbettet. Gå till https://hästbett.se för att logga in och delta!',
-        html:
-          'Du har blivit nogrann utvald till att delta i det välkända Hästbettet. Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att logga in och delta!'
+        text: `
+          Du har blivit nogrann utvald till att delta i det välkända Hästbettet.
+          Gå till https://hästbett.se för att logga in och delta!
+          \n\n
+          Alla deltagare som vill vara med måste swischa 100:- till 0762027637, där vinnarna kommer få potten.
+        `,
+        html: `
+          Du har blivit nogrann utvald till att delta i det välkända Hästbettet.
+          Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att logga in och delta!
+          <br /> <br />
+          Alla deltagare som vill vara med måste swischa 100:- till <b>0762027637</b>, där vinnarna kommer få potten.
+        `
       })
     }
   }
@@ -38,7 +46,7 @@ export class MailCommand {
     const now = new Date()
     const userBets = await this.userService.getUserBets()
     const closeFixtures = (await this.fixtureService.getActiveFixtures()).filter(
-      fixture => differenceInHours(fixture.matchStart, now) <= 12
+      fixture => differenceInHours(fixture.firstMatchStart, now) <= 12
     )
 
     const usersWithoutBets = userBets.filter(
@@ -59,10 +67,14 @@ export class MailCommand {
         to: user.email,
         from: 'ecrona@gmail.com',
         subject: 'Glöm inte Hästbett!',
-        text:
-          'Det är mindre än 12 timmar kvar till nästa match, gå till https://hästbett.se för att lägga dina bet!',
-        html:
-          'Det är mindre än 12 timmar kvar till nästa match, gå till <a href="https://hästbett.se">https://hästbett.se</a> för att lägga dina bet!'
+        text: `
+          Du har väl inte glömt att betta på kvällens matcher?!
+          Gå till https://hästbett.se för att lägga dina bet!
+        `,
+        html: `
+          Du har väl inte glömt att betta på kvällens matcher?!
+          Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att lägga dina bet!
+        `
       })
     }
   }
