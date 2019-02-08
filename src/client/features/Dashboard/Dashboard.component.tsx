@@ -10,10 +10,6 @@ import styles from './Dashboard.styles.scss'
 interface Props extends StoreProps {}
 
 export class Dashboard extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.props.getFixtures()
-  }
-
   isLoading() {
     return (
       this.props.viewState === ViewState.Fetching ||
@@ -45,7 +41,7 @@ export class Dashboard extends React.PureComponent<Props> {
         {Object.keys(rounds)
           .map(key => rounds[key])
           .map(round => (
-            <React.Fragment>
+            <React.Fragment key={round.name}>
               <Header>{round.name}</Header>
 
               <Section>

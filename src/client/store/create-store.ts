@@ -10,14 +10,21 @@ import { rootReducer } from './reducers'
 declare let module: { hot: any }
 
 export default function configureStore(history: History) {
-  const middleware = applyMiddleware(
+  const middleware = [
     routerMiddleware(history),
     thunkMiddleware.withExtraArgument(
       process.env.USE_MOCK ? mockEndpoints : endpoints
-    ),
-    createLogger()
+    )
+  ]
+
+  if (process.env.NODE_ENV !== 'production') {
+    middleware.push(createLogger())
+  }
+
+  const store = createStore(
+    connectRouter(history)(rootReducer),
+    applyMiddleware(...middleware)
   )
-  const store = createStore(connectRouter(history)(rootReducer), middleware)
 
   if (module.hot) {
     module.hot.accept('./index.ts', () => {
