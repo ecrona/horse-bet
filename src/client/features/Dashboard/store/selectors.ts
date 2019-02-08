@@ -33,7 +33,10 @@ export const getRounds = createSelector(
         homeTeam: fixture.homeTeam,
         betPlacement: fixture.betPlacement,
         matchWinner: fixture.matchWinner,
-        placeable: new Date(fixture.firstMatchStart) > new Date(date),
+        // TODO: More reliable IOS fix
+        placeable:
+          new Date(fixture.firstMatchStart.replace(' ', 'T')) >
+          new Date(date.replace(' ', 'T')),
         firstMatchStart: fixture.firstMatchStart,
         secondMatchStart: fixture.secondMatchStart,
         score: fixture.score
