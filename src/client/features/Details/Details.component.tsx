@@ -4,6 +4,7 @@ import { Toolbar } from '@client/shared/components/Toolbar/component'
 import { StoreProps } from './Details.container'
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { Fixture } from '../Dashboard/components/Fixture'
+import { Information } from './components/Information'
 
 export class Details extends React.PureComponent<StoreProps> {
   render() {
@@ -32,6 +33,17 @@ export class Details extends React.PureComponent<StoreProps> {
             <span className={styles.teamName}>{fixture.awayTeam.name}</span>
             <img className={styles.logo} src={fixture.awayTeam.logo} />
           </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: 24,
+            marginBottom: 24,
+            padding: '16px 0',
+            backgroundColor: 'rgba(255,255,255,0.1)'
+          }}
+        >
+          <Information fixture={this.props.fixture} />
         </div>
 
         <div className={styles.percentage}>

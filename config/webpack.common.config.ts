@@ -61,7 +61,7 @@ export const config: webpack.Configuration = {
         }
       },
       {
-        test: /\(.svg|.ico|.png)?$/,
+        test: /\.svg?$/,
         loaders: ['file-loader']
       },
       {

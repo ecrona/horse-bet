@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './Information.styles.scss'
-import { DashboardFixture } from '@client/features/Dashboard/models/dashboard-fixture'
 
 interface Props {
-  fixture: DashboardFixture
+  fixture: any
 }
 
 export function Information(props: Props) {
