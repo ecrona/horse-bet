@@ -1,33 +1,30 @@
-import * as path from 'path'
-import * as webpack from 'webpack'
+import webpack from 'webpack'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
 export const config: webpack.Configuration = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './src/index.tsx'
-  ],
+  mode: 'production',
 
-  module: {
-    rules: [{
-        test: /\.tsx?$/,
-        loaders: ['react-hot-loader/webpack', 'awesome-typescript-loader']
-      }
+  entry: ['./src/client/index.tsx'],
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
     ]
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-
-  devServer: {
-    hot: true,
-    contentBase: './src',
-    port: 8080,
-    clientLogLevel: 'error',
-  }
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  ]
 }
 
 export default config

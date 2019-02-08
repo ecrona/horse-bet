@@ -1,0 +1,13 @@
+@import '../../../variables.scss';
+
+$spacing: $base * 2 * 1px;
+
+.root {
+  margin-bottom: $spacing;
+
+  background-color: #fff;
+}
+
+.spaced {
+  padding: 20px 12px;
+}

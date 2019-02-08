@@ -1,36 +1,37 @@
-import * as path from "path";
-import * as webpack from "webpack";
+import webpack from 'webpack'
 
 export const config: webpack.Configuration = {
-  mode: "development",
+  mode: 'development',
+
+  devtool: 'inline-source-map',
 
   entry: [
-    "react-hot-loader/patch",
-    "webpack-dev-server/client?http://localhost:8080",
-    "webpack/hot/only-dev-server",
-    "./src/index.tsx"
+    '@webcomponents/webcomponentsjs/webcomponents-bundle.js',
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/client/index.tsx'
   ],
-
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loaders: ["awesome-typescript-loader"]
-      }
-    ]
-  },
 
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+
+    new webpack.DefinePlugin({
+      'process.env': {
+        USE_MOCK: JSON.stringify(process.env.USE_MOCK)
+      }
+    })
   ],
 
   devServer: {
     hot: true,
-    contentBase: "./src",
+    contentBase: './dist/client',
+    host: 'localhost',
     port: 8080,
-    clientLogLevel: "error"
+    clientLogLevel: 'error',
+    historyApiFallback: true
   }
-};
+}
 
-export default config;
+export default config

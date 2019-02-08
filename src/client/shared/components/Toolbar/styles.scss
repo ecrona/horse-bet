@@ -1,0 +1,61 @@
+@import '../../../variables.scss';
+
+$spacing: $base * 2 * 1px;
+$titlePadding: $base * 3 * 1px;
+
+.root {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 0 $spacing - 12px;
+  min-height: 64px;
+
+  background-color: $backgroundColor;
+  color: $textLightPrimary;
+  z-index: 2;
+}
+
+.center {
+  padding: 0 $titlePadding;
+
+  text-align: center;
+}
+
+.icon {
+  color: #fff;
+}
+
+.left {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.subtitle {
+  display: block;
+
+  color: $textLightSecondary;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.title {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  color: $primary;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  text-transform: uppercase;
+}

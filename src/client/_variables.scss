@@ -1,0 +1,31 @@
+$base: 8;
+$baseText: $base / 2;
+
+// Colors
+$primaryLight: #7fb37d;
+$primary: #4caf50;
+$primaryDark: #419544;
+$primaryDarker: #306f33;
+
+$secondary: #fde87e;
+
+$tertiary: tan;
+
+$grey: #ddd;
+$greyDark: #ccc;
+$greyDarker: #bbb;
+
+$backgroundColor: #343637;
+
+// Text colors
+$textDarkPrimary: rgba(0, 0, 0, 0.87);
+$textDarkSecondary: rgba(0, 0, 0, 0.67);
+$textDarkMuted: rgba(0, 0, 0, 0.5);
+
+$textLightPrimary: #fff;
+$textLightSecondary: rgba(255, 255, 255, 0.75);
+$textLightMuted: rgba(255, 255, 255, 0.5);
+
+// Font
+$font: Roboto, Segoe UI, Verdana;
+$fontSize: 16px;
