@@ -50,7 +50,7 @@ export class Details extends React.PureComponent<StoreProps> {
               <Information fixture={this.props.fixture} />
             </div>
 
-            {fixture.bets.length && (
+            {!!fixture.bets.length && (
               <div className={styles.percentage}>
                 <div
                   className={styles.percentageHomeTeam}
