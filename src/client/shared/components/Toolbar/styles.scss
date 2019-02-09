@@ -3,8 +3,12 @@
 $spacing: $base * 2 * 1px;
 $titlePadding: $base * 3 * 1px;
 
-.root {
-  position: sticky;
+.container {
+  height: 64px;
+}
+
+.toolbar {
+  position: fixed;
   top: 0;
   display: flex;
   flex-direction: row;
@@ -12,8 +16,11 @@ $titlePadding: $base * 3 * 1px;
 
   padding: 0 $spacing - 12px;
   min-height: 64px;
+  width: 100%;
+  max-width: 500px;
 
   background-color: $backgroundColor;
+  box-sizing: border-box;
   color: $textLightPrimary;
   z-index: 2;
 }
