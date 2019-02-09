@@ -5,6 +5,7 @@ import styles from './Fixture.styles.scss'
 import 'shared/components/horse-button'
 import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Link } from 'react-router-dom'
+import LockIcon from '@material-ui/icons/LockOpen'
 
 interface Props {
   fixture: DashboardFixture
@@ -29,25 +30,43 @@ export class Fixture extends React.PureComponent<Props> {
 
   render() {
     const { fixture, placeBet } = this.props
-
-    // React wrongly adds the attribute regardless of true | false.
-    // Prevent by spreading an object with the attribute.
-    const disProps = !fixture.placeable ? { disabled: true } : undefined
+    const disabled = !fixture.placeable ? { disabled: true } : undefined
 
     return (
       <div className={styles.container}>
+        {fixture.placeable && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              fontSize: 14,
+              fontWeight: 500,
+              marginBottom: 20,
+              padding: 12,
+              color: 'rgba(0, 0, 0, 0.67)'
+            }}
+          >
+            <LockIcon style={{ fontSize: 16 }} />{' '}
+            <span style={{ paddingLeft: 8 }}>
+              Locks at {fixture.firstMatchStart}
+            </span>
+          </div>
+        )}
+
+        {!fixture.placeable && <div style={{ height: 20 }} />}
+
         <div className={styles.matchup}>
           <div className={styles.team}>
             <horse-button
               fullWidth
-              {...disProps}
+              {...disabled}
               color={this.getColor(
                 fixture.betPlacement === BetPlacement.Home,
                 MatchWinner.Home,
                 fixture.matchWinner
               )}
               onClick={() =>
-                !disProps &&
+                !disabled &&
                 placeBet(
                   fixture.awayTeam.name,
                   fixture.homeTeam.name,
@@ -67,14 +86,14 @@ export class Fixture extends React.PureComponent<Props> {
           <div className={styles.team}>
             <horse-button
               fullWidth
-              {...disProps}
+              {...disabled}
               color={this.getColor(
                 fixture.betPlacement === BetPlacement.Away,
                 MatchWinner.Away,
                 fixture.matchWinner
               )}
               onClick={() =>
-                !disProps &&
+                !disabled &&
                 placeBet(
                   fixture.awayTeam.name,
                   fixture.homeTeam.name,

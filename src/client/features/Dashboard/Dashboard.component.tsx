@@ -29,13 +29,18 @@ export class Dashboard extends React.PureComponent<Props> {
             margin: '16px 0 0',
             padding: '16px',
             borderRadius: 4,
+            lineHeight: '22px',
             backgroundColor: 'tan',
             fontWeight: 500,
             boxShadow: '0 1.5px 2px rgba(0,0,0,0.2)',
             textAlign: 'center'
           }}
         >
-          <span>Betting will be locked after the first match has started</span>
+          <span>Bets are locked when the first match of a fixture begins</span>
+          <br />
+          <span style={{ fontSize: 14 }}>
+            For fixture information see details
+          </span>
         </div>
 
         {Object.keys(rounds)
@@ -47,7 +52,6 @@ export class Dashboard extends React.PureComponent<Props> {
               <Section>
                 {round.fixtures.map((fixture, index) => (
                   <div key={index} className={styles.fixture}>
-                    {/* <LockIcon /> */}
                     <Fixture fixture={fixture} placeBet={placeBet} />
                   </div>
                 ))}

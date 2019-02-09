@@ -16,6 +16,8 @@ export class HorseButton extends LitElement {
   @property({ type: String })
   public variant?: HorseButton.VariantType
 
+  static styles = styles
+
   render() {
     const classes = classnames({
       button: true,
@@ -25,8 +27,6 @@ export class HorseButton extends LitElement {
     })
 
     return html`
-      ${styles}
-
       <button class=${classes} .disabled=${this.disabled}>
         <slot></slot>
       </button>

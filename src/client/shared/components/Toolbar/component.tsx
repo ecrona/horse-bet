@@ -14,37 +14,39 @@ interface Props {
 export class Toolbar extends React.PureComponent<Props> {
   render() {
     return (
-      <div className={styles.root}>
-        <div className={styles.left}>
-          {this.props.canGoBack && (
-            <Link to="/">
-              <span className={styles.icon}>
-                <IconButton aria-label="Highscore" color="inherit">
-                  <ArrowBack />
-                </IconButton>
-              </span>
-            </Link>
-          )}
-        </div>
+      <div className={styles.container}>
+        <div className={styles.toolbar}>
+          <div className={styles.left}>
+            {this.props.canGoBack && (
+              <Link to="/">
+                <span className={styles.icon}>
+                  <IconButton aria-label="Highscore" color="inherit">
+                    <ArrowBack />
+                  </IconButton>
+                </span>
+              </Link>
+            )}
+          </div>
 
-        <span className={styles.center}>
-          <span className={styles.title}>Hästbett</span>
+          <span className={styles.center}>
+            <span className={styles.title}>Hästbett</span>
 
-          {this.props.subtitle && (
-            <span className={styles.subtitle}>{this.props.subtitle}</span>
-          )}
-        </span>
+            {this.props.subtitle && (
+              <span className={styles.subtitle}>{this.props.subtitle}</span>
+            )}
+          </span>
 
-        <div className={styles.right}>
-          {!this.props.hideHighscore && (
-            <Link to="/highscore">
-              <span className={styles.icon}>
-                <IconButton aria-label="Highscore" color="inherit">
-                  <FormatListNumberedIcon />
-                </IconButton>
-              </span>
-            </Link>
-          )}
+          <div className={styles.right}>
+            {!this.props.hideHighscore && (
+              <Link to="/highscore">
+                <span className={styles.icon}>
+                  <IconButton aria-label="Highscore" color="inherit">
+                    <FormatListNumberedIcon />
+                  </IconButton>
+                </span>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     )
