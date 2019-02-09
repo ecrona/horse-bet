@@ -34,22 +34,24 @@ export class Fixture extends React.PureComponent<Props> {
 
     return (
       <div className={styles.container}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            fontSize: 14,
-            fontWeight: 500,
-            marginBottom: 16,
-            padding: 12,
-            color: 'rgba(0, 0, 0, 0.67)'
-          }}
-        >
-          <LockIcon style={{ fontSize: 16 }} />{' '}
-          <span style={{ paddingLeft: 8 }}>
-            Locks at {fixture.firstMatchStart}
-          </span>
-        </div>
+        {fixture.placeable && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              fontSize: 14,
+              fontWeight: 500,
+              marginBottom: 16,
+              padding: 12,
+              color: 'rgba(0, 0, 0, 0.67)'
+            }}
+          >
+            <LockIcon style={{ fontSize: 16 }} />{' '}
+            <span style={{ paddingLeft: 8 }}>
+              Locks at {fixture.firstMatchStart}
+            </span>
+          </div>
+        )}
 
         <div className={styles.matchup}>
           <div className={styles.team}>
