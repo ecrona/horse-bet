@@ -41,7 +41,7 @@ export class Fixture extends React.PureComponent<Props> {
               alignItems: 'center',
               fontSize: 14,
               fontWeight: 500,
-              marginBottom: 16,
+              marginBottom: 20,
               padding: 12,
               color: 'rgba(0, 0, 0, 0.67)'
             }}
