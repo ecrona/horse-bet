@@ -38,7 +38,7 @@ export class Toolbar extends React.PureComponent<Props> {
 
           <div className={styles.right}>
             {!this.props.hideHighscore && (
-              <Link to="/highscore">
+              <Link to="/highscore" title="View highscore">
                 <span className={styles.icon}>
                   <IconButton aria-label="Highscore" color="inherit">
                     <FormatListNumberedIcon />
