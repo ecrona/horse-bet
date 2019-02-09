@@ -53,6 +53,8 @@ export class Fixture extends React.PureComponent<Props> {
           </div>
         )}
 
+        {!fixture.placeable && <div style={{ height: 20 }} />}
+
         <div className={styles.matchup}>
           <div className={styles.team}>
             <horse-button
