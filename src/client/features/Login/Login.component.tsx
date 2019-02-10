@@ -45,7 +45,9 @@ export class Login extends React.PureComponent<
 
         <div>
           <a href="/auth/google">
-            <horse-button color="primary">Log in</horse-button>
+            <horse-button color="primary" class={styles.button}>
+              Log in
+            </horse-button>
           </a>
         </div>
       </div>

@@ -8,6 +8,7 @@ export class Layout extends React.PureComponent<StoreProps, any> {
   }
 
   render() {
+    return <Login show />
     return (
       <React.Fragment>
         {this.props.authenticated && this.props.children}
