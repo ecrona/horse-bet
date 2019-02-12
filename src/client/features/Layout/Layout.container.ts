@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import { mapState, mapDispatch } from 'store'
 import { updateDate } from 'store/common/actions'
