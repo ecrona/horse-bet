@@ -62,8 +62,10 @@ export class MailCommand {
         )
     )
 
+    console.log(closeFixtures, usersWithoutBets)
+
     for (const user of usersWithoutBets) {
-      await this.mailerProvider.sendMail({
+      /*await this.mailerProvider.sendMail({
         to: user.email,
         from: 'ecrona@gmail.com',
         subject: 'Glöm inte Hästbett!',
@@ -75,7 +77,7 @@ export class MailCommand {
           Du har väl inte glömt att betta på kvällens matcher?!
           Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att lägga dina bet!
         `
-      })
+      })*/
     }
   }
 }

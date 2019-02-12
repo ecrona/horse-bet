@@ -53,7 +53,9 @@ export class FixtureService {
             bet.awayTeam === fixture.awayTeam &&
             bet.homeTeam === fixture.homeTeam
         )
-        const userBet = fixtureBets.find(bet => bet.userEmail === email)
+        const userBet = fixtureBets.find(
+          bet => bet.userEmail.toLowerCase() === email.toLowerCase()
+        )
 
         return {
           round: fixture.round,
@@ -78,8 +80,10 @@ export class FixtureService {
           score: fixture.score,
           bets: hasFixtureBegun(fixture)
             ? fixtureBets.map(bet => ({
-                name: users.find(user => user.email === bet.userEmail)
-                  .displayName,
+                name: users.find(
+                  user =>
+                    user.email.toLowerCase() === bet.userEmail.toLowerCase()
+                ).displayName,
                 placement: bet.placement
               }))
             : []
