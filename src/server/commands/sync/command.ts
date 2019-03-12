@@ -1,8 +1,8 @@
-import { Command, Positional } from 'nestjs-command'
 import { Injectable } from '@nestjs/common'
+import { MatchWinner } from '@shared/models/match-winner'
+import { Command, Positional } from 'nestjs-command'
 import { FixtureService } from 'services/fixture'
 import { FootballData } from './api-adapters/football-data'
-import { MatchWinner } from '@shared/models/match-winner'
 
 @Injectable()
 export class SyncCommand {
