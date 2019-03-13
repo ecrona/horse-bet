@@ -1,13 +1,14 @@
 import { BetPlacement } from '@shared/models/bet-placement'
 import { Fixture } from '@shared/models/fixture'
-import { ThunkAction, ActionsUnion, createAction } from 'store'
+import { ActionsUnion, createAction, ThunkAction } from 'store'
 
 export enum ActionTypes {
   requestFixtures = '[Dashboard] Request fixtures',
   receiveFixtures = '[Dashboard] Receive fixtures',
   requestPlaceBet = '[Dashboard] Request place bet',
   receivePlaceBet = '[Dashboard] Receive place bet',
-  toggleViewState = '[Dashboard] Toggle view state'
+  toggleViewState = '[Dashboard] Toggle view state',
+  saveScrollPosition = '[Dashboard] Save scroll position'
 }
 
 export const actions = {
@@ -25,7 +26,9 @@ export const actions = {
       homeTeam,
       placement
     }),
-  toggleViewState: () => createAction(ActionTypes.toggleViewState)
+  toggleViewState: () => createAction(ActionTypes.toggleViewState),
+  saveScrollPosition: (scrollPosition: number) =>
+    createAction(ActionTypes.saveScrollPosition, scrollPosition)
 }
 
 export const getFixtures = (): ThunkAction => async (

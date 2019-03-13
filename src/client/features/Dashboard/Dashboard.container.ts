@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
-import { mapState, mapDispatch } from 'store'
+import { mapDispatch, mapState } from 'store'
 import { Dashboard as Component } from './Dashboard.component'
-import { getFixtures, placeBet, actions } from './store/actions'
+import { actions, placeBet } from './store/actions'
 import { getRounds } from './store/selectors'
 
 const mapStateToProps = mapState(state => ({
   viewState: state.dashboard.viewState,
   fixtures: state.dashboard.fixtures,
-  rounds: getRounds(state)
+  rounds: getRounds(state),
+  scrollPosition: state.dashboard.scrollPosition
 }))
 
 const mapDispatchToProps = mapDispatch({
   placeBet,
-  toggleViewState: actions.toggleViewState
+  toggleViewState: actions.toggleViewState,
+  saveScrollPosition: actions.saveScrollPosition
 })
 
 export type StoreProps = ReturnType<typeof mapStateToProps> &
