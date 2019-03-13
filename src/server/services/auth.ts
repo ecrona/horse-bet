@@ -1,6 +1,6 @@
-import * as jwt from 'jsonwebtoken'
 import { Injectable } from '@nestjs/common'
 import { UserEntity } from 'entities/user'
+import * as jwt from 'jsonwebtoken'
 import { UserService } from './user'
 
 @Injectable()
@@ -10,10 +10,9 @@ export class AuthService {
   constructor(private userService: UserService) {}
 
   public async createToken(email: string) {
-    const expiresIn = 60 * 60
     const secretOrKey = 'secret'
 
-    return jwt.sign({ email }, secretOrKey, { expiresIn })
+    return jwt.sign({ email }, secretOrKey)
   }
 
   public async validateUser(email: string): Promise<UserEntity> {

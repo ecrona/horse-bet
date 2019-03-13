@@ -1,12 +1,15 @@
-import * as React from 'react'
-import styles from './Details.styles.scss'
-import { Toolbar } from '@client/shared/components/Toolbar/component'
-import { StoreProps } from './Details.container'
 import { BetPlacement } from '@client/../shared/models/bet-placement'
-import { Fixture } from '../Dashboard/components/Fixture'
+import { Toolbar } from '@client/shared/components/Toolbar/component'
+import * as React from 'react'
 import { Information } from './components/Information'
+import { StoreProps } from './Details.container'
+import styles from './Details.styles.scss'
 
 export class Details extends React.PureComponent<StoreProps> {
+  componentWillMount() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const { fixture } = this.props
 
