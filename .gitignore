@@ -1,6 +1,5 @@
 node_modules
 public/js
-.vscode
 npm-debug.log
 package-lock.json
 ormconfig.json

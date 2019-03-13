@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Header } from 'shared/components/Header/component'
 import { Section } from 'shared/components/Section/component'
-import { StoreProps } from './Dashboard.container'
-import { ViewState } from './models/view-state'
-import { Fixture } from './components/Fixture'
 import { Toolbar } from 'shared/components/Toolbar/component'
+import { Fixture } from './components/Fixture'
+import { StoreProps } from './Dashboard.container'
 import styles from './Dashboard.styles.scss'
+import { ViewState } from './models/view-state'
 
 interface Props extends StoreProps {}
 
@@ -15,6 +15,14 @@ export class Dashboard extends React.PureComponent<Props> {
       this.props.viewState === ViewState.Fetching ||
       this.props.viewState === ViewState.PlacingBet
     )
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, this.props.scrollPosition)
+  }
+
+  componentWillUnmount() {
+    this.props.saveScrollPosition(window.scrollY)
   }
 
   render() {

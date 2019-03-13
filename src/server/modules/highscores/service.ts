@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { BetPlacement } from '@shared/models/bet-placement'
+import { MatchWinner } from '@shared/models/match-winner'
 import { BetEntity } from 'entities/bet'
 import { FixtureEntity } from 'entities/fixture'
 import { UserEntity } from 'entities/user'
-import { BetPlacement } from '@shared/models/bet-placement'
-import { MatchWinner } from '@shared/models/match-winner'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class HighscoresService {
@@ -28,12 +28,12 @@ export class HighscoresService {
         // Map all the users to retrieve the data we're interested in
         .map(user => ({
           name: user.displayName,
-          me: user.email === email,
+          me: user.email.toLowerCase() === email.toLowerCase(),
           // Compare all the user bets to the fixtures to find out total score
           score: fixtures.filter(fixture =>
             bets.find(
               bet =>
-                bet.userEmail === user.email &&
+                bet.userEmail.toLowerCase() === user.email.toLowerCase() &&
                 bet.awayTeam === fixture.awayTeam &&
                 bet.homeTeam === fixture.homeTeam &&
                 ((bet.placement === BetPlacement.Home &&

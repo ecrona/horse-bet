@@ -1,10 +1,10 @@
-import * as format from 'date-fns/format'
-import { RequestMethod } from '@shared/utils/endpoints'
-import { Round } from '@shared/models/round'
 import { MatchWinner } from '@shared/models/match-winner'
+import { Round } from '@shared/models/round'
+import { RequestMethod } from '@shared/utils/endpoints'
+import * as format from 'date-fns/format'
+import { xhr } from '../xhr'
 import { ApiAdapter } from './api-adapter'
 import { ApiFixture } from './api-fixture'
-import { xhr } from '../xhr'
 
 interface Season {
   id: number
@@ -159,10 +159,8 @@ export class FootballData implements ApiAdapter {
         secondMatchStart: null,
         round: this.getRound(match.stage),
         winner: this.getWinner(match.score.winner),
-        homeScore:
-          match.score.extraTime.homeTeam || match.score.fullTime.homeTeam || 0,
-        awayScore:
-          match.score.extraTime.awayTeam || match.score.fullTime.awayTeam || 0,
+        homeScore: match.score.fullTime.homeTeam || 0,
+        awayScore: match.score.fullTime.awayTeam || 0,
         penalties: match.score.duration === 'PENALTY_SHOOTOUT',
         lastUpdated: format(new Date(match.lastUpdated), 'YYYY-MM-DD HH:mm:ss')
       }))
@@ -183,7 +181,9 @@ export class FootballData implements ApiAdapter {
                 return {
                   ...match,
                   firstMatchStart: _match.firstMatchStart,
-                  secondMatchStart: match.firstMatchStart
+                  secondMatchStart: match.firstMatchStart,
+                  homeScore: match.homeScore + _match.awayScore,
+                  awayScore: match.awayScore + _match.homeScore
                 }
               }
 
