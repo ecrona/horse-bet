@@ -1,3 +1,5 @@
+import { bind } from 'bind-decorator'
+import { debounce } from 'debounce'
 import * as React from 'react'
 import { Header } from 'shared/components/Header/component'
 import { Section } from 'shared/components/Section/component'
@@ -10,6 +12,12 @@ import { ViewState } from './models/view-state'
 interface Props extends StoreProps {}
 
 export class Dashboard extends React.PureComponent<Props> {
+  constructor(props) {
+    super(props)
+
+    this.onScroll = debounce(this.onScroll, 200)
+  }
+
   isLoading() {
     return (
       this.props.viewState === ViewState.Fetching ||
@@ -17,12 +25,18 @@ export class Dashboard extends React.PureComponent<Props> {
     )
   }
 
+  @bind
+  onScroll() {
+    this.props.saveScrollPosition(window.scrollY)
+  }
+
   componentDidMount() {
     window.scrollTo(0, this.props.scrollPosition)
+    window.addEventListener('scroll', this.onScroll)
   }
 
   componentWillUnmount() {
-    this.props.saveScrollPosition(window.scrollY)
+    window.removeEventListener('scroll', this.onScroll)
   }
 
   render() {

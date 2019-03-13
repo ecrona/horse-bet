@@ -1,6 +1,6 @@
 {
   "name": "horse-bet",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A small betting game specified for soccer tournaments",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register -P backend/tsconfig.json backend/src/main.ts",
@@ -82,6 +82,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "1.0.0",
     "date-fns": "1.29.0",
+    "debounce": "1.2.0",
     "es6-collections": "0.5.6",
     "es6-promise": "4.2.4",
     "file-loader": "1.1.11",
