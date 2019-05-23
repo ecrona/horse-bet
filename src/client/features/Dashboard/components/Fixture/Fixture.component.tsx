@@ -1,11 +1,12 @@
-import * as React from 'react'
+import { MatchWinner } from '@client/../shared/models/match-winner'
+import LockIcon from '@material-ui/icons/LockOpen'
 import { BetPlacement } from '@shared/models/bet-placement'
+import { format } from 'date-fns'
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import 'shared/components/horse-button'
 import { DashboardFixture } from '../../models/dashboard-fixture'
 import styles from './Fixture.styles.scss'
-import 'shared/components/horse-button'
-import { MatchWinner } from '@client/../shared/models/match-winner'
-import { Link } from 'react-router-dom'
-import LockIcon from '@material-ui/icons/LockOpen'
 
 interface Props {
   fixture: DashboardFixture
@@ -32,29 +33,10 @@ export class Fixture extends React.PureComponent<Props> {
     const { fixture, placeBet } = this.props
     const disabled = !fixture.placeable ? { disabled: true } : undefined
 
+    window['a'] = fixture.firstMatchStart
+
     return (
       <div className={styles.container}>
-        {fixture.placeable && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              fontSize: 14,
-              fontWeight: 500,
-              marginBottom: 20,
-              padding: 12,
-              color: 'rgba(0, 0, 0, 0.67)'
-            }}
-          >
-            <LockIcon style={{ fontSize: 16 }} />{' '}
-            <span style={{ paddingLeft: 8 }}>
-              Locks at {fixture.firstMatchStart}
-            </span>
-          </div>
-        )}
-
-        {!fixture.placeable && <div style={{ height: 20 }} />}
-
         <div className={styles.matchup}>
           <div className={styles.team}>
             <horse-button
@@ -110,6 +92,27 @@ export class Fixture extends React.PureComponent<Props> {
         </div>
 
         <div style={{ textAlign: 'center', paddingTop: 20 }}>
+          {fixture.placeable && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 13,
+                fontWeight: 500,
+                paddingTop: 20,
+                paddingBottom: 4,
+                color: 'rgba(0, 0, 0, 0.5)'
+              }}
+            >
+              <LockIcon style={{ fontSize: 16 }} />{' '}
+              <span style={{ paddingLeft: 8 }}>
+                Betting locks at{' '}
+                {format(new Date(fixture.firstMatchStart), 'HH:mm DD/MM')}
+              </span>
+            </div>
+          )}
+
           <Link
             className={styles.detailsButtonLink}
             to={`/fixture/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}

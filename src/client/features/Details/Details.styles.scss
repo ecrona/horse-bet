@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: 40px 16px 16px;
+  padding: 40px 8px 16px;
 
   color: #fff;
 }
@@ -25,6 +25,14 @@
   text-align: center;
 }
 
+.teamNameWinner {
+  color: var(--horse-primary);
+}
+
+.teamNameLoser {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .logo {
   width: 25vw;
   height: 25vw;
@@ -32,15 +40,20 @@
   max-height: 120px;
 }
 
+.logoLoser {
+  opacity: 0.5;
+}
+
 .score {
   display: block;
   margin-top: 72px;
   width: 80px;
+  min-width: 72px;
 
   color: #fff;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
-  letter-spacing: 8px;
+  letter-spacing: 4px;
   text-align: center;
 }
 

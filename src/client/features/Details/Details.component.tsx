@@ -1,5 +1,7 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
+import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Toolbar } from '@client/shared/components/Toolbar/component'
+import classnames from 'classnames'
 import * as React from 'react'
 import { Information } from './components/Information'
 import { StoreProps } from './Details.container'
@@ -30,15 +32,47 @@ export class Details extends React.PureComponent<StoreProps> {
           <React.Fragment>
             <div className={styles.container}>
               <div className={styles.team}>
-                <span className={styles.teamName}>{fixture.homeTeam.name}</span>
-                <img className={styles.logo} src={fixture.homeTeam.logo} />
+                <span
+                  className={classnames({
+                    [styles.teamName]: true,
+                    [styles.teamNameWinner]:
+                      fixture.matchWinner === MatchWinner.Home,
+                    [styles.teamNameLoser]:
+                      fixture.matchWinner !== MatchWinner.Home
+                  })}
+                >
+                  {fixture.homeTeam.name}
+                </span>
+                <img
+                  className={classnames({
+                    [styles.logo]: true,
+                    [styles.logoLoser]: fixture.matchWinner === MatchWinner.Away
+                  })}
+                  src={fixture.homeTeam.logo}
+                />
               </div>
 
               <div className={styles.score}>{fixture.score || '-'}</div>
 
               <div className={styles.team}>
-                <span className={styles.teamName}>{fixture.awayTeam.name}</span>
-                <img className={styles.logo} src={fixture.awayTeam.logo} />
+                <span
+                  className={classnames({
+                    [styles.teamName]: true,
+                    [styles.teamNameWinner]:
+                      fixture.matchWinner === MatchWinner.Away,
+                    [styles.teamNameLoser]:
+                      fixture.matchWinner !== MatchWinner.Away
+                  })}
+                >
+                  {fixture.awayTeam.name}
+                </span>
+                <img
+                  className={classnames({
+                    [styles.logo]: true,
+                    [styles.logoLoser]: fixture.matchWinner === MatchWinner.Home
+                  })}
+                  src={fixture.awayTeam.logo}
+                />
               </div>
             </div>
 

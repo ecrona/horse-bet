@@ -12,7 +12,6 @@ export default css`
   }
 
   .button[disabled] {
-    /* border: 1px solid rgba(0, 0, 0, 0.12); */
     border: none;
 
     background-color: transparent;
@@ -20,6 +19,11 @@ export default css`
     color: rgba(0, 0, 0, 0.67);
     cursor: not-allowed;
     filter: grayscale(0.5);
+    opacity: 0.75;
+  }
+
+  .button[disabled]:hover {
+    background-color: transparent;
   }
 
   .button {
@@ -72,6 +76,7 @@ export default css`
     background-color: var(--horse-primary);
     color: var(--horse-primary-text);
     filter: none;
+    opacity: 1;
   }
 
   .secondary {
@@ -91,6 +96,7 @@ export default css`
     background-color: var(--horse-secondary);
     color: var(--horse-secondary-text);
     filter: none;
+    opacity: 1;
   }
 
   .tertiary {
