@@ -6,7 +6,6 @@ export const config: webpack.Configuration = {
   devtool: 'inline-source-map',
 
   entry: [
-    '@webcomponents/webcomponentsjs/webcomponents-bundle.js',
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',

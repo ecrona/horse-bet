@@ -1,9 +1,9 @@
-import path from 'path'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import path from 'path'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import webpack from 'webpack'
 
 export const config: webpack.Configuration = {
   output: {
@@ -24,9 +24,8 @@ export const config: webpack.Configuration = {
     rules: [
       {
         test: /\.js$/,
-        // include: /(node_modules\/(@webcomponents\/shadycss|lit-html|lit-element)\/).*/,
         loader: 'babel-loader',
-        include: /node_modules(?:\/|\\)lit-element|lit-html/,
+        exclude: /node_modules/,
         options: {
           presets: [
             [
@@ -34,19 +33,8 @@ export const config: webpack.Configuration = {
               {
                 modules: false,
                 targets: {
-                  ie: 11
+                  browsers: ['last 2 versions', 'not ie > 0']
                 }
-              }
-            ]
-          ],
-          plugins: [
-            [
-              '@babel/plugin-transform-runtime',
-              {
-                corejs: false,
-                helpers: true,
-                regenerator: true,
-                useESModules: false
               }
             ]
           ]

@@ -1,7 +1,7 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Toolbar } from '@client/shared/components/Toolbar/component'
-import classnames from 'classnames'
+import clsx from 'clsx'
 import * as React from 'react'
 import { Information } from './components/Information'
 import { StoreProps } from './Details.container'
@@ -33,7 +33,7 @@ export class Details extends React.PureComponent<StoreProps> {
             <div className={styles.container}>
               <div className={styles.team}>
                 <span
-                  className={classnames({
+                  className={clsx({
                     [styles.teamName]: true,
                     [styles.teamNameWinner]:
                       fixture.matchWinner === MatchWinner.Home,
@@ -44,7 +44,7 @@ export class Details extends React.PureComponent<StoreProps> {
                   {fixture.homeTeam.name}
                 </span>
                 <img
-                  className={classnames({
+                  className={clsx({
                     [styles.logo]: true,
                     [styles.logoLoser]: fixture.matchWinner === MatchWinner.Away
                   })}
@@ -56,7 +56,7 @@ export class Details extends React.PureComponent<StoreProps> {
 
               <div className={styles.team}>
                 <span
-                  className={classnames({
+                  className={clsx({
                     [styles.teamName]: true,
                     [styles.teamNameWinner]:
                       fixture.matchWinner === MatchWinner.Away,
@@ -67,7 +67,7 @@ export class Details extends React.PureComponent<StoreProps> {
                   {fixture.awayTeam.name}
                 </span>
                 <img
-                  className={classnames({
+                  className={clsx({
                     [styles.logo]: true,
                     [styles.logoLoser]: fixture.matchWinner === MatchWinner.Home
                   })}

@@ -1,5 +1,5 @@
+import clsx from 'clsx'
 import React from 'react'
-import classNames from 'classnames'
 import styles from './styles.scss'
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 export class Section extends React.PureComponent<Props> {
   render() {
-    const classes = classNames({
+    const classes = clsx({
       [styles.root]: true,
       [styles.spaced]: this.props.spaced
     })

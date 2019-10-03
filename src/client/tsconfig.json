@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
+    "moduleResolution": "node",
+    "module": "es2015",
+    "target": "es2015",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": "./",
@@ -9,15 +10,13 @@
     "outDir": "build",
     "jsx": "react",
     "strict": false,
-    "typeRoots": ["./typings", "../../node_modules/@types"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": ["es5", "dom", "es2015"],
+    "lib": ["dom", "es2015"],
     "paths": {
       "@client/*": ["*"],
       "@shared/*": ["../shared/*"],
       "@env/*": ["../../env/*"]
     }
-  },
-  "exclude": ["node_modules"]
+  }
 }

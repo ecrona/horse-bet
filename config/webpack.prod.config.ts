@@ -1,6 +1,6 @@
-import webpack from 'webpack'
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import webpack from 'webpack'
 
 export const config: webpack.Configuration = {
   mode: 'production',

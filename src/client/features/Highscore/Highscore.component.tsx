@@ -1,10 +1,10 @@
-import React from 'react'
-import classnames from 'classnames'
 import { Toolbar } from '@client/shared/components/Toolbar/component'
-import styles from './Highscore.styles.scss'
-import { StoreProps } from './Highscore.container'
-import { ViewState } from './models/view-state'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import clsx from 'clsx'
+import React from 'react'
+import { StoreProps } from './Highscore.container'
+import styles from './Highscore.styles.scss'
+import { ViewState } from './models/view-state'
 
 interface Props extends StoreProps {}
 
@@ -33,7 +33,7 @@ export class Highscore extends React.PureComponent<Props> {
             {highscores.map(highscore => (
               <div
                 key={highscore.name}
-                className={classnames({
+                className={clsx({
                   [styles.item]: true,
                   [styles.me]: highscore.me
                 })}

@@ -1,5 +1,5 @@
-import { LitElement, property, customElement, html } from 'lit-element'
-import classnames from 'classnames'
+import clsx from 'clsx'
+import { customElement, html, LitElement, property } from 'lit-element'
 import styles from './styles'
 
 @customElement('horse-button')
@@ -19,7 +19,7 @@ export class HorseButton extends LitElement {
   static styles = styles
 
   render() {
-    const classes = classnames({
+    const classes = clsx({
       button: true,
       [this.color]: Boolean(this.color),
       fullwidth: this.fullWidth,

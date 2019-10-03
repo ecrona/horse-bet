@@ -1,12 +1,12 @@
+import clsx from 'clsx'
 import React from 'react'
-import classNames from 'classnames'
 import styles from './styles.scss'
 
 interface Props {}
 
 export class Header extends React.PureComponent<Props> {
   render() {
-    const headerClasses = classNames({
+    const headerClasses = clsx({
       [styles.root]: true
     })
 
