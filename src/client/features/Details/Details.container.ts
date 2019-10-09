@@ -1,14 +1,11 @@
 import { connect } from 'react-redux'
-import { mapState, mapDispatch } from 'store'
+import { mapDispatch, mapState } from 'store'
 import { Details as Component } from './Details.component'
-import { RouteChildrenProps } from 'react-router'
+// import { RouteChildrenProps } from 'react-router'
 import { getFixture } from './selectors'
 
 const mapStateToProps = mapState(
-  (
-    state,
-    ownProps: RouteChildrenProps<{ homeTeam: string; awayTeam: string }>
-  ) => ({
+  (state, ownProps: { homeTeam: string; awayTeam: string; match: any }) => ({
     fixture: getFixture(
       state,
       ownProps.match.params.homeTeam,

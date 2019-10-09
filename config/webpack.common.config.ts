@@ -1,9 +1,9 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import webpack from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 export const config: webpack.Configuration = {
   output: {
@@ -56,13 +56,15 @@ export const config: webpack.Configuration = {
         test: /\.sass?|.scss?|.css?$/,
         use: [
           MiniCssExtractPlugin.loader,
+          // 'style-loader',
+          'css-loader',
           {
-            loader: 'css-loader',
+            loader: 'postcss-loader',
             options: {
-              modules: true
+              ident: 'postcss',
+              plugins: [require('tailwindcss'), require('autoprefixer')]
             }
-          },
-          'sass-loader'
+          }
         ]
       }
     ]

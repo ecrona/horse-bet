@@ -1,10 +1,10 @@
+import { ConnectedRouter } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import { ConnectedRouter } from 'connected-react-router'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-import { createBrowserHistory } from 'history'
+import { BrowserRouter } from 'react-router-dom'
 import { App } from './App'
 import createStore from './store/create-store'
 
@@ -14,15 +14,15 @@ const history = createBrowserHistory()
 export const store = createStore(history)
 
 ReactDOM.render(
-  <AppContainer>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </BrowserRouter>
-    </Provider>
-  </AppContainer>,
+  // <AppContainer>
+  //   <Provider store={store}>
+  //     <BrowserRouter>
+  //       <ConnectedRouter history={history}>
+  <App />,
+  //       </ConnectedRouter>
+  //     </BrowserRouter>
+  //   </Provider>
+  // </AppContainer>,
   rootElement
 )
 
