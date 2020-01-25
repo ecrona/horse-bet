@@ -1,0 +1,34 @@
+.bet-button {
+  @apply relative flex items-center;
+  @apply px-6;
+  @apply bg-gray-100 text-white;
+
+  height: 64px;
+}
+
+.bet-button__logo {
+  width: 48px !important;
+  max-width: 48px !important;
+  height: 48px !important;
+  max-height: 48px !important;
+}
+
+.bet-fixture {
+  @apply relative shadow;
+}
+
+.bet-fixture__separator {
+  height: 1px;
+  background-color: #3d3d3d;
+}
+
+.bet-fixture__state {
+  @apply absolute flex items-center justify-center;
+  @apply bg-gray-300 rounded-full shadow;
+
+  top: calc(64px - (36px / 2));
+  right: 64px;
+
+  width: 36px;
+  height: 36px;
+}
