@@ -8,8 +8,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
   get: createMockPromise([
     {
       round: Round.QuarterFinals,
-      firstMatchStart: '2019-04-15 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-04-15 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'Juventus', logo: '/assets/logotypes/juventus.png' },
       awayTeam: { name: 'Man City', logo: '/assets/logotypes/man-city.png' },
       betPlacement: BetPlacement.NotPlaced,
@@ -23,8 +23,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-20 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-20 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'Juventus', logo: '/assets/logotypes/juventus.png' },
       awayTeam: {
         name: 'Atlético Madrid',
@@ -40,8 +40,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-20 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-20 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'Man City', logo: '/assets/logotypes/man-city.png' },
       awayTeam: { name: 'Schalke', logo: '/assets/logotypes/schalke.png' },
       betPlacement: BetPlacement.Home,
@@ -54,8 +54,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-19 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-19 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: {
         name: 'Bayern München',
         logo: '/assets/logotypes/bayern-münchen.png'
@@ -71,8 +71,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-19 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-19 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'Barcelona', logo: '/assets/logotypes/barcelona.png' },
       awayTeam: { name: 'Lyon', logo: '/assets/logotypes/lyon.png' },
       betPlacement: BetPlacement.NotPlaced,
@@ -85,8 +85,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-13 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-13 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: {
         name: 'Real Madrid',
         logo: '/assets/logotypes/real-madrid.png'
@@ -102,8 +102,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-13 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-13 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'Dortmund', logo: '/assets/logotypes/dortmund.png' },
       awayTeam: { name: 'Tottenham', logo: '/assets/logotypes/tottenham.png' },
       betPlacement: BetPlacement.NotPlaced,
@@ -116,8 +116,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-12 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-12 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'PSG', logo: '/assets/logotypes/psg.png' },
       awayTeam: { name: 'Man Utd', logo: '/assets/logotypes/man-utd.png' },
       betPlacement: BetPlacement.NotPlaced,
@@ -130,8 +130,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
     },
     {
       round: Round.RoundOf16,
-      firstMatchStart: '2019-02-01 21:00',
-      secondMatchStart: '2019-04-04 04:04',
+      firstMatchStart: '2020-02-01 21:00',
+      secondMatchStart: '2020-04-04 04:04',
       homeTeam: { name: 'Porto', logo: '/assets/logotypes/porto.png' },
       awayTeam: { name: 'Roma', logo: '/assets/logotypes/roma.png' },
       betPlacement: BetPlacement.NotPlaced,
