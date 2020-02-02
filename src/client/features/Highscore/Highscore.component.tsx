@@ -1,4 +1,4 @@
-import { Toolbar } from '@client/shared/components/Toolbar/component'
+import Toolbar from '@client/shared/components/Toolbar'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import clsx from 'clsx'
 import React from 'react'

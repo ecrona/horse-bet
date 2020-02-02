@@ -1,9 +1,43 @@
 .bet-button {
   @apply relative flex items-center;
-  @apply px-6;
+  @apply px-6 w-full;
   @apply bg-gray-100 text-white;
 
   height: 64px;
+
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.125s;
+}
+
+.bet-button:active {
+  border: 2px solid green;
+}
+
+.bet-button:hover {
+  @apply bg-yellow-300 text-gray-300;
+}
+
+.bet-button:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.bet-button:disabled:not(.bet-button--selected) {
+  background: transparent;
+  opacity: 0.5;
+}
+
+.bet-button--selected {
+  @apply bg-yellow-300 text-gray-300;
+}
+
+.bet-button--loser {
+  @apply bg-red-100 text-white;
+}
+
+.bet-button--winner {
+  @apply bg-green-100 text-white;
 }
 
 .bet-button__logo {
@@ -31,4 +65,31 @@
 
   width: 36px;
   height: 36px;
+}
+
+.bet-fixture__details {
+  @apply flex items-center justify-center;
+
+  outline: none !important;
+  margin: 0 auto;
+  padding: 8px 16px;
+
+  background-color: transparent;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: Rockwell;
+  font-size: 12px;
+
+  transition: color 0.125s, background-color 0.125s;
+}
+
+.bet-fixture__details:hover {
+  color: #fff;
+  background-color: #3c3c3c;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+}
+
+.bet-fixture__details:active {
+  background-color: #3e3e3e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.23);
 }

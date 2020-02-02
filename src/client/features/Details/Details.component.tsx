@@ -1,6 +1,6 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
-import { Toolbar } from '@client/shared/components/Toolbar/component'
+import Toolbar from '@client/shared/components/Toolbar'
 import clsx from 'clsx'
 import * as React from 'react'
 import { Information } from './components/Information'

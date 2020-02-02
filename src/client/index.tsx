@@ -14,15 +14,13 @@ const history = createBrowserHistory()
 export const store = createStore(history)
 
 ReactDOM.render(
-  // <AppContainer>
-  //   <Provider store={store}>
-  //     <BrowserRouter>
-  //       <ConnectedRouter history={history}>
-  <App />,
-  //       </ConnectedRouter>
-  //     </BrowserRouter>
-  //   </Provider>
-  // </AppContainer>,
+  <AppContainer>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </AppContainer>,
   rootElement
 )
 
@@ -33,9 +31,7 @@ if (module.hot) {
       <AppContainer>
         <Provider store={store}>
           <BrowserRouter>
-            <ConnectedRouter history={history}>
-              <NewApp />
-            </ConnectedRouter>
+            <NewApp />
           </BrowserRouter>
         </Provider>
       </AppContainer>,
