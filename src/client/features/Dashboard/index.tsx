@@ -53,21 +53,22 @@ function Separator() {
 
 interface FixProps {
   fixture: DashboardFixture
-  placeBet: (
+  tournamentName: string
+  onPlaceBet: (
     awayTeam: string,
     homeTeam: string,
     placement: BetPlacement
   ) => void
 }
 
-function Fixture({ fixture, placeBet }: FixProps) {
+function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
   const [homeScore, awayScore] = fixture.score.split('-')
   const isDisabled = !fixture.placeable
   const homeDisabled = isDisabled || fixture.betPlacement === BetPlacement.Home
   const awayDisabled = isDisabled || fixture.betPlacement === BetPlacement.Away
 
   const handlePlaceBet = (placement: BetPlacement) => () => {
-    placeBet(fixture.awayTeam.name, fixture.homeTeam.name, placement)
+    onPlaceBet(fixture.awayTeam.name, fixture.homeTeam.name, placement)
   }
 
   return (
@@ -117,7 +118,7 @@ function Fixture({ fixture, placeBet }: FixProps) {
       <footer className="text-center">
         <Link
           className="inline-block"
-          to={`/fixture/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
+          to={`/${tournamentName}/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
           title="Click to view fixture details"
         >
           <button className="bet-fixture__details">View details</button>
@@ -178,7 +179,11 @@ export default function Dashboard() {
 
           {round.fixtures.map(fixture => (
             <div key={fixture.awayTeam.name} className="pb-10">
-              <Fixture fixture={fixture} placeBet={handlePlaceBet} />
+              <Fixture
+                fixture={fixture}
+                tournamentName="champions-league"
+                onPlaceBet={handlePlaceBet}
+              />
             </div>
           ))}
         </div>
