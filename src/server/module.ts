@@ -1,13 +1,13 @@
+import { serverEnv } from '@env/server'
+import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer'
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { MailerModule } from '@nest-modules/mailer'
-import { CommandModule } from 'nestjs-command'
-import { serverEnv } from '@env/server'
+import { MailModule } from 'commands/mail/module'
+import { SyncModule } from 'commands/sync/module'
 import { DashboardModule } from 'modules/dashboard/module'
 import { HighscoresModule } from 'modules/highscores/module'
 import { UserModule } from 'modules/user/module'
-import { SyncModule } from 'commands/sync/module'
-import { MailModule } from 'commands/mail/module'
+import { CommandModule } from 'nestjs-command'
 
 @Module({
   imports: [
@@ -32,8 +32,14 @@ import { MailModule } from 'commands/mail/module'
         forceEmbeddedImages: true,
         from: '"nest-modules" <modules@nestjs.com>'
       },
-      templateDir: './src/common/email-templates'
-    }) as any,
+      template: {
+        dir: __dirname + '/templates',
+        adapter: new HandlebarsAdapter(),
+        options: {
+          strict: true
+        }
+      }
+    }),
     CommandModule,
     DashboardModule,
     HighscoresModule,

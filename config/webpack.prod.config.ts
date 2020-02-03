@@ -19,7 +19,7 @@ export const config: webpack.Configuration = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
+    new (webpack.DefinePlugin as any)({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }

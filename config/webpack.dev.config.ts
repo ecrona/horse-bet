@@ -16,7 +16,7 @@ export const config: webpack.Configuration = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
 
-    new webpack.DefinePlugin({
+    new (webpack.DefinePlugin as any)({
       'process.env': {
         USE_MOCK: JSON.stringify(process.env.USE_MOCK)
       }

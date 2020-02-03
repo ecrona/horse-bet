@@ -1,31 +1,34 @@
-import React from 'react'
 import 'global.css'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 import Dashboard from './features/Dashboard'
-import { Switch, Route } from 'react-router-dom'
-import Tournaments from './features/Tournaments'
 import Details from './features/Details'
+import { Layout } from './features/Layout/Layout.container'
+import Tournaments from './features/Tournaments'
 
 export class App extends React.Component<any, any> {
   render() {
     return (
       <div className="h-screen">
-        <Switch>
-          <Route exact path="/">
-            <Tournaments />
-          </Route>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <Tournaments />
+            </Route>
 
-          <Route exact path="/:tournament">
-            <Dashboard />
-          </Route>
+            <Route exact path="/:tournament">
+              <Dashboard />
+            </Route>
 
-          <Route exact path="/:tournament/:homeTeam/:awayTeam">
-            <Details />
-          </Route>
+            <Route exact path="/:tournament/:homeTeam/:awayTeam">
+              <Details />
+            </Route>
 
-          <Route exact path="/:tournament/highscore">
-            <Dashboard />
-          </Route>
-        </Switch>
+            <Route exact path="/:tournament/highscore">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </Layout>
       </div>
     )
   }

@@ -1,15 +1,16 @@
-import { Command, Positional } from 'nestjs-command'
-import { Injectable, Inject } from '@nestjs/common'
+import { MailerService } from '@nest-modules/mailer'
+import { Injectable } from '@nestjs/common'
+import { differenceInHours } from 'date-fns'
+import { Command } from 'nestjs-command'
 import { FixtureService } from 'services/fixture'
 import { UserService } from 'services/user'
-import { differenceInHours } from 'date-fns'
 
 @Injectable()
 export class MailCommand {
   constructor(
     private readonly fixtureService: FixtureService,
     private readonly userService: UserService,
-    @Inject('MailerProvider') private readonly mailerProvider
+    private readonly mailerService: MailerService
   ) {}
 
   @Command({
@@ -19,7 +20,7 @@ export class MailCommand {
     const users = await this.userService.getUsers()
 
     for (const user of users) {
-      await this.mailerProvider.sendMail({
+      await this.mailerService.sendMail({
         to: user.email,
         from: 'ecrona@gmail.com',
         subject: 'Välkommen till Hästbett!',
@@ -45,9 +46,9 @@ export class MailCommand {
   async notify() {
     const now = new Date()
     const userBets = await this.userService.getUserBets()
-    const closeFixtures = (await this.fixtureService.getActiveFixtures()).filter(
-      fixture => differenceInHours(fixture.firstMatchStart, now) <= 12
-    )
+    const closeFixtures = (
+      await this.fixtureService.getActiveFixtures()
+    ).filter(fixture => differenceInHours(fixture.firstMatchStart, now) <= 12)
 
     const usersWithoutBets = userBets.filter(
       userBet =>
@@ -65,7 +66,7 @@ export class MailCommand {
     console.log(closeFixtures, usersWithoutBets)
 
     for (const user of usersWithoutBets) {
-      /*await this.mailerProvider.sendMail({
+      /*await this.mailerService.sendMail({
         to: user.email,
         from: 'ecrona@gmail.com',
         subject: 'Glöm inte Hästbett!',

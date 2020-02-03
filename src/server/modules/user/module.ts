@@ -1,11 +1,10 @@
-import { Module, MiddlewareConsumer, MiddlewareFunction } from '@nestjs/common'
+import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { authenticate } from 'passport'
 import { BetEntity } from 'entities/bet'
 import { UserEntity } from 'entities/user'
+import { authenticate } from 'passport'
 import { AuthService } from 'services/auth'
 import { UserService } from 'services/user'
-import { JwtStrategy } from 'strategies/jwt'
 import { GoogleJwtStrategy } from 'strategies/google-plus'
 import { UserController } from './controller'
 
