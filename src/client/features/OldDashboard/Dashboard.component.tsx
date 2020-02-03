@@ -1,4 +1,3 @@
-import { bind } from 'bind-decorator'
 import { debounce } from 'debounce'
 import * as React from 'react'
 import Toolbar from 'shared/components/Toolbar'
@@ -21,7 +20,6 @@ export class Dashboard extends React.PureComponent<Props> {
     )
   }
 
-  @bind
   onScroll() {
     this.props.saveScrollPosition(window.scrollY)
   }

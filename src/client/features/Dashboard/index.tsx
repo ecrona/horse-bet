@@ -3,7 +3,7 @@ import Toolbar from '@client/shared/components/Toolbar'
 import LockIcon from '@material-ui/icons/lock'
 import { useSelector, useDispatch } from 'react-redux'
 
-import './styles.scss'
+import './styles.css'
 import { Fixture } from '@client/models/fixture'
 import { DashboardFixture } from '../Dashboard/models/dashboard-fixture'
 import clsx from 'clsx'
@@ -11,7 +11,6 @@ import { getFixtures, placeBet } from '../Dashboard/store/actions'
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { Link } from 'react-router-dom'
 import { getRounds } from '../Dashboard/store/selectors'
-import { Round } from '@client/../shared/models/round'
 
 interface BetButtonProps {
   disabled?: boolean
@@ -145,7 +144,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="bg-gray-300">
+    <>
       <Toolbar />
 
       <div className="bg-gray-400 pt-6 px-6 pb-10 text-yellow-300 relative">
@@ -184,6 +183,6 @@ export default function Dashboard() {
           ))}
         </div>
       ))}
-    </div>
+    </>
   )
 }
