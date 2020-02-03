@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react'
-import Toolbar from '@client/shared/components/Toolbar'
-import LockIcon from '@material-ui/icons/lock'
-import { useSelector, useDispatch } from 'react-redux'
-
-import './styles.css'
-import { Fixture } from '@client/models/fixture'
-import { DashboardFixture } from '../Dashboard/models/dashboard-fixture'
-import clsx from 'clsx'
-import { getFixtures, placeBet } from '../Dashboard/store/actions'
 import { BetPlacement } from '@client/../shared/models/bet-placement'
+import { Fixture } from '@client/models/fixture'
+import Toolbar from '@client/shared/components/Toolbar'
+import clsx from 'clsx'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { DashboardFixture } from '../Dashboard/models/dashboard-fixture'
+import { getFixtures, placeBet } from '../Dashboard/store/actions'
 import { getRounds } from '../Dashboard/store/selectors'
+import './styles.css'
 
 interface BetButtonProps {
   disabled?: boolean
