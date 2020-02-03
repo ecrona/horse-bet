@@ -1,13 +1,9 @@
 import { bind } from 'bind-decorator'
 import { debounce } from 'debounce'
 import * as React from 'react'
-import { Header } from 'shared/components/Header/component'
-import { Section } from 'shared/components/Section/component'
 import Toolbar from 'shared/components/Toolbar'
-import { Fixture } from './components/Fixture'
 import { StoreProps } from './Dashboard.container'
-import styles from './Dashboard.styles.scss'
-import { ViewState } from './models/view-state'
+import { ViewState } from '../Dashboard/models/view-state'
 
 interface Props extends StoreProps {}
 
@@ -64,22 +60,6 @@ export class Dashboard extends React.PureComponent<Props> {
             For fixture information see details
           </span>
         </div>
-
-        {Object.keys(rounds)
-          .map(key => rounds[key])
-          .map(round => (
-            <React.Fragment key={round.name}>
-              <Header>{round.name}</Header>
-
-              <Section>
-                {round.fixtures.map((fixture, index) => (
-                  <div key={index} className={styles.fixture}>
-                    <Fixture fixture={fixture} placeBet={placeBet} />
-                  </div>
-                ))}
-              </Section>
-            </React.Fragment>
-          ))}
       </React.Fragment>
     )
   }

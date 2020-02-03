@@ -13,5 +13,3 @@ for (const endpointCollection in endpointsMeta) {
       xhr(endpointMeta.requestMethod, endpointMeta.route, data)
   }
 }
-
-console.log(endpoints)

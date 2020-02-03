@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { RouterState } from 'connected-react-router'
 
 // Common
 import common from './common/reducer'
@@ -19,6 +18,6 @@ const reducerMap = {
 
 export const rootReducer = combineReducers(reducerMap)
 
-export type RootState = { router: RouterState } & {
+export type RootState = {} & {
   [K in keyof typeof reducerMap]: ReturnType<typeof reducerMap[K]>
 }

@@ -5,9 +5,3 @@
   align-items: center;
   height: 80vh;
 }
-
-horse-button {
-  &::part(.button) {
-    height: 24px;
-  }
-}

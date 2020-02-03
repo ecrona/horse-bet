@@ -128,7 +128,7 @@ function Fixture({ fixture, placeBet }: FixProps) {
   )
 }
 
-export default function Horse3() {
+export default function Dashboard() {
   const dispatch = useDispatch()
   const rounds = useSelector(getRounds)
 
@@ -143,10 +143,6 @@ export default function Horse3() {
   ) {
     dispatch(placeBet(awayTeam, homeTeam, placement))
   }
-
-  console.log({ rounds }, Object.values(rounds))
-
-  if (!rounds || !rounds[3]) return null
 
   return (
     <div className="bg-gray-300">
@@ -170,7 +166,7 @@ export default function Horse3() {
       <div className="pb-8"></div>
 
       {Object.values(rounds).map((round: any) => (
-        <>
+        <div key={round.name}>
           <div className="px-6 text-white">
             <h3 className="text-xl font-bold">{round.name}</h3>
             <span style={{ color: 'rgba(255,255,255,0.75)' }}>
@@ -186,7 +182,7 @@ export default function Horse3() {
               <Fixture fixture={fixture} placeBet={handlePlaceBet} />
             </div>
           ))}
-        </>
+        </div>
       ))}
     </div>
   )

@@ -1,8 +1,6 @@
 import * as React from 'react'
 import styles from './Login.styles.scss'
 
-import 'shared/components/horse-button'
-
 // interface Props extends StoreProps {}
 interface Props {}
 
@@ -44,11 +42,7 @@ export class Login extends React.PureComponent<
         </div>
 
         <div>
-          <a href="/auth/google">
-            <horse-button color="primary" class={styles.button}>
-              Log in
-            </horse-button>
-          </a>
+          <a href="/auth/google">Log in</a>
         </div>
       </div>
     )

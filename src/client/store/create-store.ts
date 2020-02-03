@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware } from 'redux'
-import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { History } from 'history'
@@ -11,7 +10,6 @@ declare let module: { hot: any }
 
 export default function configureStore(history: History) {
   const middleware = [
-    routerMiddleware(history),
     thunkMiddleware.withExtraArgument(
       process.env.USE_MOCK ? mockEndpoints : endpoints
     )
@@ -21,10 +19,7 @@ export default function configureStore(history: History) {
     middleware.push(createLogger())
   }
 
-  const store = createStore(
-    connectRouter(history)(rootReducer),
-    applyMiddleware(...middleware)
-  )
+  const store = createStore(rootReducer, applyMiddleware(...middleware))
 
   if (module.hot) {
     module.hot.accept('./index.ts', () => {
