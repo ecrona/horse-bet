@@ -116,7 +116,7 @@ function Fixture({ fixture, placeBet }: FixProps) {
 
       <footer className="text-center">
         <Link
-          style={{ display: 'inline-block' }}
+          className="inline-block"
           to={`/fixture/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
           title="Click to view fixture details"
         >
