@@ -10,14 +10,15 @@ import clsx from 'clsx'
 import { getFixtures, placeBet } from '../Dashboard/store/actions'
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { Link } from 'react-router-dom'
-import { stringify } from 'querystring'
 import { getRounds } from '../Dashboard/store/selectors'
+import { Round } from '@client/../shared/models/round'
 
 interface BetButtonProps {
   disabled?: boolean
   children?: any
   selected?: boolean
   state: 'winner' | 'loser' | 'none'
+  title?: string
   onClick: () => void
 }
 
@@ -26,6 +27,7 @@ function BetButton({
   children,
   state,
   selected,
+  title,
   onClick
 }: BetButtonProps) {
   const classes = clsx('bet-button', {
@@ -35,7 +37,12 @@ function BetButton({
   })
 
   return (
-    <button className={classes} disabled={disabled} onClick={onClick}>
+    <button
+      className={classes}
+      disabled={disabled}
+      title={title}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -57,6 +64,8 @@ interface FixProps {
 function Fixture({ fixture, placeBet }: FixProps) {
   const [homeScore, awayScore] = fixture.score.split('-')
   const isDisabled = !fixture.placeable
+  const homeDisabled = isDisabled || fixture.betPlacement === BetPlacement.Home
+  const awayDisabled = isDisabled || fixture.betPlacement === BetPlacement.Away
 
   const handlePlaceBet = (placement: BetPlacement) => () => {
     placeBet(fixture.awayTeam.name, fixture.homeTeam.name, placement)
@@ -66,9 +75,12 @@ function Fixture({ fixture, placeBet }: FixProps) {
     <>
       <div className="bet-fixture">
         <BetButton
-          disabled={isDisabled}
+          disabled={homeDisabled}
           state="none"
           selected={fixture.betPlacement === BetPlacement.Home}
+          title={
+            homeDisabled ? 'Locked' : `Click to bet on ${fixture.homeTeam.name}`
+          }
           onClick={handlePlaceBet(BetPlacement.Home)}
         >
           <img className="bet-button__logo" src={fixture.homeTeam.logo} />
@@ -81,9 +93,12 @@ function Fixture({ fixture, placeBet }: FixProps) {
         <Separator />
 
         <BetButton
-          disabled={isDisabled}
+          disabled={awayDisabled}
           state="none"
           selected={fixture.betPlacement === BetPlacement.Away}
+          title={
+            awayDisabled ? 'Locked' : `Click to bet on ${fixture.awayTeam.name}`
+          }
           onClick={handlePlaceBet(BetPlacement.Away)}
         >
           <img className="bet-button__logo" src={fixture.awayTeam.logo} />
@@ -92,12 +107,17 @@ function Fixture({ fixture, placeBet }: FixProps) {
           </span>
           <span className="font-medium text-right">{awayScore}</span>
         </BetButton>
+
+        <div className="bet-fixture__state">
+          <span>vs</span>
+        </div>
       </div>
 
       <div className="pb-3"></div>
 
       <footer className="text-center">
         <Link
+          style={{ display: 'inline-block' }}
           to={`/fixture/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
           title="Click to view fixture details"
         >
@@ -111,9 +131,6 @@ function Fixture({ fixture, placeBet }: FixProps) {
 export default function Horse3() {
   const dispatch = useDispatch()
   const rounds = useSelector(getRounds)
-  const fixtures: DashboardFixture[] = useSelector(
-    state => state.dashboard.fixtures
-  )
 
   useEffect(() => {
     dispatch(getFixtures())
@@ -127,13 +144,15 @@ export default function Horse3() {
     dispatch(placeBet(awayTeam, homeTeam, placement))
   }
 
+  console.log({ rounds }, Object.values(rounds))
+
   if (!rounds || !rounds[3]) return null
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-300">
       <Toolbar />
 
-      <div className="bg-gray-300 pt-6 px-6 pb-10 text-yellow-300 relative">
+      <div className="bg-gray-400 pt-6 px-6 pb-10 text-yellow-300 relative">
         <span className="block font-medium">Gneigh,</span>
         <span className="block font-bold text-2xl">Piotr Sköldström</span>
 
@@ -150,17 +169,24 @@ export default function Horse3() {
 
       <div className="pb-8"></div>
 
-      <div className="px-6 text-white">
-        <h3 className="text-xl font-bold">Round of 16th</h3>
-        <span style={{ color: 'rgba(255,255,255,0.75)' }}>8 fixtures</span>
-      </div>
+      {Object.values(rounds).map((round: any) => (
+        <>
+          <div className="px-6 text-white">
+            <h3 className="text-xl font-bold">{round.name}</h3>
+            <span style={{ color: 'rgba(255,255,255,0.75)' }}>
+              {round.fixtures.length}{' '}
+              {round.fixtures.length > 1 ? 'fixtures' : 'fixture'}
+            </span>
+          </div>
 
-      <div className="pb-6"></div>
+          <div className="pb-6"></div>
 
-      {rounds[3].fixtures.map(fixture => (
-        <div key={fixture.awayTeam.name} className="pb-10">
-          <Fixture fixture={fixture} placeBet={handlePlaceBet} />
-        </div>
+          {round.fixtures.map(fixture => (
+            <div key={fixture.awayTeam.name} className="pb-10">
+              <Fixture fixture={fixture} placeBet={handlePlaceBet} />
+            </div>
+          ))}
+        </>
       ))}
     </div>
   )

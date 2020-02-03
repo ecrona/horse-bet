@@ -2,5 +2,6 @@
 @tailwind utilities;
 
 body {
-  font-family: "Roboto";
+  @apply bg-gray-300;
+  font-family: 'Roboto';
 }
