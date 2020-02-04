@@ -1,0 +1,60 @@
+.details__logo {
+  width: 64px;
+  height: 64px;
+}
+
+.details__score {
+  color: #fff;
+  font-family: Rockwell;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.details__name {
+  @apply inline-block pt-5;
+
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+
+.details-compare {
+  @apply flex items-center justify-center font-bold text-sm;
+
+  min-height: 36px;
+}
+
+.details-compare__title {
+  @apply block pb-3 text-yellow-300 font-bold;
+}
+
+.details-compare--home {
+  @apply bg-yellow-300 text-purple-300;
+}
+
+.details-compare--away {
+  @apply bg-purple-300 text-yellow-300 flex-1;
+}
+
+.details-better {
+  @apply flex items-center px-6;
+
+  height: 40px;
+
+  background-color: #4e4e4e;
+}
+
+.details-better:nth-child(2n + 1) {
+  background-color: #636363;
+}
+
+.details-better__logo {
+  width: 24px;
+  height: 24px;
+}
+
+.details-better__name {
+  @apply pl-3;
+
+  color: #fff;
+  font-weight: 500;
+}

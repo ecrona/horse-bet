@@ -1,7 +1,7 @@
-import React from 'react'
-import './styles.css'
 import Toolbar from '@client/shared/components/Toolbar'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import './styles.css'
 
 interface Props {}
 
@@ -10,9 +10,17 @@ export default function Tournaments({}: Props) {
     <>
       <Toolbar />
 
-      <h1>Tournaments</h1>
+      <div className="px-6 pt-10 pb-5 text-white">
+        <h3 className="text-xl font-bold">Tournaments</h3>
+      </div>
 
-      <Link to="/champions-league">Champions league</Link>
+      <div className="px-6">
+        <Link to="/champions-league">
+          <div className="tournament-card">
+            <span className="tournament-card__title">Champions league</span>
+          </div>
+        </Link>
+      </div>
     </>
   )
 }

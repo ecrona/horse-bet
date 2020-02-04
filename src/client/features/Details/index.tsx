@@ -1,10 +1,22 @@
-import React from 'react'
-import './styles.css'
+import { BetPlacement } from '@client/../shared/models/bet-placement'
 import Toolbar from '@client/shared/components/Toolbar'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import { getFixture } from '../OldDetails/selectors'
+import './styles.css'
 
-interface Props {}
+export default function Details() {
+  const { homeTeam, awayTeam } = useParams()
+  const fixture = useSelector(state => getFixture(state, homeTeam, awayTeam))
 
-export default function Details({}: Props) {
+  console.log({ fixture })
+
+  if (!fixture) return null
+
+  const homeBetsPercentage = getPercentageOfHomeBets(fixture.bets)
+  const awayBetsPercentage = 100 - homeBetsPercentage
+
   return (
     <>
       <Toolbar />
@@ -15,26 +27,89 @@ export default function Details({}: Props) {
         <h3 className="text-xl font-bold">Fixture details</h3>
       </div>
 
-      <div className="p-6 bg-gray-200"></div>
-      <div className="p-6 bg-gray-400"></div>
+      <div className="py-8 bg-gray-200 flex justify-around items-center">
+        <div className="flex flex-1 items-center flex-col">
+          <img className="details__logo" src={fixture.homeTeam.logo} />
+          <span className="details__name">{fixture.homeTeam.name}</span>
+        </div>
 
-      <div className="pb-6"></div>
+        <span className="details__score">{fixture.score || '-'}</span>
+
+        <div className="flex flex-1 items-center flex-col">
+          <img className="details__logo" src={fixture.awayTeam.logo} />
+          <span className="details__name">{fixture.awayTeam.name}</span>
+        </div>
+      </div>
+
+      <div
+        className="py-6 px-12 bg-gray-400 flex flex justify-between text-sm"
+        style={{ color: 'rgba(255,255,255,0.5)' }}
+      >
+        <div>
+          <div>First match</div>
+          <div>{fixture.firstMatchStart}</div>
+        </div>
+
+        <div>
+          <div>Second match</div>
+          <div>{fixture.secondMatchStart}</div>
+        </div>
+      </div>
+
+      <div className="pb-10"></div>
 
       <div className="px-6">
         <span
-          className="text-yellow-300 font-bold"
+          className="details-compare__title"
           style={{ fontFamily: 'Rockwell' }}
         >
           Who picked what
         </span>
       </div>
 
-      <div
-        className="bg-purple-300 text-yellow-300 flex items-center"
-        style={{ height: 36 }}
-      >
-        76%
+      <div className="flex items-center" style={{ height: 36 }}>
+        <div
+          className="details-compare details-compare--home"
+          style={{ width: `${homeBetsPercentage}%` }}
+        >
+          {homeBetsPercentage}%
+        </div>
+
+        <div className="details-compare details-compare--away">
+          {100 - awayBetsPercentage}%
+        </div>
+      </div>
+
+      <div>
+        {/* <input placeholder="Search..." /> */}
+        {fixture.bets.map((bet, index) => (
+          <div key={index} className="details-better">
+            {bet.placement === BetPlacement.Home && (
+              <img
+                className="details-better__logo"
+                src={fixture.homeTeam.logo}
+              />
+            )}
+            {bet.placement === BetPlacement.Away && (
+              <img
+                className="details-better__logo"
+                src={fixture.awayTeam.logo}
+              />
+            )}
+
+            <span className="details-better__name">{bet.name}</span>
+          </div>
+        ))}
       </div>
     </>
   )
+}
+
+function getPercentageOfHomeBets(bets) {
+  const amountOfHomeBets = bets.filter(
+    bet => bet.placement === BetPlacement.Home
+  ).length
+  const totalBets = bets.length
+
+  return Math.round((amountOfHomeBets / totalBets) * 100)
 }
