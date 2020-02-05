@@ -1,11 +1,9 @@
-import { combineReducers } from 'redux'
-
-// Common
-import common from './common/reducer'
-
+import highscore from '@client/features/OldHighscore/store/reducer'
 // Features
 import dashboard from 'features/Dashboard/store/reducer'
-import highscore from 'features/Highscore/store/reducer'
+import { combineReducers } from 'redux'
+// Common
+import common from './common/reducer'
 
 const reducerMap = {
   // Common

@@ -1,18 +1,17 @@
 // Common
 import {
-  ActionTypes as CommonActionTypes,
-  Actions as CommonActions
-} from './common/actions'
-
+  Actions as HighscoreActions,
+  ActionTypes as HighscoreActionTypes
+} from '@client/features/OldHighscore/store/actions'
 // Features
 import {
-  ActionTypes as DashboardActionTypes,
-  Actions as DashboardActions
+  Actions as DashboardActions,
+  ActionTypes as DashboardActionTypes
 } from 'features/Dashboard/store/actions'
 import {
-  ActionTypes as HighscoreActionTypes,
-  Actions as HighscoreActions
-} from 'features/Highscore/store/actions'
+  Actions as CommonActions,
+  ActionTypes as CommonActionTypes
+} from './common/actions'
 
 export const ActionTypes = {
   // Common

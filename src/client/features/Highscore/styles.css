@@ -1,0 +1,32 @@
+.highscore-item {
+  @apply flex items-center px-6;
+
+  height: 40px;
+
+  background-color: #4e4e4e;
+  color: #fff;
+}
+
+.highscore-item:nth-child(2n + 1) {
+  background-color: #636363;
+}
+
+.highscore-item__rank {
+  @apply text-yellow-300;
+
+  width: 40px;
+
+  font-weight: bolder;
+}
+
+.highscore-item__name {
+  flex: 1;
+
+  font-weight: bold;
+}
+
+.highscore-item__score {
+  @apply text-sm font-extrabold;
+
+  color: rgba(255, 255, 255, 0.5);
+}

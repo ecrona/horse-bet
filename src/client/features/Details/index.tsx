@@ -31,6 +31,9 @@ export default function Details() {
         <div className="flex flex-1 items-center flex-col">
           <img className="details__logo" src={fixture.homeTeam.logo} />
           <span className="details__name">{fixture.homeTeam.name}</span>
+          <span className="text-green-100" style={{ height: 24 }}>
+            {fixture.matchWinner === BetPlacement.Home && 'Winner'}
+          </span>
         </div>
 
         <span className="details__score">{fixture.score || '-'}</span>
@@ -38,11 +41,14 @@ export default function Details() {
         <div className="flex flex-1 items-center flex-col">
           <img className="details__logo" src={fixture.awayTeam.logo} />
           <span className="details__name">{fixture.awayTeam.name}</span>
+          <span className="text-green-100" style={{ height: 24 }}>
+            {fixture.matchWinner === BetPlacement.Away && 'Winner'}
+          </span>
         </div>
       </div>
 
       <div
-        className="py-6 px-12 bg-gray-400 flex flex justify-between text-sm"
+        className="py-6 px-12 bg-gray-400 flex flex justify-between text-sm text-center"
         style={{ color: 'rgba(255,255,255,0.5)' }}
       >
         <div>
@@ -67,40 +73,42 @@ export default function Details() {
         </span>
       </div>
 
-      <div className="flex items-center" style={{ height: 36 }}>
-        <div
-          className="details-compare details-compare--home"
-          style={{ width: `${homeBetsPercentage}%` }}
-        >
-          {homeBetsPercentage}%
-        </div>
+      {fixture.bets.length && (
+        <>
+          <div className="flex items-center" style={{ height: 36 }}>
+            <div
+              className="details-compare details-compare--home"
+              style={{ width: `${homeBetsPercentage}%` }}
+              title={fixture.homeTeam.name}
+            >
+              {homeBetsPercentage}%
+            </div>
 
-        <div className="details-compare details-compare--away">
-          {100 - awayBetsPercentage}%
-        </div>
-      </div>
-
-      <div>
-        {/* <input placeholder="Search..." /> */}
-        {fixture.bets.map((bet, index) => (
-          <div key={index} className="details-better">
-            {bet.placement === BetPlacement.Home && (
-              <img
-                className="details-better__logo"
-                src={fixture.homeTeam.logo}
-              />
-            )}
-            {bet.placement === BetPlacement.Away && (
-              <img
-                className="details-better__logo"
-                src={fixture.awayTeam.logo}
-              />
-            )}
-
-            <span className="details-better__name">{bet.name}</span>
+            <div
+              className="details-compare details-compare--away"
+              title={fixture.awayTeam.name}
+            >
+              {100 - awayBetsPercentage}%
+            </div>
           </div>
-        ))}
-      </div>
+
+          {/* <input placeholder="Search..." /> */}
+          {fixture.bets.map(bet => (
+            <div key={bet.name} className="details-better">
+              <img
+                className="details-better__logo"
+                src={
+                  bet.placement === BetPlacement.Home
+                    ? fixture.homeTeam.logo
+                    : fixture.awayTeam.logo
+                }
+              />
+
+              <span className="details-better__name">{bet.name}</span>
+            </div>
+          ))}
+        </>
+      )}
     </>
   )
 }
