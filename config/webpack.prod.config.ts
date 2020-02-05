@@ -1,5 +1,5 @@
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 import webpack from 'webpack'
 
 export const config: webpack.Configuration = {
@@ -8,14 +8,7 @@ export const config: webpack.Configuration = {
   entry: ['./src/client/index.tsx'],
 
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})]
   },
 
   plugins: [
