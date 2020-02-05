@@ -1,4 +1,5 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
+import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Fixture } from '@client/models/fixture'
 import Toolbar from '@client/shared/components/Toolbar'
 import clsx from 'clsx'
@@ -61,9 +62,19 @@ interface FixProps {
 
 function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
   const [homeScore, awayScore] = fixture.score.split('-')
-  const isDisabled = !fixture.placeable
-  const homeDisabled = isDisabled || fixture.betPlacement === BetPlacement.Home
-  const awayDisabled = isDisabled || fixture.betPlacement === BetPlacement.Away
+  const isPlaceable = fixture.placeable
+  const homeSelected = fixture.betPlacement === BetPlacement.Home
+  const awaySelected = fixture.betPlacement === BetPlacement.Away
+  const homeDisabled = !isPlaceable || homeSelected
+  const awayDisabled = !isPlaceable || awaySelected
+  const homeState =
+    homeSelected && !isPlaceable
+      ? getBetButtonState(MatchWinner.Home, fixture.matchWinner)
+      : 'none'
+  const awayState =
+    awaySelected && !isPlaceable
+      ? getBetButtonState(MatchWinner.Away, fixture.matchWinner)
+      : 'none'
 
   const handlePlaceBet = (placement: BetPlacement) => () => {
     onPlaceBet(fixture.awayTeam.name, fixture.homeTeam.name, placement)
@@ -74,8 +85,8 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
       <div className="bet-fixture">
         <BetButton
           disabled={homeDisabled}
-          state="none"
-          selected={fixture.betPlacement === BetPlacement.Home}
+          selected={homeSelected}
+          state={homeState}
           title={
             homeDisabled ? 'Locked' : `Click to bet on ${fixture.homeTeam.name}`
           }
@@ -92,8 +103,8 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
 
         <BetButton
           disabled={awayDisabled}
-          state="none"
-          selected={fixture.betPlacement === BetPlacement.Away}
+          selected={awaySelected}
+          state={awayState}
           title={
             awayDisabled ? 'Locked' : `Click to bet on ${fixture.awayTeam.name}`
           }
@@ -188,4 +199,17 @@ export default function Dashboard() {
       ))}
     </>
   )
+}
+
+function getBetButtonState(team: MatchWinner, matchWinner: MatchWinner) {
+  console.log(matchWinner)
+  if (team === matchWinner) {
+    return 'winner'
+  }
+
+  if (matchWinner && team !== matchWinner) {
+    return 'loser'
+  }
+
+  return 'none'
 }
