@@ -30,3 +30,19 @@
 
   color: rgba(255, 255, 255, 0.5);
 }
+
+.highscore-search {
+  @apply block w-full px-6;
+
+  border: 2px solid #fde87e;
+  width: 100%;
+  height: 40px;
+
+  background-color: #242424;
+  color: #fff;
+}
+
+.highscore-search:focus {
+  background-color: #282828;
+  border-color: #777;
+}
