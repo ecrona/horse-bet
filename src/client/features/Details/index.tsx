@@ -88,7 +88,7 @@ export default function Details() {
               className="details-compare details-compare--away"
               title={fixture.awayTeam.name}
             >
-              {100 - awayBetsPercentage}%
+              {100 - homeBetsPercentage}%
             </div>
           </div>
 
