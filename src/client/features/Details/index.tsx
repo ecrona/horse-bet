@@ -1,5 +1,6 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import Toolbar from '@client/shared/components/Toolbar'
+import format from 'date-fns/format'
 import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
@@ -59,17 +60,21 @@ export default function Details() {
       </div>
 
       <div
-        className="py-6 px-12 bg-gray-400 flex flex justify-between text-sm text-center"
+        className="py-6 bg-gray-400 flex flex justify-between text-sm text-center"
         style={{ color: 'rgba(255,255,255,0.5)' }}
       >
-        <div>
-          <div>First match</div>
-          <div>{fixture.firstMatchStart}</div>
+        <div className="flex flex-col flex-1 text-center">
+          <span className="text-xs">First match</span>
+          <span className="font-medium">
+            {format(fixture.firstMatchStart, 'do MMMM HH:mm')}
+          </span>
         </div>
 
-        <div>
-          <div>Second match</div>
-          <div>{fixture.secondMatchStart}</div>
+        <div className="flex flex-col flex-1 text-center">
+          <span className="text-xs">Second match</span>
+          <span className="font-medium">
+            {format(fixture.secondMatchStart, 'do MMMM HH:mm')}
+          </span>
         </div>
       </div>
 

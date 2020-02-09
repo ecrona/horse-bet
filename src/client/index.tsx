@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { App } from './App'
+import App from './App'
 import createStore from './store/create-store'
 
 declare let module: { hot: any }

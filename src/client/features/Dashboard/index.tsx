@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import { DashboardFixture } from '../Dashboard/models/dashboard-fixture'
 import { getFixtures, placeBet } from '../Dashboard/store/actions'
 import { getRounds } from '../Dashboard/store/selectors'
+import { getMyHighscore } from '../OldHighscore/store/selectors'
 import './styles.css'
 
 interface BetButtonProps {
@@ -154,6 +155,7 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
 export default function Dashboard() {
   const dispatch = useDispatch()
   const rounds = useSelector(getRounds)
+  const myHighscore = useSelector(getMyHighscore) || {}
 
   useEffect(() => {
     dispatch(getFixtures())
@@ -167,15 +169,18 @@ export default function Dashboard() {
     dispatch(placeBet(awayTeam, homeTeam, placement))
   }
 
-  console.log({ rounds })
-
   return (
     <>
       <Toolbar />
 
       <div className="bg-gray-400 pt-6 px-6 pb-10 text-yellow-300 relative">
         <span className="block font-medium">Gneigh,</span>
-        <span className="block font-bold text-2xl">Piotr Sköldström</span>
+        <span className="block font-bold text-2xl">
+          {myHighscore.name || 'Möre Standin'}
+        </span>
+        <span className="block text-sm font-extrabold text-white">
+          You have a massive {myHighscore.score || 0} pts
+        </span>
 
         <div
           className="bg-purple-300 text-2xl font-bold rounded-full absolute right-0 bottom-0 mr-6 -mb-8 shadow text-white flex items-center justify-center"
@@ -218,7 +223,6 @@ export default function Dashboard() {
 }
 
 function getBetButtonState(team: MatchWinner, matchWinner: MatchWinner) {
-  console.log(matchWinner)
   if (team === matchWinner) {
     return 'winner'
   }
