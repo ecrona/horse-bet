@@ -1,6 +1,6 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import Toolbar from '@client/shared/components/Toolbar'
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getFixture } from '../OldDetails/selectors'
@@ -10,9 +10,20 @@ export default function Details() {
   const { homeTeam, awayTeam } = useParams()
   const fixture = useSelector(state => getFixture(state, homeTeam, awayTeam))
 
-  console.log({ fixture })
+  const [query, setQuery] = useState('')
 
-  if (!fixture) return null
+  const filteredBets = useMemo(
+    () => (fixture ? fixture.bets.filter(bet => bet.name.includes(query)) : []),
+    [fixture, query]
+  )
+
+  if (!fixture) {
+    return null
+  }
+
+  function handleChangeQuery(event) {
+    setQuery(event.target.value)
+  }
 
   const homeBetsPercentage = getPercentageOfHomeBets(fixture.bets)
   const awayBetsPercentage = 100 - homeBetsPercentage
@@ -75,7 +86,7 @@ export default function Details() {
 
       {fixture.bets.length && (
         <>
-          <div className="flex items-center" style={{ height: 36 }}>
+          <div className="flex items-center shadow" style={{ height: 36 }}>
             <div
               className="details-compare details-compare--home"
               style={{ width: `${homeBetsPercentage}%` }}
@@ -88,12 +99,20 @@ export default function Details() {
               className="details-compare details-compare--away"
               title={fixture.awayTeam.name}
             >
-              {100 - homeBetsPercentage}%
+              {awayBetsPercentage}%
             </div>
           </div>
 
-          {/* <input placeholder="Search..." /> */}
-          {fixture.bets.map(bet => (
+          <div className="p-2">
+            <input
+              className="highscore-search"
+              placeholder="Search better..."
+              value={query}
+              onChange={handleChangeQuery}
+            />
+          </div>
+
+          {filteredBets.map(bet => (
             <div key={bet.name} className="details-better">
               <img
                 className="details-better__logo"

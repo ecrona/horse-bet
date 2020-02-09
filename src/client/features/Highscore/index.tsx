@@ -50,12 +50,14 @@ export default function Highscore() {
         </div>
       </div>
 
-      <input
-        className="highscore-search"
-        placeholder="Search for a better..."
-        value={query}
-        onChange={handleChangeQuery}
-      />
+      <div className="p-2">
+        <input
+          className="highscore-search"
+          placeholder="Search for a better..."
+          value={query}
+          onChange={handleChangeQuery}
+        />
+      </div>
 
       {filteredHighscores.map(highscore => (
         <div key={highscore.name} className="highscore-item">

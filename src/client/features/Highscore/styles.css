@@ -32,17 +32,27 @@
 }
 
 .highscore-search {
-  @apply block w-full px-6;
+  @apply block w-full px-4 text-white font-medium;
+
+  outline: none;
 
   border: 2px solid #fde87e;
+  border: 2px solid #4e4e4e;
   width: 100%;
   height: 40px;
 
   background-color: #242424;
-  color: #fff;
+  border-radius: 4px;
 }
 
 .highscore-search:focus {
+  @apply border-yellow-300;
+
   background-color: #282828;
-  border-color: #777;
+  /* outline: none; */
+}
+
+.highscore-search:active {
+  @apply border-yellow-300;
+  /* outline: none; */
 }
