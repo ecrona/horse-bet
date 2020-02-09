@@ -24,7 +24,6 @@
 }
 
 .bet-button:disabled:not(.bet-button--selected) {
-  background: transparent;
   opacity: 0.5;
 }
 

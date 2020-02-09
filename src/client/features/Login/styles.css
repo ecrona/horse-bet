@@ -1,0 +1,133 @@
+.login {
+  padding-top: 175px;
+  box-sizing: border-box;
+}
+
+.login__container {
+  @apply flex flex-col justify-center items-center -mt-8;
+}
+
+.login__button {
+  @apply flex justify-center cursor-pointer bg-purple-300 text-yellow-300 px-8 font-bold text-lg;
+
+  border: none;
+  outline: none;
+
+  min-height: 48px;
+
+  border-radius: 8px;
+}
+
+.login__button:hover {
+  @apply bg-purple-400;
+}
+
+.login__button:active {
+  @apply bg-purple-500;
+}
+
+@keyframes sun-movement {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(calc(50vw - 50%), -50%, 0);
+  }
+}
+
+.the-sun {
+  @apply flex items-center justify-center;
+
+  width: 200px;
+  height: 200px;
+
+  background: radial-gradient(
+    circle,
+    rgba(253, 232, 126, 1) 0%,
+    rgba(253, 232, 126, 0) 70%
+  );
+
+  animation: sun-movement cubic-bezier(0.12, 0.68, 0.48, 0.95) 2s forwards;
+}
+
+.the-sun__logo {
+  opacity: 0;
+  width: 128px;
+
+  transform: rotate(45deg);
+  border-radius: 50% 50%;
+
+  animation: sun-logo cubic-bezier(0.12, 0.68, 0.48, 0.95) 1.5s 1.2s forwards,
+    pulseDanger 0.1s 3s ease 10, pulse ease-in-out 0.75s 4s infinite;
+}
+
+@keyframes pulseDanger {
+  0% {
+    filter: drop-shadow(16px 16px 20px red) invert(75%);
+    opacity: 1;
+    transform: scale(1) rotate(23deg);
+  }
+  50% {
+    filter: drop-shadow(16px 16px 20px red) invert(75%);
+    opacity: 0.75;
+    transform: scale(1.05) rotate(-23deg);
+  }
+  100% {
+    filter: drop-shadow(16px 16px 20px red) invert(75%);
+    opacity: 1;
+    transform: scale(1) rotate(23deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(17deg);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05) rotate(-17deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(17deg);
+  }
+}
+
+@keyframes sun-logo {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(45deg);
+  }
+
+  70% {
+    opacity: 0.7;
+    transform: scale(1.1) rotate(30);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(23deg);
+  }
+}
+
+.login__text {
+  @apply block text-green-100 text-3xl font-extrabold pb-6;
+
+  opacity: 0;
+  animation: fade-in 0.5s 1.5s ease forwards;
+  /* animation: sun-movement cubic-bezier(0.12, 0.68, 0.48, 0.95) 2s forwards; */
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
