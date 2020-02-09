@@ -2,7 +2,10 @@ import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Fixture } from '@client/models/fixture'
 import Toolbar from '@client/shared/components/Toolbar'
+import LockIcon from '@material-ui/icons/Lock'
+import LockOpenIcon from '@material-ui/icons/LockOpen'
 import clsx from 'clsx'
+import format from 'date-fns/format'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -80,8 +83,18 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
     onPlaceBet(fixture.awayTeam.name, fixture.homeTeam.name, placement)
   }
 
+  const lockDate = format(fixture.firstMatchStart, 'do MMMM HH:mm')
+
   return (
     <>
+      {fixture.placeable && (
+        <div className="pb-2">
+          <div className="bet-fixture__lock-text">
+            This fixture will lock at - {lockDate}
+          </div>
+        </div>
+      )}
+
       <div className="bet-fixture">
         <BetButton
           disabled={homeDisabled}
@@ -118,7 +131,8 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
         </BetButton>
 
         <div className="bet-fixture__state">
-          <span>vs</span>
+          {fixture.placeable && <LockOpenIcon style={{ height: 18 }} />}
+          {!fixture.placeable && <LockIcon style={{ height: 18 }} />}
         </div>
       </div>
 
@@ -152,6 +166,8 @@ export default function Dashboard() {
   ) {
     dispatch(placeBet(awayTeam, homeTeam, placement))
   }
+
+  console.log({ rounds })
 
   return (
     <>
