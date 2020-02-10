@@ -12,7 +12,10 @@ export default function Highscore() {
 
   const [query, setQuery] = useState('')
   const filteredHighscores = useMemo(
-    () => highscores.filter(highscore => highscore.name.includes(query)),
+    () =>
+      highscores.filter(highscore =>
+        highscore.name.toLowerCase().includes(query.toLowerCase())
+      ),
     [highscores, query]
   )
 

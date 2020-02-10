@@ -14,7 +14,12 @@ export default function Details() {
   const [query, setQuery] = useState('')
 
   const filteredBets = useMemo(
-    () => (fixture ? fixture.bets.filter(bet => bet.name.includes(query)) : []),
+    () =>
+      fixture
+        ? fixture.bets.filter(bet =>
+            bet.name.toLowerCase().includes(query.toLowerCase())
+          )
+        : [],
     [fixture, query]
   )
 
