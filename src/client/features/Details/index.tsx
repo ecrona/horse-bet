@@ -88,7 +88,7 @@ export default function Details() {
       <div className="px-6">
         <span
           className="details-compare__title"
-          style={{ fontFamily: 'Rockwell' }}
+          style={{ fontFamily: 'Kameron' }}
         >
           Who picked what
         </span>

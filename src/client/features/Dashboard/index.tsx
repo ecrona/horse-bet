@@ -184,7 +184,7 @@ export default function Dashboard() {
 
         <div
           className="bg-purple-300 text-2xl font-bold rounded-full absolute right-0 bottom-0 mr-6 -mb-8 shadow text-white flex items-center justify-center"
-          style={{ height: 64, width: 64, fontFamily: 'rockwell' }}
+          style={{ height: 64, width: 64, fontFamily: 'Kameron' }}
         >
           {myHighscore.rank || 0}
           <sup>

@@ -44,7 +44,7 @@ export default function Highscore() {
 
         <div
           className="bg-purple-300 text-2xl font-bold rounded-full mr-6 shadow text-white flex items-center justify-center"
-          style={{ height: 64, width: 64, fontFamily: 'rockwell' }}
+          style={{ height: 64, width: 64, fontFamily: 'Kameron' }}
         >
           {myHighscore.rank}
           <sup>
