@@ -14,7 +14,7 @@
 .highscore-item__rank {
   @apply text-yellow-300 text-lg;
 
-  width: 40px;
+  width: 48px;
 
   font-weight: bolder;
 }
