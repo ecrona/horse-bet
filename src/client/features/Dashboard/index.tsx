@@ -2,6 +2,7 @@ import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Fixture } from '@client/models/fixture'
 import Toolbar from '@client/shared/components/Toolbar'
+import { getNumberOrdinal } from '@client/utils'
 import LockIcon from '@material-ui/icons/Lock'
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 import clsx from 'clsx'
@@ -179,17 +180,24 @@ export default function Dashboard() {
         <span className="block font-bold text-2xl">
           {myHighscore.name || 'Möre Standin'}
         </span>
-        <span className="block text-sm font-extrabold text-white">
-          You have a massive {myHighscore.score || 0} pts
+        <span
+          className="block font-bold leading-none"
+          style={{ color: 'rgba(255,255,255,0.75)' }}
+        >
+          You have a massive{' '}
+          <span className="text-xl font-extrabold text-white">
+            {myHighscore.score}
+          </span>{' '}
+          points
         </span>
 
         <div
-          className="bg-purple-300 text-2xl font-bold rounded-full absolute right-0 bottom-0 mr-6 -mb-8 shadow text-white flex items-center justify-center"
+          className="bg-purple-300 text-2xl font-bold pl-1 rounded-full absolute right-0 bottom-0 mr-6 -mb-8 shadow-md text-white flex items-center justify-center"
           style={{ height: 64, width: 64, fontFamily: 'Kameron' }}
         >
           {myHighscore.rank || 0}
-          <sup>
-            <small>th</small>
+          <sup style={{ color: 'rgba(255,255,255,0.75)' }}>
+            <small>{getNumberOrdinal(myHighscore.rank)}</small>
           </sup>
         </div>
       </div>

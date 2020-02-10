@@ -1,4 +1,5 @@
 import Toolbar from '@client/shared/components/Toolbar'
+import { getNumberOrdinal } from '@client/utils'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchHighscores } from '../OldHighscore/store/actions'
@@ -38,18 +39,25 @@ export default function Highscore() {
         <div className="flex-1">
           <span className="block font-medium">Gneigh,</span>
           <span className="block font-bold text-2xl">{myHighscore.name}</span>
-          <span className="block text-sm font-extrabold text-white">
-            You have a massive {myHighscore.score} pts
+          <span
+            className="block font-bold leading-none"
+            style={{ color: 'rgba(255,255,255,0.75)' }}
+          >
+            You have a massive{' '}
+            <span className="text-xl font-extrabold text-white">
+              {myHighscore.score}
+            </span>{' '}
+            points
           </span>
         </div>
 
         <div
-          className="bg-purple-300 text-2xl font-bold rounded-full mr-6 shadow text-white flex items-center justify-center"
+          className="bg-purple-300 text-2xl font-bold pl-1 rounded-full mr-6 shadow-md text-white flex items-center justify-center"
           style={{ height: 64, width: 64, fontFamily: 'Kameron' }}
         >
           {myHighscore.rank}
-          <sup>
-            <small>th</small>
+          <sup style={{ color: 'rgba(255,255,255,0.75)' }}>
+            <small>{getNumberOrdinal(myHighscore.rank)}</small>
           </sup>
         </div>
       </div>
@@ -65,9 +73,21 @@ export default function Highscore() {
 
       {filteredHighscores.map(highscore => (
         <div key={highscore.name} className="highscore-item">
-          <span className="highscore-item__rank">{highscore.rank}</span>
-          <span className="highscore-item__name">{highscore.name}</span>
-          <span className="highscore-item__score">{highscore.score} pts</span>
+          <span className="highscore-item__rank">
+            {highscore.rank}
+            <small style={{ paddingLeft: 2 }}>
+              {getNumberOrdinal(highscore.rank)}
+            </small>
+          </span>
+          <span className="highscore-item__name">
+            {highscore.name}{' '}
+            {highscore.name === myHighscore.name && (
+              <span className="text-green-100">(me)</span>
+            )}
+          </span>
+          <span className="highscore-item__score">
+            {highscore.score} points
+          </span>
         </div>
       ))}
     </>
