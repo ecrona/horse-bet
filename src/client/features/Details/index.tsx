@@ -1,7 +1,9 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
+import { MatchWinner } from '@client/../shared/models/match-winner'
 import Toolbar from '@client/shared/components/Toolbar'
+import clsx from 'clsx'
 import format from 'date-fns/format'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { getFixture } from '../OldDetails/selectors'
@@ -23,6 +25,10 @@ export default function Details() {
     [fixture, query]
   )
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   if (!fixture) {
     return null
   }
@@ -33,6 +39,10 @@ export default function Details() {
 
   const homeBetsPercentage = getPercentageOfHomeBets(fixture.bets)
   const awayBetsPercentage = 100 - homeBetsPercentage
+  const [homeScore, awayScore] = fixture.score.split('-')
+  const hasWinner = fixture.matchWinner !== MatchWinner.None
+  const homeWinner = fixture.matchWinner === MatchWinner.Home
+  const awayWinner = fixture.matchWinner === MatchWinner.Away
 
   return (
     <>
@@ -44,20 +54,32 @@ export default function Details() {
         <h3 className="text-xl font-bold">Fixture details</h3>
       </div>
 
-      <div className="py-8 bg-gray-200 flex justify-around items-center">
-        <div className="flex flex-1 items-center flex-col">
-          <img className="details__logo" src={fixture.homeTeam.logo} />
-          <span className="details__name">{fixture.homeTeam.name}</span>
+      <div className="py-8 bg-gray-400 shadow relative flex justify-around items-center">
+        <div
+          className={clsx('details-team', {
+            'details-team--loser': hasWinner && awayWinner
+          })}
+        >
+          <img className="details-team__logo" src={fixture.homeTeam.logo} />
+          <span className="details-team__name">{fixture.homeTeam.name}</span>
           <span className="text-green-100" style={{ height: 24 }}>
             {fixture.matchWinner === BetPlacement.Home && 'Winner'}
           </span>
         </div>
 
-        <span className="details__score">{fixture.score || '-'}</span>
+        <span className="details-score">
+          <span>{homeScore}</span>
+          <span className="px-1">-</span>
+          <span>{awayScore}</span>
+        </span>
 
-        <div className="flex flex-1 items-center flex-col">
-          <img className="details__logo" src={fixture.awayTeam.logo} />
-          <span className="details__name">{fixture.awayTeam.name}</span>
+        <div
+          className={clsx('details-team', {
+            'details-team--loser': hasWinner && homeWinner
+          })}
+        >
+          <img className="details-team__logo" src={fixture.awayTeam.logo} />
+          <span className="details-team__name">{fixture.awayTeam.name}</span>
           <span className="text-green-100" style={{ height: 24 }}>
             {fixture.matchWinner === BetPlacement.Away && 'Winner'}
           </span>
@@ -65,7 +87,7 @@ export default function Details() {
       </div>
 
       <div
-        className="py-6 bg-gray-400 flex flex justify-between text-sm text-center"
+        className="py-6 bg-gray-300 flex flex justify-between text-sm text-center"
         style={{ color: 'rgba(255,255,255,0.5)' }}
       >
         <div className="flex flex-col flex-1 text-center">
@@ -133,7 +155,12 @@ export default function Details() {
                 }
               />
 
-              <span className="details-better__name">{bet.name}</span>
+              <span className="details-better__name flex-1">{bet.name}</span>
+              <span className="details-better__team">
+                {bet.placement === BetPlacement.Home
+                  ? fixture.homeTeam.name
+                  : fixture.awayTeam.name}
+              </span>
             </div>
           ))}
         </>

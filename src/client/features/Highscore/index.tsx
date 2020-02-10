@@ -21,6 +21,7 @@ export default function Highscore() {
 
   useEffect(() => {
     dispatch(fetchHighscores())
+    window.scrollTo(0, 0)
   }, [])
 
   function handleChangeQuery(event) {

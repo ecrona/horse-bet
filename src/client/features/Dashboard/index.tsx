@@ -159,6 +159,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     dispatch(getFixtures())
+    window.scrollTo(0, 0)
   }, [])
 
   function handlePlaceBet(

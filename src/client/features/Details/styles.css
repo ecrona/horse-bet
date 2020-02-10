@@ -1,20 +1,27 @@
-.details__logo {
-  width: 64px;
-  height: 64px;
+.details-team {
+  @apply flex flex-1 items-center flex-col;
 }
 
-.details__score {
-  color: #fff;
-  font-family: Kameron;
-  font-size: 24px;
-  font-weight: bold;
+.details-team--loser {
+  opacity: 0.4;
 }
 
-.details__name {
-  @apply inline-block pt-5;
+.details-team__logo {
+  width: 80px;
+  height: 80px;
+}
+
+.details-team__name {
+  @apply inline-block pt-5 font-medium text-lg;
 
   color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
+}
+
+.details-score {
+  @apply pt-16 text-white font-bold;
+
+  font-family: Kameron;
+  font-size: 24px;
 }
 
 .details-compare {
@@ -57,4 +64,10 @@
 
   color: #fff;
   font-weight: 500;
+}
+
+.details-better__team {
+  @apply font-medium text-sm;
+
+  color: rgba(255, 255, 255, 0.6);
 }
