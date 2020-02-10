@@ -1,8 +1,16 @@
 .tournament-card {
-  @apply p-6 bg-yellow-300 text-purple-300 shadow flex;
+  @apply p-6 cursor-pointer bg-yellow-300 text-purple-300 shadow-md flex;
 
   min-height: 150px;
   border-radius: 8px;
+}
+
+.tournament-card:hover {
+  @apply bg-yellow-400;
+}
+
+.tournament-card:active {
+  @apply bg-yellow-500;
 }
 
 .tournament-card__title {

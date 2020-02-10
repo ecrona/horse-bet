@@ -105,7 +105,7 @@ export default function Details() {
         </div>
       </div>
 
-      <div className="pb-10"></div>
+      <div className="pb-4"></div>
 
       <div className="px-6">
         <span
@@ -144,25 +144,27 @@ export default function Details() {
             />
           </div>
 
-          {filteredBets.map(bet => (
-            <div key={bet.name} className="details-better">
-              <img
-                className="details-better__logo"
-                src={
-                  bet.placement === BetPlacement.Home
-                    ? fixture.homeTeam.logo
-                    : fixture.awayTeam.logo
-                }
-              />
+          <div style={{ minHeight: 200 }}>
+            {filteredBets.map(bet => (
+              <div key={bet.name} className="details-better">
+                <img
+                  className="details-better__logo"
+                  src={
+                    bet.placement === BetPlacement.Home
+                      ? fixture.homeTeam.logo
+                      : fixture.awayTeam.logo
+                  }
+                />
 
-              <span className="details-better__name flex-1">{bet.name}</span>
-              <span className="details-better__team">
-                {bet.placement === BetPlacement.Home
-                  ? fixture.homeTeam.name
-                  : fixture.awayTeam.name}
-              </span>
-            </div>
-          ))}
+                <span className="details-better__name flex-1">{bet.name}</span>
+                <span className="details-better__team">
+                  {bet.placement === BetPlacement.Home
+                    ? fixture.homeTeam.name
+                    : fixture.awayTeam.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </>
       )}
     </>

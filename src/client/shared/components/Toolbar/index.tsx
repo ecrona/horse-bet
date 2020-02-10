@@ -6,12 +6,16 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 import styles from './styles.scss'
 
 interface Props {
-  canGoBack?: boolean
+  hideGoBack?: boolean
   hideHighscore?: boolean
   subtitle?: string
 }
 
-export default function Toolbar({ hideHighscore, subtitle }: Props) {
+export default function Toolbar({
+  hideGoBack,
+  hideHighscore,
+  subtitle
+}: Props) {
   const history = useHistory()
   const { tournament } = useParams()
 
@@ -23,13 +27,15 @@ export default function Toolbar({ hideHighscore, subtitle }: Props) {
     <div className="toolbar__container">
       <div className="toolbar">
         <span className="toolbar__icon flex-1">
-          <IconButton
-            aria-label="Highscore"
-            color="inherit"
-            onClick={handleGoBack}
-          >
-            <ArrowBack />
-          </IconButton>
+          {!hideGoBack && (
+            <IconButton
+              aria-label="Highscore"
+              color="inherit"
+              onClick={handleGoBack}
+            >
+              <ArrowBack />
+            </IconButton>
+          )}
         </span>
 
         <div>
