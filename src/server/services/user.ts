@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import * as bcrypt from 'bcrypt'
-import { Repository } from 'typeorm'
 import { BetEntity } from 'entities/bet'
 import { UserEntity } from 'entities/user'
+import { staticTournamentId } from 'static-tournament-id'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class UserService {
@@ -14,7 +15,7 @@ export class UserService {
     private readonly betRepository: Repository<BetEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>
-  ) {}
+  ) { }
 
   async getUsers(): Promise<UserEntity[]> {
     return await this.userRepository.find()
@@ -22,7 +23,7 @@ export class UserService {
 
   async getUserBets() {
     const users = await this.getUsers()
-    const bets = await this.betRepository.find()
+    const bets = await this.betRepository.find({ tournamentId: staticTournamentId })
 
     return users.map(user => ({
       ...user,

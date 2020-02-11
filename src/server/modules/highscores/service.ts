@@ -5,6 +5,7 @@ import { MatchWinner } from '@shared/models/match-winner'
 import { BetEntity } from 'entities/bet'
 import { FixtureEntity } from 'entities/fixture'
 import { UserEntity } from 'entities/user'
+import { staticTournamentId } from 'static-tournament-id'
 import { Repository } from 'typeorm'
 
 @Injectable()
@@ -16,12 +17,12 @@ export class HighscoresService {
     private readonly betRepository: Repository<BetEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>
-  ) {}
+  ) { }
 
   async get(email: string) {
     const users = await this.userRepository.find()
-    const fixtures = await this.fixtureRepository.find()
-    const bets = await this.betRepository.find()
+    const fixtures = await this.fixtureRepository.find({ tournamentId: staticTournamentId })
+    const bets = await this.betRepository.find({ tournamentId: staticTournamentId })
 
     return (
       users

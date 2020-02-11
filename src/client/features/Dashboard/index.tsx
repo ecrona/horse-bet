@@ -85,7 +85,7 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
     onPlaceBet(fixture.awayTeam.name, fixture.homeTeam.name, placement)
   }
 
-  const lockDate = format(fixture.firstMatchStart, 'do MMMM HH:mm')
+  const lockDate = format(fixture.firstMatchStart, 'Do MMMM HH:mm')
 
   return (
     <>

@@ -6,9 +6,8 @@ import * as format from 'date-fns/format'
 import { BetEntity } from 'entities/bet'
 import { FixtureEntity } from 'entities/fixture'
 import { UserEntity } from 'entities/user'
+import { staticTournamentId } from 'static-tournament-id'
 import { MoreThan, Repository } from 'typeorm'
-
-const tournamentId = 2
 
 @Injectable()
 export class FixtureService {
@@ -26,11 +25,11 @@ export class FixtureService {
   }
 
   async getFixture(awayTeam: string, homeTeam: string) {
-    return await this.fixtureRepository.findOne({ tournamentId, awayTeam, homeTeam })
+    return await this.fixtureRepository.findOne({ tournamentId: staticTournamentId, awayTeam, homeTeam })
   }
 
   async getFixtures() {
-    return (await this.fixtureRepository.find({ tournamentId })).map(fixture => ({
+    return (await this.fixtureRepository.find({ tournamentId: staticTournamentId })).map(fixture => ({
       ...fixture,
       lastSync: format(new Date(fixture.lastSync), 'YYYY-MM-DD HH:mm:ss')
     }))
@@ -43,8 +42,8 @@ export class FixtureService {
   }
 
   async getFixturesWithBets(email: string) {
-    const fixtures = await this.fixtureRepository.find({ tournamentId })
-    const bets = await this.betRepository.find({ tournamentId })
+    const fixtures = await this.fixtureRepository.find({ tournamentId: staticTournamentId })
+    const bets = await this.betRepository.find({ tournamentId: staticTournamentId })
     const users = await this.userRepository.find()
 
     return fixtures
@@ -94,7 +93,7 @@ export class FixtureService {
   }
 
   async saveFixtures(fixtures: Array<FixtureEntity>) {
-    return await this.fixtureRepository.save(fixtures.map(fixture => ({ ...fixture, tournamentId })))
+    return await this.fixtureRepository.save(fixtures.map(fixture => ({ ...fixture, tournamentId: staticTournamentId })))
   }
 
   async placeBet(
@@ -104,7 +103,7 @@ export class FixtureService {
     placement: BetPlacement
   ) {
     const bet = new BetEntity()
-    bet.tournamentId = tournamentId
+    bet.tournamentId = staticTournamentId
     bet.userEmail = email
     bet.homeTeam = homeTeam
     bet.awayTeam = awayTeam
