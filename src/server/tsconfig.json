@@ -9,13 +9,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmitOnError": true,
-    "target": "es6",
+    "target": "es2017",
     "sourceMap": true,
     "outDir": "../../dist/server",
     "baseUrl": "./",
     "paths": {
-      "@shared/*": ["../shared/*"],
-      "@env/*": ["../../env/*"]
+      "@shared/*": [
+        "../shared/*"
+      ],
+      "@env/*": [
+        "../../env/*"
+      ]
     }
   }
 }

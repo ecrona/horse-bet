@@ -20,9 +20,9 @@
     "command:mail:invite": "ts-node -P src/server/tsconfig.json -r tsconfig-paths/register src/server/cli.ts mail:invite",
     "command:mail:notify": "ts-node -P src/server/tsconfig.json -r tsconfig-paths/register src/server/cli.ts mail:notify",
     "migration:prepare": "ts-node scripts/prepare-migrations.ts",
-    "migration:generate": "npm run migration:prepare && ts-node ./node_modules/typeorm/cli.js migration:generate -n",
-    "migration:run": "npm run migration:prepare && ts-node ./node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "npm run migration:prepare && ts-node ./node_modules/typeorm/cli.js migration:revert",
+    "migration:generate": "npm run migration:prepare && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -n",
+    "migration:run": "npm run migration:prepare && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "npm run migration:prepare && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert",
     "deploy": "npm install && ts-node scripts/configure.ts && npm run build:client:prod && npm run migration:run"
   },
   "repository": {
@@ -103,6 +103,7 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "reflect-metadata": "^0.1.13",
     "reselect": "^4.0.0",
     "rxjs": "6.2.2",
     "sass-loader": "7.1.0",

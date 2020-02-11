@@ -6,7 +6,7 @@ import { FootballData } from './api-adapters/football-data'
 
 @Injectable()
 export class SyncCommand {
-  constructor(private readonly fixtureService: FixtureService) {}
+  constructor(private readonly fixtureService: FixtureService) { }
 
   @Command({
     command: 'sync:fixtures <test>',
@@ -30,10 +30,10 @@ export class SyncCommand {
         match.winner === MatchWinner.None
           ? ''
           : `${
-              match.winner === MatchWinner.Home && match.penalties ? 'P ' : ''
-            }${match.homeScore}-${match.awayScore}${
-              match.winner === MatchWinner.Away && match.penalties ? ' P' : ''
-            }`,
+          match.winner === MatchWinner.Home && match.penalties ? 'P ' : ''
+          }${match.homeScore}-${match.awayScore}${
+          match.winner === MatchWinner.Away && match.penalties ? ' P' : ''
+          }`,
       lastUpdated: match.lastUpdated
     }))
 
@@ -59,6 +59,7 @@ export class SyncCommand {
 
     await this.fixtureService.saveFixtures(
       [...fixturesToAdd, ...fixturesToUpdate].map(fixture => ({
+        tournamentId: 2,
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,
         round: fixture.round,

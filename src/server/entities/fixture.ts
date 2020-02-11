@@ -1,9 +1,12 @@
-import { Entity, Column } from 'typeorm'
 import { MatchWinner } from '@shared/models/match-winner'
 import { Round } from '@shared/models/round'
+import { Column, Entity } from 'typeorm'
 
 @Entity('fixtures')
 export class FixtureEntity {
+  @Column({ primary: true })
+  tournamentId: number
+
   @Column({ primary: true })
   awayTeam: string
 

@@ -4,19 +4,17 @@ import { baseEnv } from './base'
 export const serverEnv: ServerEnv = {
   ...baseEnv,
   authRedirectUrl: 'http://localhost:3000',
+  authorizationSecret: 'secret',
   database: {
-    type: 'mysql',
     host: 'localhost',
     port: 3306,
     username: 'root',
     password: 'root',
-    database: 'enjoy_food',
-    entities: [__dirname + '/entities/**/*.ts'],
+    database: 'horseBet',
     synchronize: false,
-    migrations: ['migrations/*.ts'],
-    cli: {
-      migrationsDir: 'migrations'
-    }
+    logging: true,
+    entitiesDir: 'entities',
+    migrationsDir: 'migrations'
   },
   email: {
     host: 'smtp.gmail.com',

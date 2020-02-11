@@ -18,12 +18,12 @@ import { CommandModule } from 'nestjs-command'
       username: serverEnv.database.username,
       password: serverEnv.database.password,
       database: serverEnv.database.database,
-      entities: [__dirname + '/entities/**/*.ts'],
-      synchronize: true,
-      logging: true,
-      migrations: ['migration/*.js'],
+      entities: [__dirname + `/${serverEnv.database.entitiesDir}/**/*.ts`],
+      synchronize: serverEnv.database.synchronize,
+      logging: serverEnv.database.logging,
+      migrations: [`${serverEnv.database.migrationsDir}/*.js`],
       cli: {
-        migrationsDir: 'migration'
+        migrationsDir: serverEnv.database.migrationsDir
       }
     }),
     MailerModule.forRoot({
@@ -48,4 +48,4 @@ import { CommandModule } from 'nestjs-command'
     MailModule
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,20 +1,18 @@
-import { BaseEnv } from './base'
+import { BaseEnv } from './base';
 
 export interface ServerEnv extends BaseEnv {
   authRedirectUrl: string
+  authorizationSecret: string
   database: {
-    type: string
     host: string
     port: number
     username: string
     password: string
     database: string
-    entities: Array<string>
     synchronize: boolean
-    migrations: Array<string>
-    cli: {
-      migrationsDir: string
-    }
+    logging: boolean
+    entitiesDir: string
+    migrationsDir: string
   }
   email: {
     host: string

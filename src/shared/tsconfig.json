@@ -2,9 +2,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["./*"],
-      "@client/*": ["../client/*"]
+      "@shared/*": [
+        "./*"
+      ],
+      "@client/*": [
+        "../client/*"
+      ]
     },
-    "typeRoots": ["./typings"]
+    "typeRoots": [
+      "./typings"
+    ]
   }
 }

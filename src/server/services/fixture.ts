@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, MoreThan } from 'typeorm'
-import * as format from 'date-fns/format'
 import { BetPlacement } from '@shared/models/bet-placement'
 import { hasFixtureBegun } from '@shared/validators/fixture'
-import { FixtureEntity } from 'entities/fixture'
+import * as format from 'date-fns/format'
 import { BetEntity } from 'entities/bet'
+import { FixtureEntity } from 'entities/fixture'
 import { UserEntity } from 'entities/user'
+import { MoreThan, Repository } from 'typeorm'
+
+const tournamentId = 2
 
 @Injectable()
 export class FixtureService {
@@ -17,18 +19,18 @@ export class FixtureService {
     private readonly betRepository: Repository<BetEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>
-  ) {}
+  ) { }
 
   private getTeamLogo(name: string) {
     return `/assets/logotypes/${name.toLocaleLowerCase().replace(' ', '-')}.png`
   }
 
   async getFixture(awayTeam: string, homeTeam: string) {
-    return await this.fixtureRepository.findOne({ awayTeam, homeTeam })
+    return await this.fixtureRepository.findOne({ tournamentId, awayTeam, homeTeam })
   }
 
   async getFixtures() {
-    return (await this.fixtureRepository.find()).map(fixture => ({
+    return (await this.fixtureRepository.find({ tournamentId })).map(fixture => ({
       ...fixture,
       lastSync: format(new Date(fixture.lastSync), 'YYYY-MM-DD HH:mm:ss')
     }))
@@ -41,8 +43,8 @@ export class FixtureService {
   }
 
   async getFixturesWithBets(email: string) {
-    const fixtures = await this.fixtureRepository.find()
-    const bets = await this.betRepository.find()
+    const fixtures = await this.fixtureRepository.find({ tournamentId })
+    const bets = await this.betRepository.find({ tournamentId })
     const users = await this.userRepository.find()
 
     return fixtures
@@ -80,19 +82,19 @@ export class FixtureService {
           score: fixture.score,
           bets: hasFixtureBegun(fixture)
             ? fixtureBets.map(bet => ({
-                name: users.find(
-                  user =>
-                    user.email.toLowerCase() === bet.userEmail.toLowerCase()
-                ).displayName,
-                placement: bet.placement
-              }))
+              name: users.find(
+                user =>
+                  user.email.toLowerCase() === bet.userEmail.toLowerCase()
+              ).displayName,
+              placement: bet.placement
+            }))
             : []
         }
       })
   }
 
   async saveFixtures(fixtures: Array<FixtureEntity>) {
-    return await this.fixtureRepository.save(fixtures)
+    return await this.fixtureRepository.save(fixtures.map(fixture => ({ ...fixture, tournamentId })))
   }
 
   async placeBet(
@@ -102,6 +104,7 @@ export class FixtureService {
     placement: BetPlacement
   ) {
     const bet = new BetEntity()
+    bet.tournamentId = tournamentId
     bet.userEmail = email
     bet.homeTeam = homeTeam
     bet.awayTeam = awayTeam
