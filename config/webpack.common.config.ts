@@ -1,9 +1,9 @@
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import path from 'path'
+import * as CopyWebpackPlugin from 'copy-webpack-plugin'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import * as path from 'path'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
-import webpack from 'webpack'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import * as webpack from 'webpack'
 
 export const config: webpack.Configuration = {
   output: {

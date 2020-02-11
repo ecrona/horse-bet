@@ -1,11 +1,11 @@
-import webpack from 'webpack'
-import merge from 'webpack-merge'
-
+import * as webpack from 'webpack'
+import * as merge from 'webpack-merge'
 import { config as commonConfig } from './config/webpack.common.config'
-import { config as productionConfig } from './config/webpack.prod.config'
 import { config as developmentConfig } from './config/webpack.dev.config'
+import { config as productionConfig } from './config/webpack.prod.config'
 
-export default function(environment: any): webpack.Configuration {
+
+export default function (environment: any): webpack.Configuration {
   return merge(
     {},
     commonConfig,

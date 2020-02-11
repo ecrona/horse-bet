@@ -1,6 +1,6 @@
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
-import webpack from 'webpack'
+import * as OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import * as TerserPlugin from 'terser-webpack-plugin'
+import * as webpack from 'webpack'
 
 export const config: webpack.Configuration = {
   mode: 'production',

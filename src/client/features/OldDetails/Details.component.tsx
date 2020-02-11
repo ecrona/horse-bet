@@ -21,12 +21,12 @@ export class Details extends React.PureComponent<StoreProps> {
         (fixture.bets.filter(bet => bet.placement === BetPlacement.Home)
           .length /
           fixture.bets.length) *
-          100
+        100
       )
 
     return (
       <React.Fragment>
-        <Toolbar subtitle="Fixture details" canGoBack hideHighscore />
+        <Toolbar subtitle="Fixture details" hideHighscore />
 
         {fixture && (
           <React.Fragment>

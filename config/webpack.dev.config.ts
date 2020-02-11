@@ -1,4 +1,4 @@
-import webpack from 'webpack'
+import * as webpack from 'webpack'
 
 export const config: webpack.Configuration = {
   mode: 'development',

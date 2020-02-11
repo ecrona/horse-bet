@@ -6,7 +6,7 @@ import { StoreProps } from './Highscore.container'
 import styles from './Highscore.styles.scss'
 import { ViewState } from './models/view-state'
 
-interface Props extends StoreProps {}
+interface Props extends StoreProps { }
 
 export class Highscore extends React.PureComponent<Props> {
   componentDidMount() {
@@ -18,7 +18,7 @@ export class Highscore extends React.PureComponent<Props> {
 
     return (
       <React.Fragment>
-        <Toolbar subtitle="Highscore" canGoBack hideHighscore />
+        <Toolbar subtitle="Highscore" hideHighscore />
 
         {viewState === ViewState.Fetching && (
           <div className={styles.loader}>
