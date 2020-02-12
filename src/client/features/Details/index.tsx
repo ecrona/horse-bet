@@ -107,17 +107,17 @@ export default function Details() {
 
       <div className="pb-4"></div>
 
-      <div className="px-6">
-        <span
-          className="details-compare__title"
-          style={{ fontFamily: 'Kameron' }}
-        >
-          Who picked what
-        </span>
-      </div>
-
-      {fixture.bets.length && (
+      {Boolean(fixture.bets.length) && (
         <>
+          <div className="px-6">
+            <span
+              className="details-compare__title"
+              style={{ fontFamily: 'Kameron' }}
+            >
+              Who picked what
+            </span>
+          </div>
+
           <div className="flex items-center shadow" style={{ height: 36 }}>
             <div
               className="details-compare details-compare--home"

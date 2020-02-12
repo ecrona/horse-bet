@@ -31,6 +31,10 @@
   @apply bg-yellow-300 text-gray-300;
 }
 
+.bet-button--selected:hover {
+  @apply bg-yellow-300 text-gray-300;
+}
+
 .bet-button--loser {
   @apply bg-red-100 text-white;
 }
