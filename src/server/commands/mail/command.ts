@@ -28,13 +28,13 @@ export class MailCommand {
           Du har blivit nogrann utvald till att delta i det välkända Hästbettet.
           Gå till https://hästbett.se för att logga in och delta!
           \n\n
-          Alla deltagare som vill vara med måste swisha 100:- till 0762027637, där vinnarna kommer få potten.
+          Alla deltagare som vill vara med måste swisha 100:- till 0762027637, där de främsta hästbettarna kommer att dela på potten.
         `,
         html: `
           Du har blivit nogrann utvald till att delta i det välkända Hästbettet.
           Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att logga in och delta!
           <br /> <br />
-          Alla deltagare som vill vara med måste swisha 100:- till <b>0762027637</b>, där vinnarna kommer få potten.
+          Alla deltagare som vill vara med måste swisha 100:- till <b>0762027637</b>, där de främsta hästbettarna kommer att dela på potten.
         `
       })
     }
@@ -63,10 +63,8 @@ export class MailCommand {
         )
     )
 
-    console.log(closeFixtures, usersWithoutBets)
-
     for (const user of usersWithoutBets) {
-      /*await this.mailerService.sendMail({
+      await this.mailerService.sendMail({
         to: user.email,
         from: 'ecrona@gmail.com',
         subject: 'Glöm inte Hästbett!',
@@ -78,7 +76,7 @@ export class MailCommand {
           Du har väl inte glömt att betta på kvällens matcher?!
           Gå till <a href="https://hästbett.se">https://hästbett.se</a> för att lägga dina bet!
         `
-      })*/
+      })
     }
   }
 }
