@@ -202,7 +202,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="pb-8"></div>
+      <div className="pb-10"></div>
 
       {Object.values(rounds).map((round: any) => (
         <div key={round.name}>

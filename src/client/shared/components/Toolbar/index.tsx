@@ -24,36 +24,38 @@ export default function Toolbar({
   }
 
   return (
-    <div className="toolbar__container">
-      <div className="toolbar">
-        <span className="toolbar__icon flex-1">
-          {!hideGoBack && (
-            <IconButton
-              aria-label="Highscore"
-              color="inherit"
-              onClick={handleGoBack}
-            >
-              <ArrowBack />
-            </IconButton>
-          )}
-        </span>
+    <div className="toolbar__spacer">
+      <div className="toolbar__container">
+        <div className="toolbar">
+          <span className="toolbar__icon flex-1">
+            {!hideGoBack && (
+              <IconButton
+                aria-label="Highscore"
+                color="inherit"
+                onClick={handleGoBack}
+              >
+                <ArrowBack />
+              </IconButton>
+            )}
+          </span>
 
-        <div>
-          <span className="toolbar__title">Hästbett</span>
+          <div>
+            <span className="toolbar__title">Hästbett</span>
 
-          {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
-        </div>
+            {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
+          </div>
 
-        <div className="flex-1 text-right">
-          {!hideHighscore && (
-            <Link to={`/${tournament}/highscore`} title="View highscore">
-              <span className="toolbar__icon">
-                <IconButton aria-label="Highscore" color="inherit">
-                  <FormatListNumberedIcon />
-                </IconButton>
-              </span>
-            </Link>
-          )}
+          <div className="flex-1 text-right">
+            {!hideHighscore && (
+              <Link to={`/${tournament}/highscore`} title="View highscore">
+                <span className="toolbar__icon">
+                  <IconButton aria-label="Highscore" color="inherit">
+                    <FormatListNumberedIcon />
+                  </IconButton>
+                </span>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

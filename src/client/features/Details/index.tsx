@@ -43,6 +43,8 @@ export default function Details() {
   const hasWinner = fixture.matchWinner !== MatchWinner.None
   const homeWinner = fixture.matchWinner === MatchWinner.Home
   const awayWinner = fixture.matchWinner === MatchWinner.Away
+  const hasBets = false
+  // Boolean(fixture.bets && fixture.bets.length)
 
   return (
     <>
@@ -93,21 +95,29 @@ export default function Details() {
         <div className="flex flex-col flex-1 text-center">
           <span className="text-xs">First match</span>
           <span className="font-medium">
-            {format(fixture.firstMatchStart, 'do MMMM HH:mm')}
+            {format(fixture.firstMatchStart, 'Do MMMM HH:mm')}
           </span>
         </div>
 
         <div className="flex flex-col flex-1 text-center">
           <span className="text-xs">Second match</span>
           <span className="font-medium">
-            {format(fixture.secondMatchStart, 'do MMMM HH:mm')}
+            {format(fixture.secondMatchStart, 'Do MMMM HH:mm')}
           </span>
         </div>
       </div>
 
       <div className="pb-4"></div>
 
-      {Boolean(fixture.bets.length) && (
+      {!hasBets && (
+        <div className="pt-10 px-16 text-center">
+          <span className="text-yellow-300 font-medium">
+            All bets will be displayed here after the first match has started
+          </span>
+        </div>
+      )}
+
+      {hasBets && (
         <>
           <div className="px-6">
             <span

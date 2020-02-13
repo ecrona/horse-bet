@@ -9,7 +9,7 @@ import Tournaments from './features/Tournaments'
 
 export default function App() {
   return (
-    <div className="h-screen">
+    <div className="max-w-xl m-auto">
       <Layout>
         <Switch>
           <Route exact path="/">
