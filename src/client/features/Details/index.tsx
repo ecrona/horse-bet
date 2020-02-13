@@ -43,8 +43,7 @@ export default function Details() {
   const hasWinner = fixture.matchWinner !== MatchWinner.None
   const homeWinner = fixture.matchWinner === MatchWinner.Home
   const awayWinner = fixture.matchWinner === MatchWinner.Away
-  const hasBets = false
-  // Boolean(fixture.bets && fixture.bets.length)
+  const hasBets = Boolean(fixture.bets && fixture.bets.length)
 
   return (
     <>
