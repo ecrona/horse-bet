@@ -236,7 +236,7 @@ function getBetButtonState(team: MatchWinner, matchWinner: MatchWinner) {
     return 'winner'
   }
 
-  if (matchWinner && team !== matchWinner) {
+  if (matchWinner !== MatchWinner.None && team !== matchWinner) {
     return 'loser'
   }
 
