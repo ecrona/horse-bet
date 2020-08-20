@@ -69,7 +69,7 @@
     "awesome-typescript-loader": "5.2.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
-    "bcrypt": "3.0.0",
+    "bcrypt": "5.0.0",
     "clsx": "^1.0.4",
     "cookie-parser": "1.4.3",
     "copy-webpack-plugin": "^5.1.1",
