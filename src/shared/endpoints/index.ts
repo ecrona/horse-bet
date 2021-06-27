@@ -1,21 +1,24 @@
-import { UserEndpointsData, userEndpointsMeta } from '@shared/endpoints/user'
 import {
-  DashboardEndpointsData,
-  dashboardEndpointsMeta
-} from '@shared/endpoints/dashboard'
+  FixtureEndpointsData,
+  fixturesEndpointsMeta,
+} from '@shared/endpoints/fixtures'
 import {
   HighscoresEndpointsData,
-  highscoresEndpointsMeta
+  highscoresEndpointsMeta,
 } from '@shared/endpoints/highscores'
+import { UserEndpointsData, userEndpointsMeta } from '@shared/endpoints/user'
+import { TournamentEndpointsData, tournamentEndpointsMeta } from './tournament'
 
 export interface Endpoints {
   user: UserEndpointsData
-  dashboard: DashboardEndpointsData
+  tournaments: TournamentEndpointsData
+  fixtures: FixtureEndpointsData
   highscores: HighscoresEndpointsData
 }
 
 export const endpointsMeta = {
   user: userEndpointsMeta,
-  dashboard: dashboardEndpointsMeta,
-  highscores: highscoresEndpointsMeta
+  tournaments: tournamentEndpointsMeta,
+  fixtures: fixturesEndpointsMeta,
+  highscores: highscoresEndpointsMeta,
 }
