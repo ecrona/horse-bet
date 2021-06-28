@@ -1,10 +1,10 @@
-import { DashboardEndpointsData } from '@shared/endpoints/dashboard'
-import { Round } from '@shared/models/round'
-import { BetPlacement } from '@shared/models/bet-placement'
-import { createMockPromise } from '../create-mock-promise'
 import { MatchWinner } from '@client/../shared/models/match-winner'
+import { FixtureEndpointsData } from '@shared/endpoints/fixtures'
+import { BetPlacement } from '@shared/models/bet-placement'
+import { Round } from '@shared/models/round'
+import { createMockPromise } from '../create-mock-promise'
 
-export const dashboardMockEndpoints: DashboardEndpointsData = {
+export const fixturesMockEndpoints: FixtureEndpointsData = {
   get: createMockPromise([
     {
       round: Round.QuarterFinals,
@@ -18,8 +18,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
         { name: 'KC', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -28,15 +28,15 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       homeTeam: { name: 'Juventus', logo: '/assets/logotypes/juventus.png' },
       awayTeam: {
         name: 'Atlético Madrid',
-        logo: '/assets/logotypes/atlético-madrid.png'
+        logo: '/assets/logotypes/atlético-madrid.png',
       },
       betPlacement: BetPlacement.Away,
       matchWinner: MatchWinner.Home,
       score: '3-0',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -49,8 +49,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '7-2',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -58,7 +58,7 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       secondMatchStart: '2020-04-04 04:04',
       homeTeam: {
         name: 'Bayern München',
-        logo: '/assets/logotypes/bayern-münchen.png'
+        logo: '/assets/logotypes/bayern-münchen.png',
       },
       awayTeam: { name: 'Liverpool', logo: '/assets/logotypes/liverpool.png' },
       betPlacement: BetPlacement.NotPlaced,
@@ -66,8 +66,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -80,8 +80,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -89,7 +89,7 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       secondMatchStart: '2020-04-04 04:04',
       homeTeam: {
         name: 'Real Madrid',
-        logo: '/assets/logotypes/real-madrid.png'
+        logo: '/assets/logotypes/real-madrid.png',
       },
       awayTeam: { name: 'Ajax', logo: '/assets/logotypes/ajax.png' },
       betPlacement: BetPlacement.NotPlaced,
@@ -97,8 +97,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -111,8 +111,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -125,8 +125,8 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
     },
     {
       round: Round.RoundOf16,
@@ -139,9 +139,31 @@ export const dashboardMockEndpoints: DashboardEndpointsData = {
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
-        { name: 'Viktor', placement: BetPlacement.Away }
-      ]
-    }
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
+    },
   ]),
-  placeBet: createMockPromise(undefined)
+  update: ({ awayTeam, homeTeam, firstMatchStart, secondMatchStart }) =>
+    createMockPromise({
+      firstMatchStart,
+      secondMatchStart,
+      awayTeam: {
+        name: awayTeam,
+        logo: `/assets/logotypes/${awayTeam
+          .toLowerCase()
+          .replace(/ /g, '-')}.png`,
+      },
+      homeTeam: {
+        name: homeTeam,
+        logo: `/assets/logotypes/${homeTeam
+          .toLowerCase()
+          .replace(/ /g, '-')}.png`,
+      },
+      round: Round.RoundOf16,
+      matchWinner: MatchWinner.None,
+      betPlacement: BetPlacement.NotPlaced,
+      score: '0-0',
+      bets: [],
+    })(),
+  placeBet: createMockPromise(undefined),
 }
