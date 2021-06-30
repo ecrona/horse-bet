@@ -16,15 +16,15 @@ export default function App() {
             <Tournaments />
           </Route>
 
-          <Route exact path="/:tournament">
+          <Route exact path="/:id/:slug">
             <Dashboard />
           </Route>
 
-          <Route exact path="/:tournament/:homeTeam/:awayTeam">
+          <Route exact path="/:id/:slug/:homeTeam/:awayTeam">
             <Details />
           </Route>
 
-          <Route exact path="/:tournament/highscore">
+          <Route exact path="/:id/:slug/highscore">
             <Highscore />
           </Route>
         </Switch>
