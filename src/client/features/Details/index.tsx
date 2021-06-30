@@ -6,7 +6,7 @@ import format from 'date-fns/format'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { getFixture } from '../OldDetails/selectors'
+import { getFixture } from '../Details/selectors'
 import './styles.css'
 
 export default function Details() {

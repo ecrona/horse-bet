@@ -37,16 +37,17 @@ export const getFixtures = (): ThunkAction => async (
   endpoints
 ) => {
   dispatch(actions.requestFixtures())
-  dispatch(actions.receiveFixtures(await endpoints.dashboard.get()))
+  dispatch(actions.receiveFixtures(await endpoints.fixtures.get()))
 }
 
 export const placeBet = (
+  tournamentId: number,
   awayTeam: string,
   homeTeam: string,
   placement: BetPlacement
 ): ThunkAction => async (dispatch, getState, endpoints) => {
   dispatch(actions.requestPlaceBet())
-  await endpoints.dashboard.placeBet({ awayTeam, homeTeam, placement })
+  await endpoints.fixtures.placeBet({ tournamentId, awayTeam, homeTeam, placement })
   dispatch(actions.receivePlaceBet(awayTeam, homeTeam, placement))
 }
 

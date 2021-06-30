@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateDate } from 'store/common/actions'
+import { fetchHighscores } from '../Highscore/store/actions'
 import Login from '../Login'
-import { fetchHighscores } from '../OldHighscore/store/actions'
 
 interface Props {
   children?: any

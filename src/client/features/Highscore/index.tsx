@@ -2,8 +2,8 @@ import Toolbar from '@client/shared/components/Toolbar'
 import { getNumberOrdinal } from '@client/utils'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchHighscores } from '../OldHighscore/store/actions'
-import { getHighscores, getMyHighscore } from '../OldHighscore/store/selectors'
+import { fetchHighscores } from '../Highscore/store/actions'
+import { getHighscores, getMyHighscore } from '../Highscore/store/selectors'
 import './styles.css'
 
 export default function Highscore() {
