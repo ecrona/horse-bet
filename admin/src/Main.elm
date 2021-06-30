@@ -19,6 +19,12 @@ main =
         }
 
 
+port sendMessage : Encode.Value -> Cmd msg
+
+
+port messageReceiver : (String -> msg) -> Sub msg
+
+
 fixturesPerPhase : String -> Int
 fixturesPerPhase phase =
     case phase of
@@ -92,6 +98,8 @@ type Msg
     | UpdateFixture Int FixtureField String
     | Create
     | Created (Result Http.Error ())
+    | Send
+    | Receive String
 
 
 initializeFixtures : Int -> List Fixture
@@ -111,7 +119,7 @@ init _ =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    messageReceiver Receive
 
 
 encodeFixture : Fixture -> Encode.Value
@@ -124,14 +132,13 @@ encodeFixture fixture =
         ]
 
 
-encodeTournamentBody : Tournament -> Http.Body
+encodeTournamentBody : Tournament -> Encode.Value
 encodeTournamentBody tournament =
     Encode.object
         [ ( "title", Encode.string tournament.title )
         , ( "startPhase", Encode.string tournament.startPhase )
         , ( "fixtures", Encode.list encodeFixture tournament.fixtures )
         ]
-        |> Http.jsonBody
 
 
 updateFixture : FixtureField -> String -> Fixture -> Fixture
@@ -181,7 +188,9 @@ update msg model =
                 cmd =
                     Http.post
                         { url = "/create-tournament"
-                        , body = encodeTournamentBody model
+                        , body =
+                            encodeTournamentBody model
+                                |> Http.jsonBody
                         , expect = Http.expectWhatever Created
                         }
             in
@@ -191,6 +200,12 @@ update msg model =
             ( model, Cmd.none )
 
         Created (Ok tournament) ->
+            ( model, Cmd.none )
+
+        Send ->
+            ( model, sendMessage (encodeTournamentBody model) )
+
+        Receive message ->
             ( model, Cmd.none )
 
 
