@@ -10,10 +10,10 @@ import format from 'date-fns/format'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { DashboardFixture } from '../Dashboard/models/dashboard-fixture'
-import { getFixtures, placeBet } from '../Dashboard/store/actions'
-import { getRounds } from '../Dashboard/store/selectors'
 import { getMyHighscore } from '../OldHighscore/store/selectors'
+import { DashboardFixture } from './models/dashboard-fixture'
+import { getFixtures, placeBet } from './store/actions'
+import { getRounds } from './store/selectors'
 import './styles.css'
 
 interface BetButtonProps {
