@@ -17,7 +17,7 @@ export default function Toolbar({
   subtitle
 }: Props) {
   const history = useHistory()
-  const { tournament } = useParams()
+  const { id, slug } = useParams<{id: string, slug: string}>()
 
   function handleGoBack() {
     history.goBack()
@@ -47,7 +47,7 @@ export default function Toolbar({
 
           <div className="flex-1 text-right">
             {!hideHighscore && (
-              <Link to={`/${tournament}/highscore`} title="View highscore">
+              <Link to={`/${id}/${slug}/highscore`} title="View highscore">
                 <span className="toolbar__icon">
                   <IconButton aria-label="Highscore" color="inherit">
                     <FormatListNumberedIcon />

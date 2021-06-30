@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import format from 'date-fns/format'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getMyHighscore } from '../Highscore/store/selectors'
 import { DashboardFixture } from './models/dashboard-fixture'
 import { getFixtures, placeBet } from './store/actions'
@@ -158,6 +158,8 @@ export default function Dashboard() {
   const rounds = useSelector(getRounds)
   const myHighscore = useSelector(getMyHighscore) || {}
 
+  const {id} = useParams<{ id: string }>()
+
   useEffect(() => {
     dispatch(getFixtures())
     window.scrollTo(0, 0)
@@ -168,7 +170,7 @@ export default function Dashboard() {
     homeTeam: string,
     placement: BetPlacement
   ) {
-    dispatch(placeBet(awayTeam, homeTeam, placement))
+    dispatch(placeBet(Number(id), awayTeam, homeTeam, placement))
   }
 
   return (
