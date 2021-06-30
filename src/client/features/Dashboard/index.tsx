@@ -57,7 +57,6 @@ function Separator() {
 
 interface FixProps {
   fixture: DashboardFixture
-  tournamentName: string
   onPlaceBet: (
     awayTeam: string,
     homeTeam: string,
@@ -65,7 +64,8 @@ interface FixProps {
   ) => void
 }
 
-function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
+function Fixture({ fixture, onPlaceBet }: FixProps) {
+  const {id, slug, name} = useParams<{ id: string, slug: string, name: string }>()
   const [homeScore, awayScore] = fixture.score.split('-')
   const isPlaceable = fixture.placeable
   const homeSelected = fixture.betPlacement === BetPlacement.Home
@@ -143,7 +143,7 @@ function Fixture({ fixture, tournamentName, onPlaceBet }: FixProps) {
       <footer className="text-center">
         <Link
           className="inline-block"
-          to={`/${tournamentName}/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
+          to={`/${id}/${slug}/${fixture.homeTeam.name}/${fixture.awayTeam.name}`}
           title="Click to view fixture details"
         >
           <button className="bet-fixture__details">View details</button>
@@ -222,7 +222,6 @@ export default function Dashboard() {
             <div key={fixture.awayTeam.name} className="pb-10">
               <Fixture
                 fixture={fixture}
-                tournamentName="champions-league"
                 onPlaceBet={handlePlaceBet}
               />
             </div>
