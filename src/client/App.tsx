@@ -1,6 +1,7 @@
 import 'global.css'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import Admin from './features/Admin'
 import Dashboard from './features/Dashboard'
 import Details from './features/Details'
 import Highscore from './features/Highscore'
@@ -14,6 +15,10 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <Tournaments />
+          </Route>
+
+          <Route exact path="/:id/:slug/admin">
+            <Admin />
           </Route>
 
           <Route exact path="/:id/:slug">
