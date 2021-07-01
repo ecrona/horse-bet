@@ -3,6 +3,7 @@ import { MatchWinner } from '@client/../shared/models/match-winner'
 import { Fixture } from '@client/models/fixture'
 import Toolbar from '@client/shared/components/Toolbar'
 import { getNumberOrdinal } from '@client/utils'
+import { getFlag } from '@client/utils/flag'
 import LockIcon from '@material-ui/icons/Lock'
 import LockOpenIcon from '@material-ui/icons/LockOpen'
 import clsx from 'clsx'
@@ -15,6 +16,8 @@ import { DashboardFixture } from './models/dashboard-fixture'
 import { getFixtures, placeBet } from './store/actions'
 import { getRounds } from './store/selectors'
 import './styles.css'
+
+
 
 interface BetButtonProps {
   disabled?: boolean
@@ -107,7 +110,7 @@ function Fixture({ fixture, onPlaceBet }: FixProps) {
           }
           onClick={handlePlaceBet(BetPlacement.Home)}
         >
-          <img className="bet-button__logo" src={fixture.homeTeam.logo} />
+          <img className="bet-button__logo" src={getFlag(fixture.homeTeam.name)} />
           <span className="pl-3 flex-1 font-medium">
             {fixture.homeTeam.name}
           </span>
@@ -125,7 +128,7 @@ function Fixture({ fixture, onPlaceBet }: FixProps) {
           }
           onClick={handlePlaceBet(BetPlacement.Away)}
         >
-          <img className="bet-button__logo" src={fixture.awayTeam.logo} />
+          <img className="bet-button__logo" src={getFlag(fixture.awayTeam.name)} />
           <span className="pl-3 flex-1 font-medium">
             {fixture.awayTeam.name}
           </span>

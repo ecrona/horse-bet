@@ -1,6 +1,7 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
 import Toolbar from '@client/shared/components/Toolbar'
+import { getFlag } from '@client/utils/flag'
 import clsx from 'clsx'
 import format from 'date-fns/format'
 import React, { useEffect, useMemo, useState } from 'react'
@@ -61,7 +62,7 @@ export default function Details() {
             'details-team--loser': hasWinner && awayWinner
           })}
         >
-          <img className="details-team__logo" src={fixture.homeTeam.logo} />
+          <img className="details-team__logo" src={getFlag(fixture.homeTeam.name)} />
           <span className="details-team__name">{fixture.homeTeam.name}</span>
           <span className="text-green-100" style={{ height: 24 }}>
             {fixture.matchWinner === BetPlacement.Home && 'Winner'}
@@ -79,7 +80,7 @@ export default function Details() {
             'details-team--loser': hasWinner && homeWinner
           })}
         >
-          <img className="details-team__logo" src={fixture.awayTeam.logo} />
+          <img className="details-team__logo" src={getFlag(fixture.awayTeam.name)} />
           <span className="details-team__name">{fixture.awayTeam.name}</span>
           <span className="text-green-100" style={{ height: 24 }}>
             {fixture.matchWinner === BetPlacement.Away && 'Winner'}
