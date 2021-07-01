@@ -6,6 +6,8 @@ interface FixtureBaseRequest {
   tournamentId: number
   awayTeam: string
   homeTeam: string
+  // score: string
+  // matchWinner: MatchWinner
 }
 
 export interface PlaceBetRequest extends FixtureBaseRequest {

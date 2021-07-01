@@ -5,6 +5,10 @@ import {
 } from '@client/features/Highscore/store/actions'
 // Features
 import {
+    Actions as AdminActions,
+    ActionTypes as AdminActionTypes
+} from 'features/Admin/store/actions'
+import {
     Actions as DashboardActions,
     ActionTypes as DashboardActionTypes
 } from 'features/Dashboard/store/actions'
@@ -22,9 +26,10 @@ export const ActionTypes = {
   common: CommonActionTypes,
 
   // Features
+  admin: AdminActionTypes,
   dashboard: DashboardActionTypes,
   highscore: HighscoreActionTypes,
   tournaments: TournamentsActionTypes
 }
 
-export type Actions = CommonActions | DashboardActions | HighscoreActions |TournamentsActions
+export type Actions = CommonActions | AdminActions | DashboardActions | HighscoreActions |TournamentsActions
