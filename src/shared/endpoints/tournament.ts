@@ -14,6 +14,8 @@ interface FixtureRequest {
   homeTeam: string
   firstMatchStart: string
   secondMatchStart: string
+  score: string
+  
 }
 
 interface TournamentBaseRequest {

@@ -13,7 +13,7 @@ export const fixturesMockEndpoints: FixtureEndpointsData = {
       homeTeam: { name: 'Austria', logo: '/assets/logotypes/juventus.png' },
       awayTeam: { name: 'England', logo: '/assets/logotypes/man-city.png' },
       betPlacement: BetPlacement.NotPlaced,
-      matchWinner: MatchWinner.None,
+      matchWinner: MatchWinner.Home,
       score: '',
       bets: [
         { name: 'Eddie', placement: BetPlacement.Home },
