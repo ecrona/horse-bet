@@ -1,5 +1,5 @@
 import { getFixtures } from '@client/features/Dashboard/store/actions'
-import { Fixture } from '@shared/models/fixture'
+import { Fixture, FixtureModel } from '@shared/models/fixture'
 import { ActionsUnion, createAction, ThunkAction } from 'store'
 
 export enum ActionTypes {
@@ -17,7 +17,7 @@ export const actions = {
   receiveConcludeRound: (payload) => createAction(ActionTypes.receiveConcludeRound, payload),
 }
 
-export const updateFixture = (tournamentId: number, fixture: Fixture): ThunkAction => async (
+export const updateFixture = (tournamentId: number, fixture: FixtureModel): ThunkAction => async (
   dispatch,
   getState,
   endpoints
@@ -32,7 +32,7 @@ export const updateFixture = (tournamentId: number, fixture: Fixture): ThunkActi
   dispatch(getFixtures())
 }
 
-export const concludeRound = (tournamentId: number, fixtures: Fixture[]): ThunkAction => async (
+export const concludeRound = (tournamentId: number, fixtures: FixtureModel[]): ThunkAction => async (
   dispatch,
   getState,
   endpoints

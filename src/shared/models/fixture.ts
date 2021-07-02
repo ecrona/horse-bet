@@ -1,6 +1,6 @@
 import { BetPlacement } from './bet-placement'
-import { Round } from './round'
 import { MatchWinner } from './match-winner'
+import { Round } from './round'
 
 interface Bet {
   name: string
@@ -22,4 +22,13 @@ export interface Fixture {
   matchWinner: MatchWinner
   score: string
   bets: Array<Bet>
+}
+
+export interface FixtureModel {
+  awayTeam: Team
+  homeTeam: Team
+  firstMatchStart: string
+  secondMatchStart: string
+  matchWinner: MatchWinner
+  score: string
 }

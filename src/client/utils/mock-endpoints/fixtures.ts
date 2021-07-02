@@ -22,6 +22,21 @@ export const fixturesMockEndpoints: FixtureEndpointsData = {
       ],
     },
     {
+      round: Round.QuarterFinals,
+      firstMatchStart: '2020-04-15 21:00',
+      secondMatchStart: '2020-04-04 04:04',
+      homeTeam: { name: 'Romania', logo: '/assets/logotypes/juventus.png' },
+      awayTeam: { name: 'Bassarabia', logo: '/assets/logotypes/man-city.png' },
+      betPlacement: BetPlacement.NotPlaced,
+      matchWinner: MatchWinner.Away,
+      score: '',
+      bets: [
+        { name: 'Eddie', placement: BetPlacement.Home },
+        { name: 'KC', placement: BetPlacement.Home },
+        { name: 'Viktor', placement: BetPlacement.Away },
+      ],
+    },
+    {
       round: Round.RoundOf16,
       firstMatchStart: '2020-02-20 21:00',
       secondMatchStart: '2020-04-04 04:04',

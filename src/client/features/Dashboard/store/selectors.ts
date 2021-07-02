@@ -1,20 +1,7 @@
+import { getRoundName } from '@client/utils'
 import { createSelector } from 'reselect'
-import { Round } from '@shared/models/round'
 import { RootState } from 'store/reducers'
 
-const isUnique = (value, index, self) => self.indexOf(value) === index
-const getRoundName = (round: Round) => {
-  switch (round) {
-    case Round.Final:
-      return 'Final'
-    case Round.SemiFinals:
-      return 'Semi Finals'
-    case Round.QuarterFinals:
-      return 'Quarter Finals'
-    case Round.RoundOf16:
-      return 'Round of 16'
-  }
-}
 
 export const getRounds = createSelector(
   (state: RootState) => state.common.date,
