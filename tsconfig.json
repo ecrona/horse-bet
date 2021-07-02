@@ -5,6 +5,8 @@
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
+    "noEmit": true,
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -14,6 +16,9 @@
     "outDir": "../../dist/server",
     "baseUrl": "./",
     "paths": {
+      "@client/*": [
+        "src/client/*"
+      ],
       "@env/*": [
         "env/*"
       ],

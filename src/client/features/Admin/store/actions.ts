@@ -18,8 +18,6 @@ export const updateFixture = (tournamentId: number, fixture: Fixture): ThunkActi
   getState,
   endpoints
 ) => {
-  console.log(endpoints.fixtures.update)
-
   dispatch(actions.requestUpdateFixture())
   dispatch(actions.receiveUpdateFixture(await endpoints.fixtures.update({
     ...fixture,
