@@ -14,7 +14,7 @@ export const serverEnv: ServerEnv = {
     synchronize: false,
     logging: true,
     entitiesDir: 'entities',
-    migrationsDir: 'migrations'
+    migrationsDir: 'migrations',
   },
   email: {
     host: 'smtp.gmail.com',
@@ -22,7 +22,7 @@ export const serverEnv: ServerEnv = {
     secure: true,
     auth: {
       user: 'ecrona@gmail.com',
-      pass: ''
-    }
-  }
+      pass: '',
+    },
+  },
 }

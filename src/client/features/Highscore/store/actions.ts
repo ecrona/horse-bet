@@ -1,5 +1,5 @@
 import { Highscore } from '@shared/models/highscore'
-import { ThunkAction, ActionsUnion, createAction } from 'store'
+import { ActionsUnion, createAction, ThunkAction } from 'store'
 
 export enum ActionTypes {
   requestHighscores = '[Highscore] Request highscores',
@@ -15,13 +15,13 @@ export const actions = {
     createAction(ActionTypes.receiveHighscores, highscores)
 }
 
-export const fetchHighscores = (): ThunkAction => async (
+export const fetchHighscores = (tournamentId: number): ThunkAction => async (
   dispatch,
   getState,
   endpoints
 ) => {
   dispatch(actions.requestHighscores())
-  dispatch(actions.receiveHighscores(await endpoints.highscores.get()))
+  dispatch(actions.receiveHighscores(await endpoints.highscores.get({ tournamentId })))
 }
 
 export type Actions = ActionsUnion<typeof actions>

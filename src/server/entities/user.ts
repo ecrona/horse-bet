@@ -1,4 +1,4 @@
-import { Entity, Column, Index } from 'typeorm'
+import { Column, Entity } from 'typeorm'
 
 @Entity('users')
 export class UserEntity {
@@ -7,4 +7,10 @@ export class UserEntity {
 
   @Column({ primary: true })
   email: string
+
+  @Column({ default: false })
+  admin: boolean
+
+  @Column({ default: true })
+  active: boolean
 }

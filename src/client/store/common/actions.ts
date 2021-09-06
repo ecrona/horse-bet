@@ -28,7 +28,9 @@ export const actions = {
 export const updateDate = (): ThunkAction => dispatch => {
   const now = new Date()
   dispatch(actions.setDate(format(now, 'YYYY-MM-DD HH:mm')))
-  dispatch(getFixtures())
+
+  // TODO: FIXME
+  // dispatch(getFixtures())
 
   const currentMinute = getMinutes(now)
   const closestMinute =

@@ -67,7 +67,7 @@ export default function Admin() {
       <Toolbar hideHighscore />
 
       <div className="bg-white h-full min-h-full pt-6 px-6 pb-10">
-        {lastRound && lastRound.fixtures && (
+        {lastRound && lastRound.fixtures && lastRound.fixtures.length > 1 && (
           <ConcludeForm round={lastRound} />
         )}
 
@@ -203,7 +203,7 @@ const FixtureFormStandalone = ({model: _model, tournamentId}: {model: Model, tou
 
   return (
     <>
-      <FixtureForm model={_model} onChange={setModel} />
+      <FixtureForm model={model} onChange={setModel} />
       <Button onClick={handleSave}>Save</Button>
     </>
   )

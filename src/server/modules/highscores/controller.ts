@@ -1,14 +1,8 @@
+import { Controller, HttpCode, UseGuards } from '@nestjs/common'
 import {
-  Controller,
-  HttpCode,
-  UseGuards,
-  HttpStatus,
-  Response,
-  HttpException
-} from '@nestjs/common'
-import {
+  GetHighscoresRequest,
   HighscoresEndpointsData,
-  highscoresEndpointsMeta
+  highscoresEndpointsMeta,
 } from '@shared/endpoints/highscores'
 import { Endpoints } from 'decorators/endpoints'
 import { AuthGuard } from 'guards/auth'
@@ -19,9 +13,12 @@ import { HighscoresService } from './service'
 export class HighscoresController implements HighscoresEndpointsData {
   constructor(private readonly highscoresService: HighscoresService) {}
 
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @HttpCode(200)
-  async get(credentials: void, request) {
-    return await this.highscoresService.get(request.locals.email)
+  async get(payload: GetHighscoresRequest, request) {
+    return await this.highscoresService.get(
+      payload.tournamentId,
+      request.locals.email
+    )
   }
 }

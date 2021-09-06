@@ -4,8 +4,9 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { MailModule } from 'commands/mail/module'
 import { SyncModule } from 'commands/sync/module'
-import { DashboardModule } from 'modules/dashboard/module'
+import { FixturesModule } from 'modules/fixtures/module'
 import { HighscoresModule } from 'modules/highscores/module'
+import { TournamentModule } from 'modules/tournaments/module'
 import { UserModule } from 'modules/user/module'
 import { CommandModule } from 'nestjs-command'
 
@@ -23,29 +24,30 @@ import { CommandModule } from 'nestjs-command'
       logging: serverEnv.database.logging,
       migrations: [`${serverEnv.database.migrationsDir}/*.js`],
       cli: {
-        migrationsDir: serverEnv.database.migrationsDir
-      }
+        migrationsDir: serverEnv.database.migrationsDir,
+      },
     }),
     MailerModule.forRoot({
       transport: serverEnv.email,
       defaults: {
         forceEmbeddedImages: true,
-        from: '"nest-modules" <modules@nestjs.com>'
+        from: '"nest-modules" <modules@nestjs.com>',
       },
       template: {
         dir: __dirname + '/templates',
         adapter: new HandlebarsAdapter(),
         options: {
-          strict: true
-        }
-      }
+          strict: true,
+        },
+      },
     }),
     CommandModule,
-    DashboardModule,
+    FixturesModule,
+    TournamentModule,
     HighscoresModule,
     UserModule,
     SyncModule,
-    MailModule
-  ]
+    MailModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

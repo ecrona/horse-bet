@@ -2,6 +2,7 @@ import Toolbar from '@client/shared/components/Toolbar'
 import { getNumberOrdinal } from '@client/utils'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router'
 import { fetchHighscores } from '../Highscore/store/actions'
 import { getHighscores, getMyHighscore } from '../Highscore/store/selectors'
 import './styles.css'
@@ -11,6 +12,7 @@ export default function Highscore() {
   const highscores = useSelector(getHighscores)
   const myHighscore = useSelector(getMyHighscore)
 
+  const {id } = useParams<{ id: string }>()
   const [query, setQuery] = useState('')
   const filteredHighscores = useMemo(
     () =>
@@ -21,7 +23,7 @@ export default function Highscore() {
   )
 
   useEffect(() => {
-    dispatch(fetchHighscores())
+    dispatch(fetchHighscores(Number(id)))
     window.scrollTo(0, 0)
   }, [])
 

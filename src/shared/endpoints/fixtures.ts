@@ -1,13 +1,12 @@
 import { BetPlacement } from '@shared/models/bet-placement'
 import { Fixture } from '@shared/models/fixture'
+import { MatchWinner } from '@shared/models/match-winner'
 import { Endpoint, EndpointsMeta, RequestMethod } from '@shared/utils/endpoints'
 
 interface FixtureBaseRequest {
   tournamentId: number
   awayTeam: string
   homeTeam: string
-  // score: string
-  // matchWinner: MatchWinner
 }
 
 export interface PlaceBetRequest extends FixtureBaseRequest {
@@ -17,6 +16,8 @@ export interface PlaceBetRequest extends FixtureBaseRequest {
 export interface UpdateFixtureRequest extends FixtureBaseRequest {
   firstMatchStart: string
   secondMatchStart: string
+  score: string
+  matchWinner: MatchWinner
 }
 
 interface FixtureBaseEndpoints {

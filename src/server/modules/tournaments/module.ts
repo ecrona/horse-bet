@@ -6,7 +6,8 @@ import { TournamentEntity } from 'entities/tournament'
 import { UserEntity } from 'entities/user'
 import { FixtureService } from 'services/fixture'
 import { UserService } from 'services/user'
-import { MailCommand } from './command'
+import { TournamentController } from './controller'
+import { TournamentService } from './service'
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { MailCommand } from './command'
     TypeOrmModule.forFeature([TournamentEntity]),
     TypeOrmModule.forFeature([UserEntity]),
   ],
-  providers: [FixtureService, UserService, MailCommand],
+  providers: [TournamentService, FixtureService, UserService],
+  controllers: [TournamentController],
 })
-export class MailModule {}
+export class TournamentModule {}

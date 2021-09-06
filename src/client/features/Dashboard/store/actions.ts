@@ -31,13 +31,13 @@ export const actions = {
     createAction(ActionTypes.saveScrollPosition, scrollPosition)
 }
 
-export const getFixtures = (): ThunkAction => async (
+export const getFixtures = (tournamentId: number): ThunkAction => async (
   dispatch,
   getState,
   endpoints
 ) => {
   dispatch(actions.requestFixtures())
-  dispatch(actions.receiveFixtures(await endpoints.fixtures.get()))
+  dispatch(actions.receiveFixtures(await endpoints.fixtures.get({ id: tournamentId })))
 }
 
 export const placeBet = (

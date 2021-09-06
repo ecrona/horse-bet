@@ -6,20 +6,20 @@ import { FootballData } from './api-adapters/football-data'
 
 @Injectable()
 export class SyncCommand {
-  constructor(private readonly fixtureService: FixtureService) { }
+  constructor(private readonly fixtureService: FixtureService) {}
 
   @Command({
     command: 'sync:fixtures <test>',
-    describe: 'sync all the fixtures'
+    describe: 'sync all the fixtures',
   })
   async fixtures(
     @Positional({
-      name: 'test'
+      name: 'test',
     })
     test: number
   ) {
     const api = new FootballData()
-    const fixtures = (await api.getFixtures()).map(match => ({
+    const fixtures = (await api.getFixtures()).map((match) => ({
       homeTeam: match.homeTeam,
       awayTeam: match.awayTeam,
       firstMatchStart: match.firstMatchStart,
@@ -30,27 +30,27 @@ export class SyncCommand {
         match.winner === MatchWinner.None
           ? ''
           : `${
-          match.winner === MatchWinner.Home && match.penalties ? 'P ' : ''
-          }${match.homeScore}-${match.awayScore}${
-          match.winner === MatchWinner.Away && match.penalties ? ' P' : ''
-          }`,
-      lastUpdated: match.lastUpdated
+              match.winner === MatchWinner.Home && match.penalties ? 'P ' : ''
+            }${match.homeScore}-${match.awayScore}${
+              match.winner === MatchWinner.Away && match.penalties ? ' P' : ''
+            }`,
+      lastUpdated: match.lastUpdated,
     }))
 
-    const existingFixtures = await this.fixtureService.getFixtures()
+    const existingFixtures = await this.fixtureService.getFixtures(2)
 
     const fixturesToAdd = fixtures.filter(
-      fixture =>
+      (fixture) =>
         !existingFixtures.find(
-          existingFixture =>
+          (existingFixture) =>
             existingFixture.homeTeam === fixture.homeTeam &&
             existingFixture.awayTeam === fixture.awayTeam
         )
     )
 
-    const fixturesToUpdate = fixtures.filter(fixture =>
+    const fixturesToUpdate = fixtures.filter((fixture) =>
       existingFixtures.find(
-        existingFixture =>
+        (existingFixture) =>
           existingFixture.homeTeam === fixture.homeTeam &&
           existingFixture.awayTeam === fixture.awayTeam &&
           existingFixture.lastSync < fixture.lastUpdated
@@ -58,7 +58,8 @@ export class SyncCommand {
     )
 
     await this.fixtureService.saveFixtures(
-      [...fixturesToAdd, ...fixturesToUpdate].map(fixture => ({
+      2,
+      [...fixturesToAdd, ...fixturesToUpdate].map((fixture) => ({
         tournamentId: 2,
         homeTeam: fixture.homeTeam,
         awayTeam: fixture.awayTeam,
@@ -67,7 +68,7 @@ export class SyncCommand {
         secondMatchStart: new Date(fixture.secondMatchStart),
         matchWinner: fixture.winner,
         score: fixture.score,
-        lastSync: fixture.lastUpdated
+        lastSync: fixture.lastUpdated,
       }))
     )
   }

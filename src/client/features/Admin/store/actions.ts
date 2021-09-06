@@ -29,7 +29,7 @@ export const updateFixture = (tournamentId: number, fixture: FixtureModel): Thun
     awayTeam: fixture.awayTeam.name,
     tournamentId
   })))
-  dispatch(getFixtures())
+  dispatch(getFixtures(tournamentId))
 }
 
 export const concludeRound = (tournamentId: number, fixtures: FixtureModel[]): ThunkAction => async (
@@ -50,7 +50,7 @@ export const concludeRound = (tournamentId: number, fixtures: FixtureModel[]): T
 
   dispatch(actions.requestConcludeRound())
   dispatch(actions.receiveConcludeRound(await endpoints.tournaments.concludeRound(payload)))
-  dispatch(getFixtures())
+  dispatch(getFixtures(tournamentId))
 }
 
 export type Actions = ActionsUnion<typeof actions>

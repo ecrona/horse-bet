@@ -1,6 +1,7 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { BetEntity } from 'entities/bet'
+import { TournamentEntity } from 'entities/tournament'
 import { UserEntity } from 'entities/user'
 import { authenticate } from 'passport'
 import { AuthService } from 'services/auth'
@@ -11,11 +12,12 @@ import { UserController } from './controller'
 @Module({
   imports: [
     TypeOrmModule.forFeature([BetEntity]),
-    TypeOrmModule.forFeature([UserEntity])
+    TypeOrmModule.forFeature([TournamentEntity]),
+    TypeOrmModule.forFeature([UserEntity]),
   ],
   providers: [AuthService, UserService /*JwtStrategy*/, GoogleJwtStrategy],
   controllers: [UserController],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class UserModule {
   public configure(consumer: MiddlewareConsumer) {
@@ -24,12 +26,11 @@ export class UserModule {
         authenticate('google', {
           scope: [
             'https://www.googleapis.com/auth/plus.login',
-            'https://www.googleapis.com/auth/userinfo.email'
+            'https://www.googleapis.com/auth/userinfo.email',
           ],
-          session: false
+          session: false,
         }),
         (req, res) => {
-          console.log(req, res.req.user)
           res.cookie('token', res.req.user)
           res.redirect('/')
         }
@@ -39,10 +40,9 @@ export class UserModule {
     consumer
       .apply(
         authenticate('google', {
-          session: false
+          session: false,
         }),
         (req, res) => {
-          console.log('san')
           res.redirect('/')
         }
       )

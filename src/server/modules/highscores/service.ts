@@ -5,7 +5,6 @@ import { MatchWinner } from '@shared/models/match-winner'
 import { BetEntity } from 'entities/bet'
 import { FixtureEntity } from 'entities/fixture'
 import { UserEntity } from 'entities/user'
-import { staticTournamentId } from 'static-tournament-id'
 import { Repository } from 'typeorm'
 
 @Injectable()
@@ -17,23 +16,23 @@ export class HighscoresService {
     private readonly betRepository: Repository<BetEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>
-  ) { }
+  ) {}
 
-  async get(email: string) {
+  async get(tournamentId: number, email: string) {
     const users = await this.userRepository.find()
-    const fixtures = await this.fixtureRepository.find({ tournamentId: staticTournamentId })
-    const bets = await this.betRepository.find({ tournamentId: staticTournamentId })
+    const fixtures = await this.fixtureRepository.find({ tournamentId })
+    const bets = await this.betRepository.find({ tournamentId })
 
     return (
       users
         // Map all the users to retrieve the data we're interested in
-        .map(user => ({
+        .map((user) => ({
           name: user.displayName,
           me: user.email.toLowerCase() === email.toLowerCase(),
           // Compare all the user bets to the fixtures to find out total score
-          score: fixtures.filter(fixture =>
+          score: fixtures.filter((fixture) =>
             bets.find(
-              bet =>
+              (bet) =>
                 bet.userEmail.toLowerCase() === user.email.toLowerCase() &&
                 bet.awayTeam === fixture.awayTeam &&
                 bet.homeTeam === fixture.homeTeam &&
@@ -44,7 +43,7 @@ export class HighscoresService {
                   (bet.placement === BetPlacement.NotPlaced &&
                     fixture.matchWinner === MatchWinner.None))
             )
-          ).length
+          ).length,
         }))
         // Sort the scores so the highest score comes first
         .sort((a, b) => b.score - a.score)
@@ -55,7 +54,7 @@ export class HighscoresService {
           ...highscore,
           rank: highscores.find(
             (_highscore, _index) => _highscore.score === highscore.score
-          ).rank
+          ).rank,
         }))
     )
   }

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import * as bcrypt from 'bcrypt'
 import { BetEntity } from 'entities/bet'
+import { TournamentEntity } from 'entities/tournament'
 import { UserEntity } from 'entities/user'
-import { staticTournamentId } from 'static-tournament-id'
 import { Repository } from 'typeorm'
 
 @Injectable()
@@ -14,20 +14,31 @@ export class UserService {
     @InjectRepository(BetEntity)
     private readonly betRepository: Repository<BetEntity>,
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>
-  ) { }
+    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(TournamentEntity)
+    private readonly tourmanentRepository: Repository<TournamentEntity>
+  ) {}
 
   async getUsers(): Promise<UserEntity[]> {
-    return await this.userRepository.find()
+    return await this.userRepository.find({ where: { active: true } })
+  }
+
+  async getUser(email: string): Promise<UserEntity> {
+    return await this.userRepository.findOneOrFail({ email })
   }
 
   async getUserBets() {
     const users = await this.getUsers()
-    const bets = await this.betRepository.find({ tournamentId: staticTournamentId })
+    const tournament = await this.tourmanentRepository.findOneOrFail({
+      order: { id: 'DESC' },
+    })
+    const bets = await this.betRepository.find({
+      tournamentId: tournament.id,
+    })
 
-    return users.map(user => ({
+    return users.map((user) => ({
       ...user,
-      bets: bets.filter(bet => bet.userEmail === user.email)
+      bets: bets.filter((bet) => bet.userEmail === user.email),
     }))
   }
 

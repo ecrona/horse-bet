@@ -1,39 +1,52 @@
 import {
   Controller,
   HttpCode,
-  UseGuards,
+  HttpException,
   HttpStatus,
-  Response,
-  HttpException
+  UseGuards,
 } from '@nestjs/common'
 import {
-  DashboardEndpointsData,
-  dashboardEndpointsMeta,
-  PlaceBetRequest
-} from '@shared/endpoints/dashboard'
+  FixtureEndpointsData,
+  fixturesEndpointsMeta,
+  PlaceBetRequest,
+  UpdateFixtureRequest,
+} from '@shared/endpoints/fixtures'
+import { Fixture } from '@shared/models/fixture'
 import {
   hasFixtureBegun,
-  isValidBetPlacement
+  isValidBetPlacement,
 } from '@shared/validators/fixture'
 import { Endpoints } from 'decorators/endpoints'
-import { AuthGuard } from 'guards/auth'
+import { AdminRole, AuthGuard } from 'guards/auth'
 import { FixtureService } from 'services/fixture'
 
 @Controller()
-@Endpoints(dashboardEndpointsMeta)
-export class DashboardController implements DashboardEndpointsData {
+@Endpoints(fixturesEndpointsMeta)
+export class FixturesController implements FixtureEndpointsData {
   constructor(private readonly fixtureService: FixtureService) {}
 
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
   @HttpCode(200)
-  async get(credentials: void, request) {
-    return await this.fixtureService.getFixturesWithBets(request.locals.email)
+  async get(payload: { id: number }, request) {
+    return await this.fixtureService.getFixturesWithBets(
+      JSON.parse(payload as any).id,
+      request.locals.email
+    )
   }
 
-  @UseGuards(new AuthGuard())
+  @UseGuards(AuthGuard)
+  @AdminRole()
+  @HttpCode(200)
+  async update(request: UpdateFixtureRequest) {
+    await this.fixtureService.updateFixture(request)
+    return {} as Fixture
+  }
+
+  @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.CREATED)
   async placeBet(bet: PlaceBetRequest, request) {
     const fixture = await this.fixtureService.getFixture(
+      bet.tournamentId,
       bet.awayTeam,
       bet.homeTeam
     )
@@ -44,6 +57,7 @@ export class DashboardController implements DashboardEndpointsData {
       isValidBetPlacement(bet.placement)
     ) {
       await this.fixtureService.placeBet(
+        bet.tournamentId,
         request.locals.email,
         bet.awayTeam,
         bet.homeTeam,

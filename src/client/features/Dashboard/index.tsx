@@ -164,7 +164,7 @@ export default function Dashboard() {
   const {id} = useParams<{ id: string }>()
 
   useEffect(() => {
-    dispatch(getFixtures())
+    dispatch(getFixtures(Number(id)))
     window.scrollTo(0, 0)
   }, [])
 
