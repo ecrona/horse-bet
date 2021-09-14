@@ -5,8 +5,6 @@ import { endpoints } from '../utils/endpoints'
 import { mockEndpoints } from '../utils/mock-endpoints'
 import { rootReducer } from './reducers'
 
-console.log(import.meta.env)
-
 export default function configureStore() {
   const middleware = [
     thunkMiddleware.withExtraArgument(
