@@ -1,6 +1,6 @@
 import { BetPlacement } from '@shared/models/bet-placement'
 import { Fixture } from '@shared/models/fixture'
-import { ActionsUnion, createAction, ThunkAction } from 'store'
+import { ActionsUnion, createAction, ThunkAction } from '../../../store'
 
 export enum ActionTypes {
   requestFixtures = '[Dashboard] Request fixtures',
@@ -8,7 +8,7 @@ export enum ActionTypes {
   requestPlaceBet = '[Dashboard] Request place bet',
   receivePlaceBet = '[Dashboard] Receive place bet',
   toggleViewState = '[Dashboard] Toggle view state',
-  saveScrollPosition = '[Dashboard] Save scroll position'
+  saveScrollPosition = '[Dashboard] Save scroll position',
 }
 
 export const actions = {
@@ -24,31 +24,40 @@ export const actions = {
     createAction(ActionTypes.receivePlaceBet, {
       awayTeam,
       homeTeam,
-      placement
+      placement,
     }),
   toggleViewState: () => createAction(ActionTypes.toggleViewState),
   saveScrollPosition: (scrollPosition: number) =>
-    createAction(ActionTypes.saveScrollPosition, scrollPosition)
+    createAction(ActionTypes.saveScrollPosition, scrollPosition),
 }
 
-export const getFixtures = (tournamentId: number): ThunkAction => async (
-  dispatch,
-  getState,
-  endpoints
-) => {
-  dispatch(actions.requestFixtures())
-  dispatch(actions.receiveFixtures(await endpoints.fixtures.get({ id: tournamentId })))
-}
+export const getFixtures =
+  (tournamentId: number): ThunkAction =>
+  async (dispatch, getState, endpoints) => {
+    dispatch(actions.requestFixtures())
+    dispatch(
+      actions.receiveFixtures(
+        await endpoints.fixtures.get({ id: tournamentId })
+      )
+    )
+  }
 
-export const placeBet = (
-  tournamentId: number,
-  awayTeam: string,
-  homeTeam: string,
-  placement: BetPlacement
-): ThunkAction => async (dispatch, getState, endpoints) => {
-  dispatch(actions.requestPlaceBet())
-  await endpoints.fixtures.placeBet({ tournamentId, awayTeam, homeTeam, placement })
-  dispatch(actions.receivePlaceBet(awayTeam, homeTeam, placement))
-}
+export const placeBet =
+  (
+    tournamentId: number,
+    awayTeam: string,
+    homeTeam: string,
+    placement: BetPlacement
+  ): ThunkAction =>
+  async (dispatch, getState, endpoints) => {
+    dispatch(actions.requestPlaceBet())
+    await endpoints.fixtures.placeBet({
+      tournamentId,
+      awayTeam,
+      homeTeam,
+      placement,
+    })
+    dispatch(actions.receivePlaceBet(awayTeam, homeTeam, placement))
+  }
 
 export type Actions = ActionsUnion<typeof actions>

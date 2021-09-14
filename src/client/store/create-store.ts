@@ -1,32 +1,22 @@
-import { createStore, applyMiddleware } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import { History } from 'history'
-import { endpoints } from 'utils/endpoints'
-import { mockEndpoints } from 'utils/mock-endpoints'
+import { endpoints } from '../utils/endpoints'
+import { mockEndpoints } from '../utils/mock-endpoints'
 import { rootReducer } from './reducers'
 
-declare let module: { hot: any }
+console.log(import.meta.env)
 
-export default function configureStore(history: History) {
+export default function configureStore() {
   const middleware = [
     thunkMiddleware.withExtraArgument(
-      process.env.USE_MOCK ? mockEndpoints : endpoints
-    )
+      import.meta.env.DEV ? mockEndpoints : endpoints
+    ),
   ]
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (import.meta.env.DEV) {
     middleware.push(createLogger())
   }
 
-  const store = createStore(rootReducer, applyMiddleware(...middleware))
-
-  if (module.hot) {
-    module.hot.accept('./index.ts', () => {
-      const { rootReducer: nextRootReducer } = require('./index.ts')
-      store.replaceReducer(nextRootReducer)
-    })
-  }
-
-  return store
+  return createStore(rootReducer, applyMiddleware(...middleware))
 }

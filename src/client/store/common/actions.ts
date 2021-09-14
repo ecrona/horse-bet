@@ -1,14 +1,12 @@
 import {
+  differenceInMilliseconds,
   format,
   getMinutes,
+  setMilliseconds,
   setMinutes,
   setSeconds,
-  setMilliseconds,
-  differenceInMilliseconds
 } from 'date-fns'
-import { getFixtures } from 'features/Dashboard/store/actions'
-
-import { ThunkAction, ActionsUnion, createAction } from 'store'
+import { ActionsUnion, createAction, ThunkAction } from '../../store'
 
 const minuteInterval = 5
 const minuteCollection = Array.from(Array(60 / minuteInterval))
@@ -17,15 +15,15 @@ const minuteCollection = Array.from(Array(60 / minuteInterval))
 
 export enum ActionTypes {
   unauthenticate = '[Common] Unauthenticate',
-  setDate = '[Common] Set date'
+  setDate = '[Common] Set date',
 }
 
 export const actions = {
   unauthenticate: () => createAction(ActionTypes.unauthenticate),
-  setDate: (date: string) => createAction(ActionTypes.setDate, date)
+  setDate: (date: string) => createAction(ActionTypes.setDate, date),
 }
 
-export const updateDate = (): ThunkAction => dispatch => {
+export const updateDate = (): ThunkAction => (dispatch) => {
   const now = new Date()
   dispatch(actions.setDate(format(now, 'YYYY-MM-DD HH:mm')))
 
@@ -34,7 +32,8 @@ export const updateDate = (): ThunkAction => dispatch => {
 
   const currentMinute = getMinutes(now)
   const closestMinute =
-    minuteCollection.find(minute => currentMinute >= minute) + minuteInterval
+    minuteCollection.find((minute) => currentMinute >= minute) ??
+    0 + minuteInterval
   const nextUpdate = setMilliseconds(
     setSeconds(setMinutes(new Date(), closestMinute), 0),
     0

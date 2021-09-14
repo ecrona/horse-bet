@@ -1,4 +1,4 @@
-import { Actions, ActionTypes } from 'store/actions'
+import { Actions, ActionTypes } from '@client/store/actions'
 
 export enum ViewState {
   None,
@@ -18,12 +18,12 @@ export default function reducer(state = initialState, action: Actions): State {
     case ActionTypes.admin.requestUpdateFixture:
       return {
         ...state,
-        viewState: ViewState.Fetching
+        viewState: ViewState.Fetching,
       }
     case ActionTypes.admin.receiveUpdateFixture:
       return {
         ...state,
-        viewState: ViewState.None
+        viewState: ViewState.None,
       }
     default:
       return state

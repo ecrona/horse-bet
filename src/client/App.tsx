@@ -1,4 +1,3 @@
-import 'global.css'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Admin from './features/Admin'
@@ -7,6 +6,7 @@ import Details from './features/Details'
 import Highscore from './features/Highscore'
 import Layout from './features/Layout'
 import Tournaments from './features/Tournaments'
+import './global.css'
 
 export default function App() {
   return (

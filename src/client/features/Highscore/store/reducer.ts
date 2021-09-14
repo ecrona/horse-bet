@@ -1,5 +1,5 @@
+import { Actions, ActionTypes } from '@client/store/actions'
 import { Highscore } from '@shared/models/highscore'
-import { Actions, ActionTypes } from 'store/actions'
 import { ViewState } from '../models/view-state'
 
 export interface State {
@@ -9,7 +9,7 @@ export interface State {
 
 const initialState: State = {
   viewState: ViewState.Fetching,
-  highscores: []
+  highscores: [],
 }
 
 export default function reducer(state = initialState, action: Actions): State {
@@ -17,13 +17,13 @@ export default function reducer(state = initialState, action: Actions): State {
     case ActionTypes.highscore.requestHighscores:
       return {
         ...state,
-        viewState: ViewState.Fetching
+        viewState: ViewState.Fetching,
       }
     case ActionTypes.highscore.receiveHighscores:
       return {
         ...state,
         viewState: ViewState.Highscores,
-        highscores: action.payload
+        highscores: action.payload,
       }
     default:
       return state

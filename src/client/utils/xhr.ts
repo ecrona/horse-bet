@@ -1,15 +1,15 @@
-import * as JWT from 'jwt-client'
 import { clientEnv } from '@env/client'
 import { RequestMethod } from '@shared/utils/endpoints'
-import { actions } from 'store/common/actions'
-import { store } from 'index'
+import * as JWT from 'jwt-client'
+import { store } from '../index'
+import { actions } from '../store/common/actions'
 
 const requestMethodMap = {
   [RequestMethod.Get]: 'GET',
   [RequestMethod.Post]: 'POST',
   [RequestMethod.Put]: 'PUT',
   [RequestMethod.Patch]: 'PATCH',
-  [RequestMethod.Delete]: 'DELETE'
+  [RequestMethod.Delete]: 'DELETE',
 }
 
 const host =
@@ -29,8 +29,8 @@ export const xhr = async (
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: JWT.get()
-    }
+      Authorization: JWT.get(),
+    },
   }
   if (requestMethod === RequestMethod.Get && data) {
     hostUrl = `${hostUrl}?data=${JSON.stringify(data)}`

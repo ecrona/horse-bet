@@ -1,24 +1,24 @@
 // Common
-import {
-    Actions as HighscoreActions,
-    ActionTypes as HighscoreActionTypes
-} from '@client/features/Highscore/store/actions'
 // Features
 import {
-    Actions as AdminActions,
-    ActionTypes as AdminActionTypes
-} from 'features/Admin/store/actions'
+  Actions as AdminActions,
+  ActionTypes as AdminActionTypes,
+} from '@client/features/Admin/store/actions'
 import {
-    Actions as DashboardActions,
-    ActionTypes as DashboardActionTypes
-} from 'features/Dashboard/store/actions'
+  Actions as DashboardActions,
+  ActionTypes as DashboardActionTypes,
+} from '@client/features/Dashboard/store/actions'
 import {
-    Actions as TournamentsActions,
-    ActionTypes as TournamentsActionTypes
-} from 'features/Tournaments/store/actions'
+  Actions as HighscoreActions,
+  ActionTypes as HighscoreActionTypes,
+} from '@client/features/Highscore/store/actions'
 import {
-    Actions as CommonActions,
-    ActionTypes as CommonActionTypes
+  Actions as TournamentsActions,
+  ActionTypes as TournamentsActionTypes,
+} from '@client/features/Tournaments/store/actions'
+import {
+  Actions as CommonActions,
+  ActionTypes as CommonActionTypes,
 } from './common/actions'
 
 export const ActionTypes = {
@@ -29,7 +29,12 @@ export const ActionTypes = {
   admin: AdminActionTypes,
   dashboard: DashboardActionTypes,
   highscore: HighscoreActionTypes,
-  tournaments: TournamentsActionTypes
+  tournaments: TournamentsActionTypes,
 }
 
-export type Actions = CommonActions | AdminActions | DashboardActions | HighscoreActions |TournamentsActions
+export type Actions =
+  | CommonActions
+  | AdminActions
+  | DashboardActions
+  | HighscoreActions
+  | TournamentsActions

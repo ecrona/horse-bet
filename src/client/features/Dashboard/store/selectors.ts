@@ -1,7 +1,6 @@
+import { RootState } from '@client/store/reducers'
 import { getRoundName } from '@client/utils'
 import { createSelector } from 'reselect'
-import { RootState } from 'store/reducers'
-
 
 export const getRounds = createSelector(
   (state: RootState) => state.common.date,
@@ -11,7 +10,7 @@ export const getRounds = createSelector(
       if (!rounds[fixture.round]) {
         rounds[fixture.round] = {
           name: getRoundName(fixture.round),
-          fixtures: []
+          fixtures: [],
         }
       }
 
@@ -26,7 +25,7 @@ export const getRounds = createSelector(
           new Date(date.replace(' ', 'T')),
         firstMatchStart: fixture.firstMatchStart,
         secondMatchStart: fixture.secondMatchStart,
-        score: fixture.score
+        score: fixture.score,
       })
 
       return rounds

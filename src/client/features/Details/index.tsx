@@ -1,6 +1,7 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
 import Toolbar from '@client/shared/components/Toolbar'
+import { RootState } from '@client/store/reducers'
 import { getFlag } from '@client/utils/flag'
 import clsx from 'clsx'
 import format from 'date-fns/format'
@@ -11,15 +12,18 @@ import { getFixture } from '../Details/selectors'
 import './styles.css'
 
 export default function Details() {
-  const { homeTeam, awayTeam } = useParams()
-  const fixture = useSelector(state => getFixture(state, homeTeam, awayTeam))
+  const { homeTeam, awayTeam } =
+    useParams<{ homeTeam: string; awayTeam: string }>()
+  const fixture = useSelector((state: RootState) =>
+    getFixture(state, homeTeam, awayTeam)
+  )
 
   const [query, setQuery] = useState('')
 
   const filteredBets = useMemo(
     () =>
       fixture
-        ? fixture.bets.filter(bet =>
+        ? fixture.bets.filter((bet) =>
             bet.name.toLowerCase().includes(query.toLowerCase())
           )
         : [],
@@ -59,13 +63,16 @@ export default function Details() {
       <div className="py-8 bg-gray-400 shadow relative flex justify-around items-center">
         <div
           className={clsx('details-team', {
-            'details-team--loser': hasWinner && awayWinner
+            'details-team--loser': hasWinner && awayWinner,
           })}
         >
-          <img className="details-team__logo" src={getFlag(fixture.homeTeam.name)} />
+          <img
+            className="details-team__logo"
+            src={getFlag(fixture.homeTeam.name)}
+          />
           <span className="details-team__name">{fixture.homeTeam.name}</span>
           <span className="text-green-100" style={{ height: 24 }}>
-            {fixture.matchWinner === BetPlacement.Home && 'Winner'}
+            {homeWinner && 'Winner'}
           </span>
         </div>
 
@@ -77,13 +84,16 @@ export default function Details() {
 
         <div
           className={clsx('details-team', {
-            'details-team--loser': hasWinner && homeWinner
+            'details-team--loser': hasWinner && homeWinner,
           })}
         >
-          <img className="details-team__logo" src={getFlag(fixture.awayTeam.name)} />
+          <img
+            className="details-team__logo"
+            src={getFlag(fixture.awayTeam.name)}
+          />
           <span className="details-team__name">{fixture.awayTeam.name}</span>
           <span className="text-green-100" style={{ height: 24 }}>
-            {fixture.matchWinner === BetPlacement.Away && 'Winner'}
+            {awayWinner && 'Winner'}
           </span>
         </div>
       </div>
@@ -155,7 +165,7 @@ export default function Details() {
           </div>
 
           <div style={{ minHeight: 200 }}>
-            {filteredBets.map(bet => (
+            {filteredBets.map((bet) => (
               <div key={bet.name} className="details-better">
                 <img
                   className="details-better__logo"
@@ -183,7 +193,7 @@ export default function Details() {
 
 function getPercentageOfHomeBets(bets) {
   const amountOfHomeBets = bets.filter(
-    bet => bet.placement === BetPlacement.Home
+    (bet) => bet.placement === BetPlacement.Home
   ).length
   const totalBets = bets.length
 

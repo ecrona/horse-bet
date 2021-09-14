@@ -1,6 +1,6 @@
 import { getFixtures } from '@client/features/Dashboard/store/actions'
 import { Fixture, FixtureModel } from '@shared/models/fixture'
-import { ActionsUnion, createAction, ThunkAction } from 'store'
+import { ActionsUnion, createAction, ThunkAction } from '../../../store'
 
 export enum ActionTypes {
   requestUpdateFixture = '[Admin] Request update fixture',
@@ -14,43 +14,46 @@ export const actions = {
   receiveUpdateFixture: (fixture: Fixture) =>
     createAction(ActionTypes.receiveUpdateFixture, fixture),
   requestConcludeRound: () => createAction(ActionTypes.requestConcludeRound),
-  receiveConcludeRound: (payload) => createAction(ActionTypes.receiveConcludeRound, payload),
+  receiveConcludeRound: (payload) =>
+    createAction(ActionTypes.receiveConcludeRound, payload),
 }
 
-export const updateFixture = (tournamentId: number, fixture: FixtureModel): ThunkAction => async (
-  dispatch,
-  getState,
-  endpoints
-) => {
-  dispatch(actions.requestUpdateFixture())
-  dispatch(actions.receiveUpdateFixture(await endpoints.fixtures.update({
-    ...fixture,
-    homeTeam: fixture.homeTeam.name,
-    awayTeam: fixture.awayTeam.name,
-    tournamentId
-  })))
-  dispatch(getFixtures(tournamentId))
-}
+export const updateFixture =
+  (tournamentId: number, fixture: FixtureModel): ThunkAction =>
+  async (dispatch, getState, endpoints) => {
+    dispatch(actions.requestUpdateFixture())
+    dispatch(
+      actions.receiveUpdateFixture(
+        await endpoints.fixtures.update({
+          ...fixture,
+          homeTeam: fixture.homeTeam.name,
+          awayTeam: fixture.awayTeam.name,
+          tournamentId,
+        })
+      )
+    )
+    dispatch(getFixtures(tournamentId))
+  }
 
-export const concludeRound = (tournamentId: number, fixtures: FixtureModel[]): ThunkAction => async (
-  dispatch,
-  getState,
-  endpoints
-) => {
-  const payload = {
-    id: tournamentId,
-    fixtures: fixtures.map(f => (
-      {
+export const concludeRound =
+  (tournamentId: number, fixtures: FixtureModel[]): ThunkAction =>
+  async (dispatch, getState, endpoints) => {
+    const payload = {
+      id: tournamentId,
+      fixtures: fixtures.map((f) => ({
         ...f,
         homeTeam: f.homeTeam.name,
         awayTeam: f.awayTeam.name,
-      }
-    ))
-  }
+      })),
+    }
 
-  dispatch(actions.requestConcludeRound())
-  dispatch(actions.receiveConcludeRound(await endpoints.tournaments.concludeRound(payload)))
-  dispatch(getFixtures(tournamentId))
-}
+    dispatch(actions.requestConcludeRound())
+    dispatch(
+      actions.receiveConcludeRound(
+        await endpoints.tournaments.concludeRound(payload)
+      )
+    )
+    dispatch(getFixtures(tournamentId))
+  }
 
 export type Actions = ActionsUnion<typeof actions>

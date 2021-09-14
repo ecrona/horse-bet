@@ -1,10 +1,8 @@
+import admin from '@client/features/Admin/store/reducer'
+import dashboard from '@client/features/Dashboard/store/reducer'
 import highscore from '@client/features/Highscore/store/reducer'
-// Features
-import admin from 'features/Admin/store/reducer'
-import dashboard from 'features/Dashboard/store/reducer'
-import tournaments from 'features/Tournaments/store/reducer'
+import tournaments from '@client/features/Tournaments/store/reducer'
 import { combineReducers } from 'redux'
-// Common
 import common from './common/reducer'
 
 const reducerMap = {
@@ -15,7 +13,7 @@ const reducerMap = {
   admin,
   dashboard,
   highscore,
-  tournaments
+  tournaments,
 }
 
 export const rootReducer = combineReducers(reducerMap)

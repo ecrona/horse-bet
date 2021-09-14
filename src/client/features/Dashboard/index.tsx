@@ -1,6 +1,5 @@
 import { BetPlacement } from '@client/../shared/models/bet-placement'
 import { MatchWinner } from '@client/../shared/models/match-winner'
-import { Fixture } from '@client/models/fixture'
 import Toolbar from '@client/shared/components/Toolbar'
 import { getNumberOrdinal } from '@client/utils'
 import { getFlag } from '@client/utils/flag'
@@ -17,8 +16,6 @@ import { getFixtures, placeBet } from './store/actions'
 import { getRounds } from './store/selectors'
 import './styles.css'
 
-
-
 interface BetButtonProps {
   disabled?: boolean
   children?: any
@@ -34,12 +31,12 @@ function BetButton({
   state,
   selected,
   title,
-  onClick
+  onClick,
 }: BetButtonProps) {
   const classes = clsx('bet-button', {
     'bet-button--selected': selected,
     'bet-button--loser': state === 'loser',
-    'bet-button--winner': state === 'winner'
+    'bet-button--winner': state === 'winner',
   })
 
   return (
@@ -68,7 +65,8 @@ interface FixProps {
 }
 
 function Fixture({ fixture, onPlaceBet }: FixProps) {
-  const {id, slug, name} = useParams<{ id: string, slug: string, name: string }>()
+  const { id, slug, name } =
+    useParams<{ id: string; slug: string; name: string }>()
   const [homeScore, awayScore] = fixture.score.split('-')
   const isPlaceable = fixture.placeable
   const homeSelected = fixture.betPlacement === BetPlacement.Home
@@ -110,7 +108,10 @@ function Fixture({ fixture, onPlaceBet }: FixProps) {
           }
           onClick={handlePlaceBet(BetPlacement.Home)}
         >
-          <img className="bet-button__logo" src={getFlag(fixture.homeTeam.name)} />
+          <img
+            className="bet-button__logo"
+            src={getFlag(fixture.homeTeam.name)}
+          />
           <span className="pl-3 flex-1 font-medium">
             {fixture.homeTeam.name}
           </span>
@@ -128,7 +129,10 @@ function Fixture({ fixture, onPlaceBet }: FixProps) {
           }
           onClick={handlePlaceBet(BetPlacement.Away)}
         >
-          <img className="bet-button__logo" src={getFlag(fixture.awayTeam.name)} />
+          <img
+            className="bet-button__logo"
+            src={getFlag(fixture.awayTeam.name)}
+          />
           <span className="pl-3 flex-1 font-medium">
             {fixture.awayTeam.name}
           </span>
@@ -159,9 +163,10 @@ function Fixture({ fixture, onPlaceBet }: FixProps) {
 export default function Dashboard() {
   const dispatch = useDispatch()
   const rounds = useSelector(getRounds)
-  const myHighscore = useSelector(getMyHighscore) || {}
+  // TODO: type?
+  const myHighscore: any = useSelector(getMyHighscore)
 
-  const {id} = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>()
 
   useEffect(() => {
     dispatch(getFixtures(Number(id)))
@@ -221,12 +226,9 @@ export default function Dashboard() {
 
           <div className="pb-6"></div>
 
-          {round.fixtures.map(fixture => (
+          {round.fixtures.map((fixture) => (
             <div key={fixture.awayTeam.name} className="pb-10">
-              <Fixture
-                fixture={fixture}
-                onPlaceBet={handlePlaceBet}
-              />
+              <Fixture fixture={fixture} onPlaceBet={handlePlaceBet} />
             </div>
           ))}
         </div>

@@ -3,7 +3,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack'
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
 import React from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import styles from './styles.scss'
+import styles from './styles.module.css'
 
 interface Props {
   hideGoBack?: boolean
@@ -14,10 +14,10 @@ interface Props {
 export default function Toolbar({
   hideGoBack,
   hideHighscore,
-  subtitle
+  subtitle,
 }: Props) {
   const history = useHistory()
-  const { id, slug } = useParams<{id: string, slug: string}>()
+  const { id, slug } = useParams<{ id: string; slug: string }>()
 
   function handleGoBack() {
     history.goBack()

@@ -1,6 +1,6 @@
+import { RootState } from '@client/store/reducers'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchHighscores } from '../Highscore/store/actions'
 import Login from '../Login'
 
 interface Props {
@@ -9,7 +9,9 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const dispatch = useDispatch()
-  const authenticated = useSelector((state) => state.common.authenticated)
+  const authenticated = useSelector(
+    (state: RootState) => state.common.authenticated
+  )
 
   useEffect(() => {
     // FIXME

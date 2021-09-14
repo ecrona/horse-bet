@@ -1,5 +1,5 @@
+import { RootState } from '@client/store/reducers'
 import { createSelector } from 'reselect'
-import { RootState } from 'store/reducers'
 
 export const getFixture = createSelector(
   (state: RootState, homeTeam: string, awayTeam: string) =>
@@ -8,7 +8,7 @@ export const getFixture = createSelector(
   (state: RootState, homeTeam: string, awayTeam: string) => awayTeam,
   (fixtures, homeTeam, awayTeam) =>
     fixtures.find(
-      fixture =>
+      (fixture) =>
         fixture.homeTeam.name === homeTeam && fixture.awayTeam.name === awayTeam
     )
 )
