@@ -1,3 +1,4 @@
+import { isDevelopment } from '@client/environment'
 import { applyMiddleware, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
@@ -8,11 +9,11 @@ import { rootReducer } from './reducers'
 export default function configureStore() {
   const middleware = [
     thunkMiddleware.withExtraArgument(
-      import.meta.env.DEV ? mockEndpoints : endpoints
+      isDevelopment ? mockEndpoints : endpoints
     ),
   ]
 
-  if (import.meta.env.DEV) {
+  if (isDevelopment) {
     middleware.push(createLogger())
   }
 

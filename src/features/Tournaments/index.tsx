@@ -1,5 +1,5 @@
 import Toolbar from '@client/shared/components/Toolbar'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getTournaments } from './store/actions'
@@ -11,7 +11,7 @@ export default function Tournaments({}: Props) {
   const dispatch = useDispatch()
   const tournaments = useSelector(getListOfTournaments)
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getTournaments())
     window.scrollTo(0, 0)
   }, [])

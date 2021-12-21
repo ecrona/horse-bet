@@ -1,11 +1,11 @@
 {
-  "watch": ["src/server", "src/shared"],
+  "watch": ["server", "src/shared"],
   "ext": "ts,tsx",
-  "ignore": ["src/server/**/*.spec.ts"],
+  "ignore": ["server/**/*.spec.ts"],
   "events": {
     "restart": "kill-port 3000",
     "crash": "kill-port 3000"
   },
   "delay": "1500",
-  "exec": "ts-node -P src/server/tsconfig.json -r tsconfig-paths/register src/server/main.ts"
+  "exec": "ts-node -P server/tsconfig.json -r tsconfig-paths/register server/main.ts"
 }

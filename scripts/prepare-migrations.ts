@@ -11,7 +11,7 @@ fs.writeFile(
     password: serverEnv.database.password,
     database: serverEnv.database.database,
     entities: [
-      __dirname + `/../src/server/${serverEnv.database.entitiesDir}/**/*.ts`,
+      __dirname + `/../server/${serverEnv.database.entitiesDir}/**/*.ts`,
     ],
     synchronize: true,
     logging: serverEnv.database.logging,
