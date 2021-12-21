@@ -3,7 +3,6 @@ import ArrowBack from '@material-ui/icons/ArrowBack'
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
 import React from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import styles from './styles.module.css'
 
 interface Props {
   hideGoBack?: boolean
@@ -24,10 +23,10 @@ export default function Toolbar({
   }
 
   return (
-    <div className="toolbar__spacer">
-      <div className="toolbar__container">
-        <div className="toolbar">
-          <span className="toolbar__icon flex-1">
+    <div className="h-16">
+      <div className="fixed top-0 right-0 left-0 h-16 bg-gray-500 shadow-xl box-border z-10">
+        <div className="flex flex-row items-center max-w-xl m-auto text-white px-3 h-full">
+          <span className="text-white opacity-50 hover:opacity-75 flex-1 transition-colors">
             {!hideGoBack && (
               <IconButton
                 aria-label="Highscore"
@@ -40,15 +39,19 @@ export default function Toolbar({
           </span>
 
           <div>
-            <span className="toolbar__title">Hästbett</span>
+            <span className="block uppercase text-green-100 text-xl font-semibold leading-7">
+              Hästbett
+            </span>
 
-            {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
+            {subtitle && (
+              <span className="block text-lg font-normal">{subtitle}</span>
+            )}
           </div>
 
           <div className="flex-1 text-right">
             {!hideHighscore && (
               <Link to={`/${id}/${slug}/highscore`} title="View highscore">
-                <span className="toolbar__icon">
+                <span className="text-white opacity-50 hover:opacity-75 transition-colors">
                   <IconButton aria-label="Highscore" color="inherit">
                     <FormatListNumberedIcon />
                   </IconButton>

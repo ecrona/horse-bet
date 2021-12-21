@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getTournaments } from './store/actions'
 import { getListOfTournaments } from './store/selectors'
-import './styles.css'
 
 interface Props {}
 
@@ -26,15 +25,13 @@ export default function Tournaments({}: Props) {
       </div>
 
       <div className="px-6">
-        {
-          tournaments.map(({id, name, slug}) => (
-            <Link to={`/${id}/${slug}`}>
-              <div className="tournament-card">
-                <span className="tournament-card__title">{name}</span>
-              </div>
-            </Link>
-          ))
-        }
+        {tournaments.map(({ id, name, slug }) => (
+          <Link to={`/${id}/${slug}`}>
+            <div className="flex items-center justify-center p-6 cursor-pointer bg-yellow-300 hover:bg-yellow-400 active:bg-yellow-500 text-purple-300 shadow-md rounded-lg h-36">
+              <span className="font-bold text-2xl">{name}</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </>
   )
