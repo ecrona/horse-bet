@@ -4,3 +4,4 @@ npm-debug.log
 package-lock.json
 ormconfig.json
 todo.md
+dist/

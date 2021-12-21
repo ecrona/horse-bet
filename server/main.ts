@@ -14,7 +14,7 @@ async function bootstrap() {
   app.useStaticAssets(path.join(`${__dirname}/../../dist/client`))
   app.use(cookieParser())
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (import.meta.env.DEV) {
     app.use(cors())
   }
 

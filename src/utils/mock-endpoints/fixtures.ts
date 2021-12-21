@@ -158,7 +158,7 @@ export const fixturesMockEndpoints: FixtureEndpointsData = {
       ],
     },
   ]),
-  update: ({ awayTeam, homeTeam, firstMatchStart, secondMatchStart }) =>
+  update: ({ awayTeam, homeTeam, firstMatchStart, secondMatchStart }: any) =>
     createMockPromise({
       firstMatchStart,
       secondMatchStart,

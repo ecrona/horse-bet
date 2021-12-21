@@ -11,13 +11,13 @@ export const tournamentMockEndpoints: TournamentEndpointsData = {
       slug: 'champions-league-21-22',
     },
   ]),
-  modify: ({ id, name }) =>
+  modify: ({ id, name }: any) =>
     createMockPromise({
       id,
       name,
       slug: name.toLowerCase().replace(/ \//g, '-'),
     })(),
-  create: ({ name, firstRound, fixtures }) =>
+  create: ({ name, firstRound, fixtures }: any) =>
     createMockPromise({
       id: Math.ceil(Math.random() * 100),
       name,
@@ -43,7 +43,7 @@ export const tournamentMockEndpoints: TournamentEndpointsData = {
         bets: [],
       })),
     })(),
-  concludeRound: ({ id, fixtures }) =>
+  concludeRound: ({ id, fixtures }: any) =>
     createMockPromise({
       id,
       name: 'Champions League 20/21',
