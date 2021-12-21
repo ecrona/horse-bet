@@ -188,7 +188,7 @@ export default function Dashboard() {
       <div className="bg-gray-400 pt-6 px-6 pb-10 text-yellow-300 relative">
         <span className="block font-medium">Gneigh,</span>
         <span className="block font-bold text-2xl">
-          {myHighscore.name || 'Möre Standin'}
+          {myHighscore?.name || 'Möre Standin'}
         </span>
         <span
           className="block font-bold leading-none"
@@ -196,7 +196,7 @@ export default function Dashboard() {
         >
           You have a massive{' '}
           <span className="text-xl font-extrabold text-white">
-            {myHighscore.score}
+            {myHighscore?.score}
           </span>{' '}
           points
         </span>
@@ -205,9 +205,9 @@ export default function Dashboard() {
           className="bg-purple-300 text-2xl font-bold pl-1 rounded-full absolute right-0 bottom-0 mr-6 -mb-8 shadow-md text-white flex items-center justify-center"
           style={{ height: 64, width: 64, fontFamily: 'Kameron' }}
         >
-          {myHighscore.rank || 0}
+          {myHighscore?.rank || 0}
           <sup style={{ color: 'rgba(255,255,255,0.75)' }}>
-            <small>{getNumberOrdinal(myHighscore.rank)}</small>
+            <small>{getNumberOrdinal(myHighscore?.rank)}</small>
           </sup>
         </div>
       </div>
