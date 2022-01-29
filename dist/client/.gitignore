@@ -2,3 +2,4 @@
 *.svg
 *.css*
 *.html
+!admin/*

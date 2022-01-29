@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        .save-button {
+            position: fixed;
+            top: 11px;
+            left: 204px;
+            outline: 0;
+            background: indianred;
+            border: 1px solid white;
+            color: white;
+            border-radius: 6px;
+            padding: 4px 20px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .save-button:hover {
+            background: salmon;
+        }
+
+        .save-button:active {
+            top: 12px;
+        }
+
+        .save-button:disabled {
+            background: grey;
+        }
+
+        .help {
+            position: fixed;
+            top: 16px;
+            left: 340px;
+        }
+        
+        .help span {
+            background: papayawhip;
+            border: 1px solid;
+            border-radius: 4px;
+            margin-right: 8px;
+            padding: 0 4px;
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/jsoneditor@9.6.0/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="jsoneditor" style="width: 100%; height: calc(100vh - 16px);"></div>
+    <button class="save-button">SPARA!</button>
+    <div class="help">
+        <span>Match winner: 0 = Hemmalaget, 1 = Bortalaget, 3 = Ingen</span>
+        <span>Round: 0 = Final, 1 = Semi-final, 2 = Kvartsfinal, 3 = Åttondelsfinal</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsoneditor@9.6.0/dist/jsoneditor.min.js"></script>
+    <script>
+        const saveButton = document.querySelector('.save-button')
+        const container = document.getElementById("jsoneditor")
+        const options = {}
+        const editor = new JSONEditor(container, options)
+
+        ;((async () => {
+            const response = await fetch('/admin/get')
+            const json = await response.json()
+    
+            editor.set(json, { expand: () => true })
+            editor.expandAll()
+    
+            const updatedJson = editor.get()
+        })())
+
+        saveButton.onclick = async () => {
+            saveButton.disabled = true
+            await fetch('/admin/save', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'post',
+                body: JSON.stringify(editor.get())
+            })
+            saveButton.disabled = false
+        }
+    </script>
+</body>
+</html>

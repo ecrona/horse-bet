@@ -96,6 +96,10 @@ export class FixtureService {
     return await this.fixtureRepository.save(fixtures.map(fixture => ({ ...fixture, tournamentId: staticTournamentId })))
   }
 
+  async deleteFixture(fixture: FixtureEntity) {
+    return await this.fixtureRepository.delete(fixture)
+  }
+
   async placeBet(
     email: string,
     awayTeam: string,
